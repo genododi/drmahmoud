@@ -53,22 +53,42 @@
     const key = `${targetUrl}::${dark}`;
     if (_qrDataUrlCache.has(key)) return _qrDataUrlCache.get(key);
     const QR = window.QRCode;
-    if (!QR || typeof QR.toDataURL !== 'function') {
-      console.warn('QRCode.toDataURL not available');
+    if (!QR) {
+      console.warn('QRCode library not available');
       return null;
     }
-    const p = new Promise((resolve) => {
-      QR.toDataURL(
-        targetUrl,
-        { width: 200, margin: 1, color: { dark, light: '#ffffff' } },
-        (err, dataUrl) => {
-          if (err) {
+    const p = typeof QR.toDataURL === 'function'
+      ? new Promise((resolve) => {
+          QR.toDataURL(
+            targetUrl,
+            { width: 200, margin: 1, color: { dark, light: '#ffffff' } },
+            (err, dataUrl) => {
+              if (err) {
+                console.error('QR generation error', err);
+                resolve(null);
+              } else resolve(dataUrl);
+            }
+          );
+        })
+      : new Promise((resolve) => {
+          try {
+            const holder = document.createElement('div');
+            new QR(holder, {
+              text: targetUrl,
+              width: 200,
+              height: 200,
+              colorDark: dark,
+              colorLight: '#ffffff',
+              correctLevel: QR.CorrectLevel && QR.CorrectLevel.M,
+            });
+            const canvas = holder.querySelector('canvas');
+            const img = holder.querySelector('img');
+            resolve(canvas ? canvas.toDataURL('image/png') : (img && img.src) || null);
+          } catch (err) {
             console.error('QR generation error', err);
             resolve(null);
-          } else resolve(dataUrl);
-        }
-      );
-    });
+          }
+        });
     _qrDataUrlCache.set(key, p);
     return p;
   }
@@ -239,9 +259,6 @@
   function ensurePdfLibsReady() {
     if (!window.jspdf || !window.jspdf.jsPDF) {
       throw new Error('PDF library failed to load. Check your internet connection and try again.');
-    }
-    if (!window.QRCode || typeof window.QRCode.toDataURL !== 'function') {
-      throw new Error('QR code library failed to load. Check your internet connection and try again.');
     }
   }
 
