@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-12T00:00:00.000Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "phone": "01005602267",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": { "id": "DEMO-001", "name": "Demo Patient", "dob": "1968-03-15", "contact": "+20 100 000 0000" },
+  "glasses": [{
+    "id": "g1", "date": "2026-05-10", "glassesType": "new",
+    "sph_right": "-1.00", "cyl_right": "-0.50", "axis_right": "180", "va_right": "6/6",
+    "sph_left":  "-1.25", "cyl_left":  "-0.75", "axis_left":  "175", "va_left":  "6/6",
+    "add_power": "+2.00", "pd": "62mm", "notes": "Single vision distance + reading add for near"
+  }],
+  "medications": [{
+    "id": "m1", "date": "2026-05-10", "name": "Latanoprost 0.005%", "type": "Eye drops",
+    "dosage": "1 drop", "frequency": "Once daily at bedtime", "duration": "Continuous",
+    "instructions": "Wait 5 minutes between drops"
+  }],
+  "treatments": [],
+  "investigations": [{ "id": "i1", "date": "2026-05-10", "type": "OCT macula", "details": "Both eyes", "results": "Normal." }],
+  "examinations": [], "reports": [], "surgeries": [], "labs": []
+}
