@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Portal · Dr. Mahmoud Sami</title>
+  <meta name="description" content="Patient portal: log in with your Patient ID to access and download your eye-care records." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%230e7490'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23fff'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="portal.css" />
+</head>
+<body class="portal-body">
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true"></div>
+      <div>
+        <h1>Patient Portal</h1>
+        <p class="brand-sub">Dr. Mahmoud Sami Abouzeid · Consultant Ophthalmologist</p>
+      </div>
+    </div>
+    <nav class="site-nav">
+      <a href="index.html">← Home</a>
+      <button id="logout-btn" class="btn btn-secondary hidden" type="button">Sign out</button>
+    </nav>
+  </header>
+
+  <main class="portal-main">
+    <section id="login-section" class="card">
+      <h2>Access your records</h2>
+      <p class="muted">Enter the Patient ID printed at the top of your prescription or report.</p>
+      <form id="login-form" class="login-form" autocomplete="off">
+        <label for="patient-id" class="form-label">Patient ID</label>
+        <input
+          id="patient-id"
+          name="patient-id"
+          class="form-input"
+          required
+          placeholder="e.g. 12345"
+          autocomplete="off"
+          inputmode="text"
+        />
+        <button class="btn btn-primary btn-lg" type="submit">Sign in</button>
+        <p id="login-error" class="error hidden" role="alert"></p>
+      </form>
+      <p class="muted small">
+        Don't have your ID? Contact the clinic at
+        <a href="tel:+201005602267">01005602267</a>.
+      </p>
+    </section>
+
+    <section id="records-section" class="hidden">
+      <div class="patient-header card">
+        <div>
+          <h2 id="patient-name">—</h2>
+          <p class="muted" id="patient-meta">—</p>
+        </div>
+        <div class="patient-actions">
+          <button id="download-all-pdfs-btn" class="btn btn-primary" type="button" title="Download every record as a PDF, bundled into a single ZIP">
+            Download all my records (ZIP of PDFs)
+          </button>
+          <button id="print-btn" class="btn btn-secondary" type="button">Print this page</button>
+          <button id="download-all-json-btn" class="btn btn-secondary" type="button" title="Power-user option: raw JSON of every record">
+            Download as JSON
+          </button>
+        </div>
+        <p id="download-status" class="muted small hidden" aria-live="polite"></p>
+      </div>
+
+      <nav class="record-tabs" id="record-tabs"></nav>
+
+      <div id="record-panels"></div>
+
+      <p class="muted small footer-note">
+        Records last published on <span id="generated-at">—</span>. If something is missing,
+        ask the clinic to re-publish your bundle.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Dr. Mahmoud Sami Eye Care Clinic.</p>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </footer>
+
+  <!-- PDF & ZIP runtime (used to build downloadable PDFs from the patient's bundle) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
+          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="portal.js"></script>
+</body>
+</html>
