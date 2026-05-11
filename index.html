@@ -53,21 +53,69 @@
     .nav-links{display:flex;gap:2rem;list-style:none}
     .nav-links a{font-family:var(--font-ui);font-size:.73rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .25s}
     .nav-links a:hover{color:var(--gold)}
-    /* Patient portal nav pill: stands out without breaking the gold/navy aesthetic */
+    /* Patient portal nav pill: gold-filled so it's instantly distinct from the
+       other nav links. A soft pulse drags the eye to it on first paint. */
     .nav-portal-link{
-      padding:.45rem 1.05rem;border:1px solid var(--gold);border-radius:999px;
-      color:var(--gold) !important;transition:background .25s,color .25s
+      padding:.5rem 1.15rem;border:1px solid var(--gold);border-radius:999px;
+      background:var(--gold); color:var(--navy) !important; font-weight:600;
+      box-shadow:0 0 0 0 rgba(201,168,76,.55);
+      animation: navPortalPulse 2.8s ease-in-out infinite;
+      transition:background .25s,color .25s,transform .12s,box-shadow .25s
     }
-    .nav-portal-link:hover{background:var(--gold);color:var(--navy) !important}
-    /* Patient portal hero CTA: matches btn-outline tone but gold-tinted */
+    .nav-portal-link:hover{
+      background:var(--gold-lt); color:var(--navy) !important;
+      transform:translateY(-1px); animation:none;
+      box-shadow:0 4px 14px rgba(201,168,76,.4)
+    }
+    @keyframes navPortalPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.55)}
+      50%   {box-shadow:0 0 0 8px rgba(201,168,76,0)}
+    }
+
+    /* Patient portal hero CTA: the headline element of the hero. Filled gold,
+       slightly larger, with a download icon, a "جديد / NEW" badge and a soft
+       gold pulse so patients spot it immediately on landing. */
     .btn-portal{
-      display:inline-block;padding:.85rem 1.7rem;
-      font-family:var(--font-ui);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
-      background:transparent;color:var(--gold);text-decoration:none;
-      border:1px solid var(--gold);border-radius:999px;
-      transition:background .25s,color .25s,transform .12s
+      position:relative; display:inline-flex; align-items:center; gap:.65rem;
+      padding:1rem 2.1rem;
+      font-family:var(--font-ui);font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+      background:var(--gold); color:var(--navy); text-decoration:none;
+      border:1px solid var(--gold); border-radius:999px;
+      box-shadow:0 0 0 0 rgba(201,168,76,.55);
+      animation: portalCtaPulse 2.4s ease-in-out infinite;
+      transition:background .25s,color .25s,transform .12s,box-shadow .25s
     }
-    .btn-portal:hover{background:var(--gold);color:var(--navy);transform:translateY(-1px)}
+    .btn-portal:hover{
+      background:var(--gold-lt); color:var(--navy);
+      transform:translateY(-2px); animation:none;
+      box-shadow:0 8px 22px rgba(201,168,76,.45)
+    }
+    .btn-portal .portal-icon{
+      width:18px; height:18px; flex-shrink:0;
+      stroke:currentColor; stroke-width:2; fill:none;
+      stroke-linecap:round; stroke-linejoin:round
+    }
+    .btn-portal .portal-new{
+      position:absolute; top:-9px; inset-inline-end:-10px;
+      background:#dc2626; color:#fff;
+      font-family:var(--font-ui); font-size:.55rem; font-weight:700;
+      letter-spacing:.2em; text-transform:uppercase;
+      padding:.22rem .55rem; border-radius:999px;
+      box-shadow:0 2px 6px rgba(0,0,0,.35);
+      white-space:nowrap;
+      animation: portalBadgeBlink 1.8s ease-in-out infinite
+    }
+    @keyframes portalCtaPulse{
+      0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.6)}
+      50%   {box-shadow:0 0 0 14px rgba(201,168,76,0)}
+    }
+    @keyframes portalBadgeBlink{
+      0%,100%{transform:scale(1);   filter:brightness(1)}
+      50%   {transform:scale(1.08); filter:brightness(1.15)}
+    }
+    @media (prefers-reduced-motion: reduce){
+      .nav-portal-link, .btn-portal, .btn-portal .portal-new{ animation:none }
+    }
 
     /* ── HERO ── */
     .hero{
@@ -293,7 +341,13 @@
   <div class="hero-cta">
     <a href="tel:01005602267" class="btn-primary" id="cta-book">احجز موعدك</a>
     <a href="#services" class="btn-outline" id="cta-services">خدماتنا</a>
-    <a href="portal.html" class="btn-portal" id="cta-portal">بوابة المريض — تحميل سجلاتك</a>
+    <a href="portal.html" class="btn-portal" id="cta-portal" aria-label="بوابة المريض — تحميل سجلاتك">
+      <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/>
+      </svg>
+      <span id="cta-portal-text">بوابة المريض — تحميل سجلاتك</span>
+      <span class="portal-new" id="cta-portal-badge" aria-hidden="true">جديد</span>
+    </a>
   </div>
   <div class="scroll-cue">
     <span id="scroll-label">تمرير</span>
@@ -455,6 +509,8 @@ const T={
     navBrand:'د. محمود سامي',
     navAbout:'عن الطبيب',navServices:'التخصصات',navContact:'التواصل',navPortal:'بوابة المريض',
     ctaPortal:'بوابة المريض — تحميل سجلاتك',
+    ctaPortalBadge:'جديد',
+    ctaPortalAria:'بوابة المريض — تحميل سجلاتك',
     heroEyebrow:'استشاري طب وجراحة العيون · القاهرة، مصر',
     heroTitle:'د. محمود<br/><span class="accent">سامي</span>',
     heroTagline:'متخصص في استعادة البصر والحفاظ عليه بأحدث التقنيات الجراحية ودقة علمية رفيعة وعناية شخصية بكل مريض',
@@ -489,6 +545,8 @@ const T={
     navBrand:'Dr. Mahmoud Sami',
     navAbout:'About',navServices:'Services',navContact:'Contact',navPortal:'Patient Portal',
     ctaPortal:'Patient Portal — download your records',
+    ctaPortalBadge:'NEW',
+    ctaPortalAria:'Patient Portal — download your records',
     heroEyebrow:'Consultant Ophthalmologist · Cairo, Egypt',
     heroTitle:'Dr. Mahmoud<br/><span class="accent">Sami</span>',
     heroTagline:'Dedicated to restoring and preserving your most precious sense — with precision, compassion, and surgical excellence.',
@@ -533,7 +591,9 @@ function setLang(l){
   document.getElementById('nav-services').textContent=c.navServices;
   document.getElementById('nav-contact').textContent=c.navContact;
   if(document.getElementById('nav-portal'))document.getElementById('nav-portal').textContent=c.navPortal;
-  if(document.getElementById('cta-portal'))document.getElementById('cta-portal').textContent=c.ctaPortal;
+  if(document.getElementById('cta-portal-text'))document.getElementById('cta-portal-text').textContent=c.ctaPortal;
+  if(document.getElementById('cta-portal-badge'))document.getElementById('cta-portal-badge').textContent=c.ctaPortalBadge;
+  if(document.getElementById('cta-portal'))document.getElementById('cta-portal').setAttribute('aria-label',c.ctaPortalAria);
   // hero
   document.getElementById('hero-eyebrow').textContent=c.heroEyebrow;
   document.getElementById('hero-title').innerHTML=c.heroTitle;
