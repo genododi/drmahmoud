@@ -76,23 +76,85 @@
     try { sessionStorage.removeItem(SESSION_KEY); } catch { /* ignore */ }
   }
 
+  // ----- Name normalisation (kept in sync with src/utils/nameMatch.js) ----
+  function normalizeName(input) {
+    if (input == null) return '';
+    let s = String(input).toLowerCase().trim();
+    s = s.replace(/[\s\u00A0]+/g, ' ');
+    s = s.replace(/[\u064B-\u0652\u0670\u0640]/g, '');
+    s = s.replace(/[\u0622\u0623\u0625]/g, '\u0627');
+    s = s.replace(/\u0649/g, '\u064A');
+    s = s.replace(/\u0629/g, '\u0647');
+    s = s.replace(/[^\p{Letter}\p{Number} ]+/gu, '');
+    s = s.replace(/\s+/g, ' ').trim();
+    return s;
+  }
+
   // ----- Data loading ---------------------------------------------------
-  async function fetchPatientBundle(rawId) {
-    const id = String(rawId || '').trim();
-    if (!id) throw new Error('Empty Patient ID');
-    const indiv = `patients/${encodeURIComponent(id)}.json`;
+  // Cached name index — fetched lazily on the first name-style login attempt.
+  let _nameIndexPromise = null;
+  function loadNameIndex() {
+    if (_nameIndexPromise) return _nameIndexPromise;
+    _nameIndexPromise = fetch('name-index.json', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+    return _nameIndexPromise;
+  }
+
+  /**
+   * Lookup result is one of:
+   *   { ok: true, bundle: {...} }                — success
+   *   { ok: false, reason: 'not_found' }         — no patient with this id/name
+   *   { ok: false, reason: 'ambiguous_name' }    — name belongs to multiple patients
+   */
+  async function loginLookup(rawInput) {
+    const input = String(rawInput || '').trim();
+    if (!input) return { ok: false, reason: 'not_found' };
+
+    // 1) Try treating the input as an ID first (covers numeric and uuid ids).
+    const indiv = `patients/${encodeURIComponent(input)}.json`;
     try {
       const r = await fetch(indiv, { cache: 'no-store' });
-      if (r.ok) return await r.json();
+      if (r.ok) return { ok: true, bundle: await r.json() };
     } catch { /* fall through */ }
+
+    // 2) Try the combined bundle (rare deployment style).
     try {
       const r = await fetch('portal_all_patients.json', { cache: 'no-store' });
       if (r.ok) {
         const all = await r.json();
-        if (all && typeof all === 'object' && all[id]) return all[id];
+        if (all && typeof all === 'object' && all[input]) {
+          return { ok: true, bundle: all[input] };
+        }
       }
     } catch { /* fall through */ }
-    return null;
+
+    // 3) Treat the input as a full name (after normalisation).
+    const index = await loadNameIndex();
+    if (index && index.byName) {
+      const key = normalizeName(input);
+      if (key && Object.prototype.hasOwnProperty.call(index.byName, key)) {
+        const mapped = index.byName[key];
+        if (mapped == null) return { ok: false, reason: 'ambiguous_name' };
+        // Resolve to the underlying bundle.
+        try {
+          const r = await fetch(`patients/${encodeURIComponent(mapped)}.json`, { cache: 'no-store' });
+          if (r.ok) return { ok: true, bundle: await r.json() };
+        } catch { /* fall through */ }
+        // Try combined bundle as a final fallback.
+        try {
+          const r = await fetch('portal_all_patients.json', { cache: 'no-store' });
+          if (r.ok) {
+            const all = await r.json();
+            if (all && typeof all === 'object' && all[mapped]) {
+              return { ok: true, bundle: all[mapped] };
+            }
+          }
+        } catch { /* fall through */ }
+      }
+    }
+
+    return { ok: false, reason: 'not_found' };
   }
 
   // ----- Formatting helpers --------------------------------------------
@@ -823,19 +885,23 @@
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     loginError.classList.add('hidden');
-    const id = QS('#patient-id').value.trim();
-    if (!id) return;
+    const input = QS('#patient-id').value.trim();
+    if (!input) return;
     const submitBtn = loginForm.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
     submitBtn.textContent = 'Loading…';
     try {
-      const bundle = await fetchPatientBundle(id);
-      if (!bundle) {
-        showLogin('No records found for that Patient ID. Please double-check the ID or contact the clinic.');
+      const result = await loginLookup(input);
+      if (!result.ok) {
+        if (result.reason === 'ambiguous_name') {
+          showLogin('Multiple patients share that exact name. Please sign in with your Patient ID (the highlighted ID on your prescription) instead.');
+        } else {
+          showLogin('No records found. Please double-check your Patient ID or full name, or contact the clinic at 01005602267.');
+        }
         return;
       }
-      setSession(bundle);
-      showBundle(bundle);
+      setSession(result.bundle);
+      showBundle(result.bundle);
       if (parseHashId()) history.replaceState(null, '', location.pathname);
     } catch (err) {
       console.error(err);
@@ -886,8 +952,8 @@
     }
     const sess = getSession();
     if (sess && sess.patientId) {
-      const bundle = await fetchPatientBundle(sess.patientId);
-      if (bundle) showBundle(bundle);
+      const result = await loginLookup(sess.patientId);
+      if (result.ok) showBundle(result.bundle);
       else clearSession();
     }
   })();

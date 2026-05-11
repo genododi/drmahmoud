@@ -26,15 +26,19 @@
   <main class="portal-main">
     <section id="login-section" class="card">
       <h2>Access your records</h2>
-      <p class="muted">Enter the Patient ID printed at the top of your prescription or report.</p>
+      <p class="muted">
+        Sign in with either the <strong>Patient ID</strong> highlighted on your
+        prescription, or with your <strong>full name</strong>
+        (first&nbsp;+&nbsp;middle&nbsp;+&nbsp;last, exactly as registered at the clinic).
+      </p>
       <form id="login-form" class="login-form" autocomplete="off">
-        <label for="patient-id" class="form-label">Patient ID</label>
+        <label for="patient-id" class="form-label">Patient ID or full name</label>
         <input
           id="patient-id"
           name="patient-id"
           class="form-input"
           required
-          placeholder="e.g. 12345"
+          placeholder="e.g. 12345  or  Ahmed Hassan Ali"
           autocomplete="off"
           inputmode="text"
         />
@@ -42,7 +46,7 @@
         <p id="login-error" class="error hidden" role="alert"></p>
       </form>
       <p class="muted small">
-        Don't have your ID? Contact the clinic at
+        Don't have your ID or your name doesn't work? Contact the clinic at
         <a href="tel:+201005602267">01005602267</a>.
       </p>
     </section>

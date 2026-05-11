@@ -53,6 +53,21 @@
     .nav-links{display:flex;gap:2rem;list-style:none}
     .nav-links a{font-family:var(--font-ui);font-size:.73rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .25s}
     .nav-links a:hover{color:var(--gold)}
+    /* Patient portal nav pill: stands out without breaking the gold/navy aesthetic */
+    .nav-portal-link{
+      padding:.45rem 1.05rem;border:1px solid var(--gold);border-radius:999px;
+      color:var(--gold) !important;transition:background .25s,color .25s
+    }
+    .nav-portal-link:hover{background:var(--gold);color:var(--navy) !important}
+    /* Patient portal hero CTA: matches btn-outline tone but gold-tinted */
+    .btn-portal{
+      display:inline-block;padding:.85rem 1.7rem;
+      font-family:var(--font-ui);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+      background:transparent;color:var(--gold);text-decoration:none;
+      border:1px solid var(--gold);border-radius:999px;
+      transition:background .25s,color .25s,transform .12s
+    }
+    .btn-portal:hover{background:var(--gold);color:var(--navy);transform:translateY(-1px)}
 
     /* ── HERO ── */
     .hero{
@@ -256,6 +271,7 @@
     <li><a href="#about"    id="nav-about">عن الطبيب</a></li>
     <li><a href="#services" id="nav-services">التخصصات</a></li>
     <li><a href="#contact"  id="nav-contact">التواصل</a></li>
+    <li><a href="portal.html" id="nav-portal" class="nav-portal-link">بوابة المريض</a></li>
   </ul>
 </nav>
 
@@ -277,6 +293,7 @@
   <div class="hero-cta">
     <a href="tel:01005602267" class="btn-primary" id="cta-book">احجز موعدك</a>
     <a href="#services" class="btn-outline" id="cta-services">خدماتنا</a>
+    <a href="portal.html" class="btn-portal" id="cta-portal">بوابة المريض — تحميل سجلاتك</a>
   </div>
   <div class="scroll-cue">
     <span id="scroll-label">تمرير</span>
@@ -436,7 +453,8 @@ const T={
     lang:'ar',dir:'rtl',
     title:'د. محمود سامي — استشاري طب وجراحة العيون',
     navBrand:'د. محمود سامي',
-    navAbout:'عن الطبيب',navServices:'التخصصات',navContact:'التواصل',
+    navAbout:'عن الطبيب',navServices:'التخصصات',navContact:'التواصل',navPortal:'بوابة المريض',
+    ctaPortal:'بوابة المريض — تحميل سجلاتك',
     heroEyebrow:'استشاري طب وجراحة العيون · القاهرة، مصر',
     heroTitle:'د. محمود<br/><span class="accent">سامي</span>',
     heroTagline:'متخصص في استعادة البصر والحفاظ عليه بأحدث التقنيات الجراحية ودقة علمية رفيعة وعناية شخصية بكل مريض',
@@ -469,7 +487,8 @@ const T={
     lang:'en',dir:'ltr',
     title:'Dr. Mahmoud Sami — Consultant Ophthalmologist',
     navBrand:'Dr. Mahmoud Sami',
-    navAbout:'About',navServices:'Services',navContact:'Contact',
+    navAbout:'About',navServices:'Services',navContact:'Contact',navPortal:'Patient Portal',
+    ctaPortal:'Patient Portal — download your records',
     heroEyebrow:'Consultant Ophthalmologist · Cairo, Egypt',
     heroTitle:'Dr. Mahmoud<br/><span class="accent">Sami</span>',
     heroTagline:'Dedicated to restoring and preserving your most precious sense — with precision, compassion, and surgical excellence.',
@@ -513,6 +532,8 @@ function setLang(l){
   document.getElementById('nav-about').textContent=c.navAbout;
   document.getElementById('nav-services').textContent=c.navServices;
   document.getElementById('nav-contact').textContent=c.navContact;
+  if(document.getElementById('nav-portal'))document.getElementById('nav-portal').textContent=c.navPortal;
+  if(document.getElementById('cta-portal'))document.getElementById('cta-portal').textContent=c.ctaPortal;
   // hero
   document.getElementById('hero-eyebrow').textContent=c.heroEyebrow;
   document.getElementById('hero-title').innerHTML=c.heroTitle;
