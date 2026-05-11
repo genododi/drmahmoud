@@ -30,7 +30,55 @@
     address: '1 Zaki Nabawi - Alkawthar tower - Tersa, Haram',
     phone: '01005602267',
     website: 'https://genododi.github.io/drmahmoud/',
+    facebook: 'https://www.facebook.com/share/1D3CG2FwXh/?mibextid=wwXIfr',
   };
+
+  /** Horizontal margins for body text & tables (mm). */
+  const PDF_MARGIN_X = 18;
+  const PDF_CONTENT_W = (doc) => doc.internal.pageSize.getWidth() - PDF_MARGIN_X * 2;
+
+  const buildPatientPortalURL = (patientId) => {
+    const base = CLINIC.website.replace(/\/$/, '');
+    return patientId ? `${base}/portal.html#id=${encodeURIComponent(patientId)}` : `${base}/`;
+  };
+
+  const _qrDataUrlCache = new Map();
+  /**
+   * @param {string} targetUrl
+   * @param {{ dark?: string }} [opts]
+   * @returns {Promise<string|null>}
+   */
+  async function getQRDataURL(targetUrl, opts) {
+    const dark = (opts && opts.dark) || '#0e7490';
+    const key = `${targetUrl}::${dark}`;
+    if (_qrDataUrlCache.has(key)) return _qrDataUrlCache.get(key);
+    const QR = window.QRCode;
+    if (!QR || typeof QR.toDataURL !== 'function') {
+      console.warn('QRCode.toDataURL not available');
+      return null;
+    }
+    const p = new Promise((resolve) => {
+      QR.toDataURL(
+        targetUrl,
+        { width: 200, margin: 1, color: { dark, light: '#ffffff' } },
+        (err, dataUrl) => {
+          if (err) {
+            console.error('QR generation error', err);
+            resolve(null);
+          } else resolve(dataUrl);
+        }
+      );
+    });
+    _qrDataUrlCache.set(key, p);
+    return p;
+  }
+
+  /** Warm caches in the background after login so ZIP downloads feel snappy. */
+  function warmPortalQRCaches(patientId) {
+    const web = buildPatientPortalURL(patientId);
+    getQRDataURL(web).catch(() => {});
+    getQRDataURL(CLINIC.facebook, { dark: '#1877F2' }).catch(() => {});
+  }
 
   const loginSection = QS('#login-section');
   const recordsSection = QS('#records-section');
@@ -192,89 +240,156 @@
     if (!window.jspdf || !window.jspdf.jsPDF) {
       throw new Error('PDF library failed to load. Check your internet connection and try again.');
     }
+    if (!window.QRCode || typeof window.QRCode.toDataURL !== 'function') {
+      throw new Error('QR code library failed to load. Check your internet connection and try again.');
+    }
   }
 
   function makeDoc() {
     ensurePdfLibsReady();
     const { jsPDF } = window.jspdf;
-    return new jsPDF();
+    return new jsPDF({ unit: 'mm', format: 'a4' });
   }
 
   function addPdfHeader(doc, pageWidth) {
-    doc.setFontSize(18);
+    doc.setFontSize(17);
     doc.setFont('helvetica', 'bold');
-    doc.text(CLINIC.name, pageWidth / 2, 15, { align: 'center' });
+    doc.text(CLINIC.name, pageWidth / 2, 14, { align: 'center' });
 
-    doc.setFontSize(10);
+    doc.setFontSize(9.5);
     doc.setFont('helvetica', 'normal');
-    doc.text(CLINIC.title1, pageWidth / 2, 22, { align: 'center' });
-    doc.text(CLINIC.title2, pageWidth / 2, 27, { align: 'center' });
-    doc.text(CLINIC.title3, pageWidth / 2, 32, { align: 'center' });
+    doc.setTextColor(55);
+    doc.text(CLINIC.title1, pageWidth / 2, 21, { align: 'center' });
+    doc.text(CLINIC.title2, pageWidth / 2, 26, { align: 'center' });
+    doc.text(CLINIC.title3, pageWidth / 2, 31, { align: 'center' });
+    doc.setTextColor(0);
 
-    doc.setDrawColor(0, 128, 128);
-    doc.setLineWidth(0.5);
-    doc.line(20, 38, pageWidth - 20, 38);
+    doc.setDrawColor(14, 116, 144);
+    doc.setLineWidth(0.35);
+    doc.line(PDF_MARGIN_X, 36, pageWidth - PDF_MARGIN_X, 36);
   }
 
   function addPdfFooter(doc, pageWidth, message) {
-    const footerY = doc.internal.pageSize.getHeight() - 30;
-    doc.setDrawColor(200, 200, 200);
-    doc.line(20, footerY - 5, pageWidth - 20, footerY - 5);
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const footerY = pageHeight - 26;
+    doc.setDrawColor(210, 214, 220);
+    doc.setLineWidth(0.35);
+    doc.line(PDF_MARGIN_X, footerY - 6, pageWidth - PDF_MARGIN_X, footerY - 6);
 
-    doc.setFontSize(9);
-    doc.setTextColor(100);
-    if (message) doc.text(message, pageWidth / 2, footerY, { align: 'center' });
-    doc.text(`Tel: ${CLINIC.phone}`, pageWidth / 2, footerY + 7, { align: 'center' });
-    doc.text(CLINIC.address, pageWidth / 2, footerY + 14, { align: 'center' });
+    doc.setFontSize(8.5);
+    doc.setTextColor(82);
+    if (message) {
+      doc.text(message, pageWidth / 2, footerY, { align: 'center', maxWidth: pageWidth - PDF_MARGIN_X * 2 });
+    }
+    doc.text(`Tel: ${CLINIC.phone}`, pageWidth / 2, footerY + 6, { align: 'center' });
+    doc.text(CLINIC.address, pageWidth / 2, footerY + 12, { align: 'center', maxWidth: pageWidth - PDF_MARGIN_X * 2 });
     doc.setTextColor(0);
   }
 
   function addPatientInfoBlock(doc, patient, x, y, recordDate) {
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(0);
+    const lh = 7;
     const rows = [
       `Patient: ${patient.name || '-'}`,
       patient.id ? `Patient ID: ${patient.id}` : '',
       patient.dob ? `DOB: ${patient.dob}` : '',
       patient.contact ? `Phone: ${patient.contact}` : '',
-      recordDate ? `Date: ${recordDate}` : '',
+      recordDate ? `Record date: ${recordDate}` : '',
     ].filter(Boolean);
-    rows.forEach((row, i) => doc.text(row, x, y + i * 6));
-    return y + rows.length * 6 + 4;
+    const boxH = rows.length * lh + 8;
+    const boxW = doc.internal.pageSize.getWidth() - PDF_MARGIN_X * 2;
+    doc.setFillColor(248, 250, 252);
+    doc.setDrawColor(226, 232, 240);
+    doc.roundedRect(x, y - 4, boxW, boxH, 2, 2, 'FD');
+
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(30);
+    rows.forEach((row, i) => doc.text(row, x + 4, y + 4 + i * lh));
+    doc.setTextColor(0);
+    return y + boxH + 4;
+  }
+
+  function drawQRWithLabels(doc, dataUrl, x, y, size, line1, line2) {
+    if (!dataUrl) return;
+    try {
+      doc.addImage(dataUrl, 'PNG', x, y, size, size);
+    } catch (e) {
+      console.error('PDF QR addImage failed', e);
+      return;
+    }
+    doc.setFontSize(6.5);
+    doc.setTextColor(88);
+    if (line1) doc.text(line1, x + size / 2, y + size + 3, { align: 'center' });
+    if (line2) doc.text(line2, x + size / 2, y + size + 7, { align: 'center' });
+    doc.setTextColor(0);
+  }
+
+  /** Clinic website (right) + Facebook (left), same row — matches EMR printouts. */
+  async function addDualClinicQRs(doc, pageWidth, patientId) {
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const size = 22;
+    const y = pageHeight - size - 38;
+
+    const webUrl = buildPatientPortalURL(patientId || null);
+    const webData = await getQRDataURL(webUrl);
+    drawQRWithLabels(
+      doc,
+      webData,
+      pageWidth - size - PDF_MARGIN_X,
+      y,
+      size,
+      'Clinic website',
+      patientId ? 'Scan for your records' : 'Scan to visit'
+    );
+
+    const fbData = await getQRDataURL(CLINIC.facebook, { dark: '#1877F2' });
+    drawQRWithLabels(doc, fbData, PDF_MARGIN_X, y, size, 'Facebook page', 'Scan to follow us');
+  }
+
+  async function finalizePatientPdf(doc, pageWidth, patient, footerMessage) {
+    const pid = patient && patient.id != null ? String(patient.id) : null;
+    try {
+      await addDualClinicQRs(doc, pageWidth, pid);
+    } catch (e) {
+      console.warn('Could not embed QR codes on PDF', e);
+    }
+    addPdfFooter(doc, pageWidth, footerMessage);
   }
 
   /** Glasses prescription PDF (mirrors the EMR layout, no Rx ID). */
-  function buildGlassesPDF(item, patient) {
+  async function buildGlassesPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
 
-    doc.setFontSize(16);
+    let titleY = 44;
+    doc.setFontSize(15);
     doc.setFont('helvetica', 'bold');
-    doc.setTextColor(0, 128, 128);
+    doc.setTextColor(14, 116, 144);
     const title = item.glassesType === 'old' ? 'OLD GLASSES PRESCRIPTION' : 'OPTICAL PRESCRIPTION';
-    doc.text(title, pageWidth / 2, 50, { align: 'center' });
+    doc.text(title, pageWidth / 2, titleY, { align: 'center' });
     doc.setTextColor(0);
 
+    let nextY = titleY + 9;
     if (item.glassesType === 'old') {
       doc.setFillColor(254, 243, 199);
-      doc.roundedRect(pageWidth / 2 - 25, 54, 50, 8, 2, 2, 'F');
+      doc.roundedRect(pageWidth / 2 - 30, nextY - 1, 60, 9, 2, 2, 'F');
       doc.setFontSize(8);
       doc.setTextColor(146, 64, 14);
-      doc.text('Historical Record', pageWidth / 2, 59, { align: 'center' });
+      doc.text('Historical record', pageWidth / 2, nextY + 5.5, { align: 'center' });
       doc.setTextColor(0);
+      nextY += 13;
     }
 
-    addPatientInfoBlock(doc, patient, 20, 70, item.date || '');
+    const tableStart = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, nextY + 2, item.date || '') + 2;
 
-    const tableMargin = 10;
-    const tableWidth = pageWidth - tableMargin * 2;
-    const eyeColWidth = 60;
+    const tableWidth = cw;
+    const eyeColWidth = 58;
     const dataColWidth = (tableWidth - eyeColWidth) / 5;
 
     doc.autoTable({
-      startY: 88,
+      startY: tableStart,
       head: [['Eye', 'SPH', 'CYL', 'Axis', 'VA', 'ADD']],
       body: [
         ['Right Eye (OD)', item.sph_right || '-', item.cyl_right || '-', item.axis_right || '-', item.va_right || '-', item.add_power || '-'],
@@ -283,15 +398,22 @@
       theme: 'grid',
       tableWidth,
       headStyles: {
-        fillColor: [0, 128, 128], textColor: 255, fontStyle: 'bold', fontSize: 12, halign: 'center',
-        cellPadding: { top: 5, right: 3, bottom: 5, left: 3 },
+        fillColor: [14, 116, 144],
+        textColor: 255,
+        fontStyle: 'bold',
+        fontSize: 11,
+        halign: 'center',
+        cellPadding: { top: 6, right: 2, bottom: 6, left: 2 },
       },
       bodyStyles: {
-        fontSize: 13, halign: 'center', font: 'helvetica', overflow: 'visible',
-        cellPadding: { top: 6, right: 3, bottom: 6, left: 3 },
+        fontSize: 11,
+        halign: 'center',
+        font: 'helvetica',
+        overflow: 'linebreak',
+        cellPadding: { top: 7, right: 2, bottom: 7, left: 2 },
       },
       columnStyles: {
-        0: { fontStyle: 'bold', halign: 'left', cellWidth: eyeColWidth, fontSize: 12 },
+        0: { fontStyle: 'bold', halign: 'left', cellWidth: eyeColWidth, fontSize: 10 },
         1: { cellWidth: dataColWidth },
         2: { cellWidth: dataColWidth },
         3: { cellWidth: dataColWidth },
@@ -299,276 +421,342 @@
         5: { cellWidth: dataColWidth },
       },
       alternateRowStyles: { fillColor: [248, 250, 252] },
-      margin: { left: tableMargin, right: tableMargin },
+      margin: { left: PDF_MARGIN_X, right: PDF_MARGIN_X },
     });
 
-    let y = doc.lastAutoTable.finalY + 15;
+    let y = doc.lastAutoTable.finalY + 10;
     if (item.pd) {
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(12);
-      doc.text(`Pupillary Distance (PD): ${item.pd}`, 20, y);
-      y += 15;
+      doc.setFontSize(11);
+      doc.text(`Pupillary distance (PD): ${item.pd}`, PDF_MARGIN_X, y);
+      y += 10;
     }
     if (item.notes) {
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(11);
-      doc.text('Notes:', 20, y);
+      doc.setFontSize(10);
+      doc.text('Notes', PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(item.notes), 20, y + 8, { maxWidth: pageWidth - 40 });
+      const noteLines = doc.splitTextToSize(String(item.notes), cw - 4);
+      doc.text(noteLines, PDF_MARGIN_X, y + 6);
     }
 
-    addPdfFooter(doc, pageWidth, 'This prescription is valid for 6 months from the date of issue.');
+    await finalizePatientPdf(doc, pageWidth, patient, 'This prescription is valid for 6 months from the date of issue.');
     return {
       filename: `glasses_${item.glassesType === 'old' ? 'old' : 'rx'}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildMedicationPDF(item, patient) {
+  async function buildMedicationPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
 
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text('MEDICATION PRESCRIPTION', pageWidth / 2, 48, { align: 'center' });
+    doc.setTextColor(14, 116, 144);
+    doc.text('MEDICATION PRESCRIPTION', pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
 
-    addPatientInfoBlock(doc, patient, 20, 58, item.date || item.createdAt || '');
+    const startAfterPatient = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || item.createdAt || '');
 
     doc.autoTable({
-      startY: 90,
+      startY: startAfterPatient + 2,
       head: [['#', 'Medication', 'Dosage', 'Frequency', 'Duration']],
       body: [[
         '1',
-        `${item.name || '-'}\n${item.type ? `(${item.type})` : ''}`,
-        item.dosage || '-',
-        item.frequency || '-',
-        item.duration || '-',
+        `${item.name || '-'}${item.type ? `\n(${item.type})` : ''}`,
+        item.dosage || '—',
+        item.frequency || '—',
+        item.duration || '—',
       ]],
       theme: 'grid',
-      headStyles: { fillColor: [0, 128, 128], textColor: 255, fontSize: 11, cellPadding: 5 },
-      bodyStyles: { fontSize: 10, cellPadding: 6 },
-      columnStyles: {
-        0: { cellWidth: 10, halign: 'center' },
-        1: { cellWidth: 60 },
-        2: { cellWidth: 30, halign: 'center' },
-        3: { cellWidth: 45 },
-        4: { cellWidth: 30, halign: 'center' },
+      tableWidth: cw,
+      headStyles: {
+        fillColor: [14, 116, 144],
+        textColor: 255,
+        fontSize: 10,
+        fontStyle: 'bold',
+        cellPadding: { top: 6, bottom: 6, left: 3, right: 3 },
       },
+      bodyStyles: {
+        fontSize: 10,
+        cellPadding: { top: 8, bottom: 8, left: 4, right: 4 },
+        valign: 'middle',
+      },
+      columnStyles: {
+        0: { cellWidth: 12, halign: 'center' },
+        1: { cellWidth: 64 },
+        2: { cellWidth: 30, halign: 'center' },
+        3: { cellWidth: 44 },
+        4: { cellWidth: 24, halign: 'center' },
+      },
+      margin: { left: PDF_MARGIN_X, right: PDF_MARGIN_X },
     });
 
-    let y = doc.lastAutoTable.finalY + 15;
+    let y = doc.lastAutoTable.finalY + 10;
     if (item.instructions || item.tapering) {
       doc.setFont('helvetica', 'bold');
-      doc.text('Instructions:', 20, y);
+      doc.setFontSize(10);
+      doc.text('Instructions', PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      const text = [item.instructions, item.tapering].filter(Boolean).join(' ');
-      doc.text(text, 20, y + 8, { maxWidth: pageWidth - 40 });
+      const text = [item.instructions, item.tapering].filter(Boolean).join('\n\n');
+      const lines = doc.splitTextToSize(text, cw);
+      doc.text(lines, PDF_MARGIN_X, y + 6);
     }
 
-    addPdfFooter(doc, pageWidth, 'Please follow instructions carefully.');
+    await finalizePatientPdf(doc, pageWidth, patient, 'Please follow instructions carefully. Ask your pharmacist if you are unsure.');
     return {
       filename: `medication_${safeFileSegment(item.name)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildTreatmentPDF(item, patient) {
+  async function buildTreatmentPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text('TREATMENT PLAN', pageWidth / 2, 50, { align: 'center' });
-    addPatientInfoBlock(doc, patient, 20, 60, item.date || '');
+    doc.setTextColor(14, 116, 144);
+    doc.text('TREATMENT PLAN', pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
 
-    let y = 80;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 6;
+
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, 20, y);
+      doc.setFontSize(10);
+      doc.text(`${label}`, PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), 20, y + 7, { maxWidth: pageWidth - 40 });
-      y += 25;
+      const lines = doc.splitTextToSize(String(value), cw);
+      doc.text(lines, PDF_MARGIN_X, y + 5);
+      y += 5 + Math.max(lines.length, 1) * 4.8 + 10;
     };
-    writeBlock('Medical Treatment', item.medical_treatment || item.medicalTreatment);
-    writeBlock('Surgical Treatment', item.surgical_treatment || item.surgicalTreatment);
+
+    writeBlock('Medical treatment', item.medical_treatment || item.medicalTreatment);
+    writeBlock('Surgical treatment', item.surgical_treatment || item.surgicalTreatment);
     if (item.followup_date || item.followupDate) {
       doc.setFont('helvetica', 'bold');
-      doc.text(`Follow-up Date: ${item.followup_date || item.followupDate}`, 20, y);
-      y += 15;
+      doc.setFontSize(10);
+      doc.text(`Follow-up date: ${item.followup_date || item.followupDate}`, PDF_MARGIN_X, y);
+      y += 12;
     }
     writeBlock('Notes', item.notes);
 
-    addPdfFooter(doc, pageWidth, '');
+    await finalizePatientPdf(doc, pageWidth, patient, '');
     return {
       filename: `treatment_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildInvestigationPDF(item, patient) {
+  async function buildInvestigationPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text('INVESTIGATION REPORT', pageWidth / 2, 52, { align: 'center' });
-    addPatientInfoBlock(doc, patient, 20, 62, item.date || '');
+    doc.setTextColor(14, 116, 144);
+    doc.text('INVESTIGATION REPORT', pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
 
-    let y = 82;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 8;
     doc.setFont('helvetica', 'bold');
-    doc.text(`Type: ${item.type || '-'}`, 20, y);
-    y += 10;
+    doc.setFontSize(10);
+    doc.text(`Type: ${item.type || '—'}`, PDF_MARGIN_X, y);
+    y += 12;
+
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, 20, y);
+      doc.setFontSize(10);
+      doc.text(`${label}`, PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), 20, y + 7, { maxWidth: pageWidth - 40 });
-      y += 20;
+      const lines = doc.splitTextToSize(String(value), cw);
+      doc.text(lines, PDF_MARGIN_X, y + 5);
+      y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
     writeBlock('Details', item.details);
     writeBlock('Results', item.results);
     writeBlock('Recommendations', item.recommendations);
 
-    addPdfFooter(doc, pageWidth, '');
+    await finalizePatientPdf(doc, pageWidth, patient, '');
     return {
       filename: `investigation_${safeFileSegment(item.type)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildExaminationPDF(item, patient) {
+  async function buildExaminationPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text('EYE EXAMINATION REPORT', pageWidth / 2, 48, { align: 'center' });
-    addPatientInfoBlock(doc, patient, 20, 58, item.date || item.createdAt || '');
+    doc.setTextColor(14, 116, 144);
+    doc.text('EYE EXAMINATION REPORT', pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
 
-    let y = 80;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || item.createdAt || '') + 6;
+
     if (item.unaided_va) {
       doc.setFont('helvetica', 'bold');
-      doc.text('Visual Acuity (Unaided):', 20, y);
+      doc.setFontSize(10);
+      doc.text('Visual acuity (unaided)', PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(`OD: ${item.unaided_va.right || '-'}   OS: ${item.unaided_va.left || '-'}`, 80, y);
-      y += 10;
+      doc.text(
+        `OD: ${item.unaided_va.right || '—'}          OS: ${item.unaided_va.left || '—'}`,
+        PDF_MARGIN_X + 52,
+        y
+      );
+      y += 11;
     }
     if (item.iop) {
       doc.setFont('helvetica', 'bold');
-      doc.text('Intraocular Pressure:', 20, y);
+      doc.text('Intraocular pressure', PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(`OD: ${item.iop.right || '-'} mmHg   OS: ${item.iop.left || '-'} mmHg`, 80, y);
-      y += 12;
+      doc.text(
+        `OD: ${item.iop.right || '—'} mmHg          OS: ${item.iop.left || '—'} mmHg`,
+        PDF_MARGIN_X + 52,
+        y
+      );
+      y += 11;
     }
+
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, 20, y);
+      doc.setFontSize(10);
+      doc.text(`${label}`, PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), 20, y + 7, { maxWidth: pageWidth - 40 });
-      y += 20;
+      const lines = doc.splitTextToSize(String(value), cw);
+      doc.text(lines, PDF_MARGIN_X, y + 5);
+      y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
-    writeBlock('Anterior Segment', item.anterior_segment);
-    writeBlock('Posterior Segment', item.posterior_segment);
+    writeBlock('Anterior segment', item.anterior_segment);
+    writeBlock('Posterior segment', item.posterior_segment);
     writeBlock('Diagnosis', item.diagnosis);
     writeBlock('Notes', item.notes);
 
-    addPdfFooter(doc, pageWidth, '');
+    await finalizePatientPdf(doc, pageWidth, patient, '');
     return {
       filename: `examination_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildReportPDF(item, patient) {
+  async function buildReportPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text((item.type || 'MEDICAL REPORT').toUpperCase(), pageWidth / 2, 55, { align: 'center' });
-    addPatientInfoBlock(doc, patient, 20, 65, item.date || '');
+    doc.setTextColor(14, 116, 144);
+    doc.text((item.type || 'MEDICAL REPORT').toUpperCase(), pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
+
+    const y0 = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 8;
     if (item.content) {
       doc.setFont('helvetica', 'normal');
-      doc.text(doc.splitTextToSize(String(item.content), pageWidth - 40), 20, 90);
+      doc.setFontSize(10);
+      const lines = doc.splitTextToSize(String(item.content), cw);
+      doc.text(lines, PDF_MARGIN_X, y0);
     }
-    addPdfFooter(doc, pageWidth, '');
+
+    await finalizePatientPdf(doc, pageWidth, patient, '');
     return {
       filename: `report_${safeFileSegment(item.type) || 'report'}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildSurgeryPDF(item, patient) {
+  async function buildSurgeryPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text('SURGICAL REPORT', pageWidth / 2, 52, { align: 'center' });
-    addPatientInfoBlock(doc, patient, 20, 62, item.datePerformed || item.dateScheduled || '');
+    doc.setTextColor(14, 116, 144);
+    doc.text('SURGICAL REPORT', pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
 
-    let y = 82;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.datePerformed || item.dateScheduled || '') + 6;
+
     const writeLine = (label, value) => {
       if (value == null || value === '') return;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, 20, y);
+      doc.setFontSize(10);
+      doc.text(`${label}:`, PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), 60, y);
+      doc.text(String(value), PDF_MARGIN_X + 42, y);
       y += 9;
     };
     writeLine('Procedure', item.procedureName);
     writeLine('Eye', item.eye);
     writeLine('Type', item.surgeryType);
-    if (item.iolPower) writeLine('IOL', `${item.iolType || ''} ${item.iolModel || ''} ${item.iolPower}D`.trim());
+    if (item.iolPower) {
+      writeLine('IOL', `${item.iolType || ''} ${item.iolModel || ''} ${item.iolPower}D`.trim());
+    }
 
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, 20, y);
+      doc.setFontSize(10);
+      doc.text(`${label}`, PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), 20, y + 7, { maxWidth: pageWidth - 40 });
-      y += 20;
+      const lines = doc.splitTextToSize(String(value), cw);
+      doc.text(lines, PDF_MARGIN_X, y + 5);
+      y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
-    writeBlock('Pre-op Diagnosis', item.preOpDiagnosis);
+    writeBlock('Pre-operative diagnosis', item.preOpDiagnosis);
     writeBlock('Complications', item.complications);
-    writeBlock('Post-op Instructions', item.postOpInstructions);
+    writeBlock('Post-operative instructions', item.postOpInstructions);
 
-    addPdfFooter(doc, pageWidth, '');
+    await finalizePatientPdf(doc, pageWidth, patient, '');
     return {
       filename: `surgery_${safeFileSegment(item.procedureName)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
     };
   }
 
-  function buildLabPDF(item, patient) {
+  async function buildLabPDF(item, patient) {
     const doc = makeDoc();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const cw = PDF_CONTENT_W(doc);
     addPdfHeader(doc, pageWidth);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
-    doc.text('LABORATORY RESULTS', pageWidth / 2, 52, { align: 'center' });
-    addPatientInfoBlock(doc, patient, 20, 62, item.date || '');
+    doc.setTextColor(14, 116, 144);
+    doc.text('LABORATORY RESULTS', pageWidth / 2, 43, { align: 'center' });
+    doc.setTextColor(0);
 
-    let y = 82;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 6;
+
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
-      doc.text(`${label}:`, 20, y);
+      doc.setFontSize(10);
+      doc.text(`${label}`, PDF_MARGIN_X, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), 20, y + 7, { maxWidth: pageWidth - 40 });
-      y += 20;
+      const lines = doc.splitTextToSize(String(value), cw);
+      doc.text(lines, PDF_MARGIN_X, y + 5);
+      y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
-    writeBlock('Panel Type', item.panelType);
+    writeBlock('Panel type', item.panelType);
     writeBlock('Purpose', item.purpose);
     writeBlock('Results', item.results);
-    writeBlock('Fitness Status', item.fitnessStatus);
+    writeBlock('Fitness status', item.fitnessStatus);
     writeBlock('Notes', item.notes);
 
-    addPdfFooter(doc, pageWidth, '');
+    await finalizePatientPdf(doc, pageWidth, patient, '');
     return {
       filename: `lab_${safeFileSegment(item.panelType)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -609,12 +797,12 @@
     }
   }
 
-  function downloadOneRecord(sectionKey, item) {
+  async function downloadOneRecord(sectionKey, item) {
     if (!currentBundle) return;
     const builder = PDF_BUILDERS[sectionKey];
     if (!builder) return;
     try {
-      const { filename, blob } = builder.build(item, currentBundle.patient);
+      const { filename, blob } = await builder.build(item, currentBundle.patient);
       downloadBlob(filename, blob);
     } catch (e) {
       console.error('PDF generation failed', e);
@@ -639,11 +827,11 @@
         const items = Array.isArray(currentBundle[key]) ? currentBundle[key] : [];
         if (!items.length) continue;
         const folder = zip.folder(builder.folder);
-        items.forEach((item) => {
-          const { filename, blob } = builder.build(item, currentBundle.patient);
+        for (const item of items) {
+          const { filename, blob } = await builder.build(item, currentBundle.patient);
           folder.file(filename, blob);
           total += 1;
-        });
+        }
         setStatus(`Built ${total} record${total === 1 ? '' : 's'}…`);
         // Yield to the UI so the status text actually paints.
         await new Promise((r) => setTimeout(r, 0));
@@ -864,6 +1052,8 @@
     });
 
     activateTab(firstNonEmpty || SECTIONS[0].key);
+
+    warmPortalQRCaches(bundle.patient && bundle.patient.id != null ? String(bundle.patient.id) : null);
   }
 
   function showLogin(errorMessage) {
@@ -939,7 +1129,7 @@
     if (!currentBundle) return;
     const items = Array.isArray(currentBundle[sectionKey]) ? currentBundle[sectionKey] : [];
     const item = items[idx];
-    if (item) downloadOneRecord(sectionKey, item);
+    if (item) void downloadOneRecord(sectionKey, item);
   });
 
   // Resume / deep-link entry point.
