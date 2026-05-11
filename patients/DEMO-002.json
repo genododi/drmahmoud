@@ -1,8 +1,0 @@
-{
-  "schemaVersion": 1,
-  "generatedAt": "2026-05-12T00:00:00.000Z",
-  "clinic": {"name":"Dr. Mahmoud Sami Abouzeid","phone":"01005602267","website":"https://genododi.github.io/drmahmoud/"},
-  "patient": {"id":"DEMO-002","name":"محمد علي حسن","dob":"1972-07-01","contact":"+20 100 111 2222"},
-  "glasses": [], "medications": [], "treatments": [], "investigations": [{"id":"i1","date":"2026-05-10","type":"OCT macula","results":"Normal."}],
-  "examinations": [], "reports": [], "surgeries": [], "labs": []
-}
