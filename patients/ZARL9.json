@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T19:16:35.148Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "ZARL9",
+    "name": "Mohamed Atef",
+    "dob": "1978-10-28",
+    "age": 47,
+    "chiefComplaint": "lt eye ptosis -diplopia - dov",
+    "history": "diplopia since 2mo - ptosis since 5 y",
+    "contact": "01140985282"
+  },
+  "glasses": [
+    {
+      "patientId": "ZARL9",
+      "date": "2026-05-13",
+      "glassesType": "new",
+      "sph_right": "",
+      "cyl_right": "-1.25",
+      "axis_right": "170",
+      "va_right": "",
+      "sph_left": "",
+      "cyl_left": "-1.25",
+      "axis_left": "175",
+      "va_left": "",
+      "add_power": "",
+      "pd": "",
+      "notes": "",
+      "id": "d71bc446-d228-48c3-9d56-d127d2ca0c33",
+      "createdAt": "2026-05-13T16:06:45.439Z",
+      "updatedAt": "2026-05-13T16:06:45.439Z",
+      "patientName": "Mohamed Atef"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
