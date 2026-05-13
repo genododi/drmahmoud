@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T19:16:33.452Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "J2LAG",
+    "name": "Mona Arafa",
+    "dob": "1956-10-31",
+    "age": 69,
+    "chiefComplaint": "DOV OS",
+    "history": "vertigo - 56 y - right side past injury",
+    "contact": "01140985282"
+  },
+  "glasses": [
+    {
+      "patientId": "J2LAG",
+      "date": "2026-05-13",
+      "glassesType": "new",
+      "sph_right": "",
+      "cyl_right": "",
+      "axis_right": "",
+      "va_right": "",
+      "sph_left": "+5.75",
+      "cyl_left": "-1.25",
+      "axis_left": "175",
+      "va_left": "",
+      "add_power": "+2.25",
+      "pd": "",
+      "notes": "",
+      "id": "ff7c5476-8c4f-498f-9328-05b4d61bf061",
+      "createdAt": "2026-05-13T17:36:55.510Z",
+      "updatedAt": "2026-05-13T17:36:55.510Z",
+      "patientName": "Mona Arafa"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Extra SDU",
+      "genericName": "Sodium Hyaluronate 0.1% preservative-free",
+      "dosage": "1-2 drops",
+      "frequency": "TID (3 times daily)",
+      "duration": "2 weeks",
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1778694093145",
+      "patientId": "J2LAG",
+      "date_prescribed": "2026-05-13",
+      "createdAt": "2026-05-13T17:41:46.300Z",
+      "updatedAt": "2026-05-13T17:41:46.300Z",
+      "patientName": "Mona Arafa"
+    }
+  ],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
