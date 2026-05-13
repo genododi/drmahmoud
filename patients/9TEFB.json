@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-13T19:16:31.516Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "9TEFB",
+    "name": "Basem Mafdy",
+    "dob": "2018-03-04",
+    "age": 8,
+    "chiefComplaint": null,
+    "history": "red eye ou",
+    "contact": "01288030328"
+  },
+  "glasses": [],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Vigamox",
+      "genericName": "Moxifloxacin 0.5%",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "1 week",
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1778689078880",
+      "patientId": "9TEFB",
+      "date_prescribed": "2026-05-13",
+      "createdAt": "2026-05-13T16:18:00.628Z",
+      "updatedAt": "2026-05-13T16:18:00.628Z",
+      "patientName": "Basem Mafdy"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "9TEFB",
+      "date": "2026-05-13",
+      "id": "10edd94c-c98e-419c-81eb-60bed7cdeb1c",
+      "createdAt": "2026-05-13T16:18:00.819Z",
+      "updatedAt": "2026-05-13T16:18:00.819Z",
+      "patientName": "Basem Mafdy"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
