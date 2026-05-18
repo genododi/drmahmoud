@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-18T17:09:31.319Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "7NVAO",
+    "name": "Ahmed Alaa",
+    "dob": null,
+    "age": 9,
+    "chiefComplaint": "left red eye",
+    "history": "vkc",
+    "contact": null
+  },
+  "glasses": [],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Epichrome Plus",
+      "genericName": "Sodium cromoglicate 4%",
+      "dosage": "1 drop",
+      "frequency": "BID (2 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1779124018333",
+      "patientId": "7NVAO",
+      "date_prescribed": "2026-05-18",
+      "createdAt": "2026-05-18T17:07:00.042Z",
+      "updatedAt": "2026-05-18T17:07:00.042Z",
+      "patientName": "Ahmed Alaa"
+    },
+    {
+      "type": "Ointment",
+      "name": "Tacrolimus 0.03% Eye Ointment",
+      "genericName": "Tacrolimus 0.03% ophthalmic ointment (VKC)",
+      "dosage": "Thin ribbon",
+      "frequency": "Once daily",
+      "duration": "1 week",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1779123981067",
+      "patientId": "7NVAO",
+      "date_prescribed": "2026-05-18",
+      "createdAt": "2026-05-18T17:06:59.887Z",
+      "updatedAt": "2026-05-18T17:06:59.887Z",
+      "patientName": "Ahmed Alaa"
+    },
+    {
+      "type": "Eye Drops",
+      "name": "Patanol",
+      "genericName": "Olopatadine 0.1%",
+      "dosage": "1 drop",
+      "frequency": "BID (2 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1779122483758",
+      "patientId": "7NVAO",
+      "date_prescribed": "2026-05-18",
+      "createdAt": "2026-05-18T16:44:00.164Z",
+      "updatedAt": "2026-05-18T16:44:00.164Z",
+      "patientName": "Ahmed Alaa"
+    }
+  ],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "7NVAO",
+      "date": "2026-05-18",
+      "unaided_va": {
+        "right": "6/6",
+        "left": "6/6"
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "+0.25",
+          "cyl": "0.00",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "+0.50",
+          "cyl": "-0.50",
+          "axis": "105",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "18",
+        "left": "18"
+      },
+      "lids": {
+        "right": "Normal lids and lashes",
+        "left": "Normal lids and lashes"
+      },
+      "adnexa": {
+        "right": "Normal adnexa",
+        "left": "Normal adnexa"
+      },
+      "anterior_segment": {
+        "right": "Quiet anterior segment",
+        "left": "Giant papillary conjunctivitis (GPC)"
+      },
+      "pupils": {
+        "right": "PERRLA",
+        "left": "PERRLA"
+      },
+      "ocular_motility": {
+        "right": "Full extraocular movements",
+        "left": "Full extraocular movements"
+      },
+      "posterior_segment": {
+        "right": "Clear media",
+        "left": "Clear media"
+      },
+      "neuro_ophthalmic": {
+        "right": "Color vision grossly normal",
+        "left": "Color vision grossly normal"
+      },
+      "diagnosis": "[CUSTOM-MPBGG4ST] Verneal keratoconjunctivitis",
+      "icdCode": {
+        "id": "custom-CUSTOM-MPBGG4ST-1779123923021",
+        "code": "CUSTOM-MPBGG4ST",
+        "description": "Verneal keratoconjunctivitis",
+        "descriptionAr": "",
+        "keywords": [
+          "verneal keratoconjunctivitis",
+          "custom-mpbgg4st"
+        ],
+        "isCustom": true
+      },
+      "id": "ca5bfdad-3b12-47f9-8aea-389908e5b60c",
+      "createdAt": "2026-05-18T17:05:32.219Z",
+      "updatedAt": "2026-05-18T17:05:32.219Z",
+      "patientName": "Ahmed Alaa"
+    }
+  ],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
