@@ -23,6 +23,11 @@ html, body {
   background: var(--bg);
 }
 
+html[lang="ar"],
+html[dir="rtl"] {
+  font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", "Geeza Pro", Arial, sans-serif;
+}
+
 a { color: var(--teal); }
 a:hover { color: var(--teal-dark); }
 
@@ -69,6 +74,38 @@ a:hover { color: var(--teal-dark); }
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.btn-lang {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  min-width: 5.5rem;
+}
+
+html[dir="rtl"] .record-tab .count {
+  margin-left: 0;
+  margin-right: 6px;
+}
+
+html[dir="rtl"] .record-card-head {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .record-card-tools {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .patient-header {
+  flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .patient-actions {
+  justify-content: flex-start;
+}
+
+html[dir="rtl"] .glasses-table th,
+html[dir="rtl"] .glasses-table td {
+  text-align: center;
 }
 
 .btn {

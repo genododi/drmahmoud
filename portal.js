@@ -17,7 +17,26 @@
  */
 
 (function () {
+  const t = (key, vars) => (window.PortalI18n ? PortalI18n.t(key, vars) : key);
+
   const SESSION_KEY = 'mahmoud_portal_session_v1';
+
+  /** Legacy string or { right, left } exam finding → display text. */
+  function formatExamFinding(value) {
+    if (!value) return '';
+    if (typeof value === 'string') return value.trim();
+    if (typeof value === 'object') {
+      const r = String(value.right ?? value.od ?? '').trim();
+      const l = String(value.left ?? value.os ?? '').trim();
+      if (!r && !l) return '';
+      if (r && r === l) return r;
+      const parts = [];
+      if (r) parts.push(`OD: ${r}`);
+      if (l) parts.push(`OS: ${l}`);
+      return parts.join('\n');
+    }
+    return String(value);
+  }
   const QS = (sel) => document.querySelector(sel);
   const QSA = (sel) => Array.from(document.querySelectorAll(sel));
 
@@ -33,9 +52,13 @@
     facebook: 'https://www.facebook.com/share/1D3CG2FwXh/?mibextid=wwXIfr',
   };
 
-  /** Horizontal margins for body text & tables (mm). */
-  const PDF_MARGIN_X = 18;
-  const PDF_CONTENT_W = (doc) => doc.internal.pageSize.getWidth() - PDF_MARGIN_X * 2;
+  /** Match EMR `pdfExport.js`: narrow left inset, wide right binding gutter (mm). */
+  const PDF_MARGIN_LEFT = 10;
+  const PDF_MARGIN_RIGHT = 30;
+  const PDF_CONTENT_W = (doc) =>
+    doc.internal.pageSize.getWidth() - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT;
+  const PDF_CONTENT_CENTER_X = (pageWidth) =>
+    PDF_MARGIN_LEFT + (pageWidth - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT) / 2;
 
   const buildPatientPortalURL = (patientId) => {
     const base = CLINIC.website.replace(/\/$/, '');
@@ -132,7 +155,7 @@
         SESSION_KEY,
         JSON.stringify({ patientId: bundle.patient.id, ts: Date.now() })
       );
-    } catch (e) { /* ignore quota errors */ }
+    } catch { /* ignore quota errors */ }
   }
   function getSession() {
     try {
@@ -230,7 +253,8 @@
     if (!s) return '—';
     const d = new Date(s);
     if (Number.isNaN(d.getTime())) return s;
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    const dateLocale = window.PortalI18n ? PortalI18n.dateLocale() : undefined;
+    return d.toLocaleDateString(dateLocale, { year: 'numeric', month: 'short', day: 'numeric' });
   }
 
   function escapeHTML(v) {
@@ -258,7 +282,7 @@
 
   function ensurePdfLibsReady() {
     if (!window.jspdf || !window.jspdf.jsPDF) {
-      throw new Error('PDF library failed to load. Check your internet connection and try again.');
+      throw new Error(t('alertPdfLib'));
     }
   }
 
@@ -271,49 +295,53 @@
   function addPdfHeader(doc, pageWidth) {
     doc.setFontSize(17);
     doc.setFont('helvetica', 'bold');
-    doc.text(CLINIC.name, pageWidth / 2, 14, { align: 'center' });
+    const cx = PDF_CONTENT_CENTER_X(pageWidth);
+    doc.text(CLINIC.name, cx, 14, { align: 'center', maxWidth: PDF_CONTENT_W(doc) });
 
     doc.setFontSize(9.5);
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(55);
-    doc.text(CLINIC.title1, pageWidth / 2, 21, { align: 'center' });
-    doc.text(CLINIC.title2, pageWidth / 2, 26, { align: 'center' });
-    doc.text(CLINIC.title3, pageWidth / 2, 31, { align: 'center' });
+    doc.text(CLINIC.title1, cx, 21, { align: 'center', maxWidth: PDF_CONTENT_W(doc) });
+    doc.text(CLINIC.title2, cx, 26, { align: 'center', maxWidth: PDF_CONTENT_W(doc) });
+    doc.text(CLINIC.title3, cx, 31, { align: 'center', maxWidth: PDF_CONTENT_W(doc) });
     doc.setTextColor(0);
 
     doc.setDrawColor(14, 116, 144);
     doc.setLineWidth(0.35);
-    doc.line(PDF_MARGIN_X, 36, pageWidth - PDF_MARGIN_X, 36);
+    doc.line(PDF_MARGIN_LEFT, 36, pageWidth - PDF_MARGIN_RIGHT, 36);
   }
 
-  function addPdfFooter(doc, pageWidth, message) {
+  function addPdfFooter(doc, pageWidth) {
     const pageHeight = doc.internal.pageSize.getHeight();
-    const footerY = pageHeight - 26;
-    doc.setDrawColor(210, 214, 220);
-    doc.setLineWidth(0.35);
-    doc.line(PDF_MARGIN_X, footerY - 6, pageWidth - PDF_MARGIN_X, footerY - 6);
+    const footerY = pageHeight - 21;
+    const cx = PDF_CONTENT_CENTER_X(pageWidth);
+    const mw = PDF_CONTENT_W(doc);
 
     doc.setFontSize(8.5);
     doc.setTextColor(82);
-    if (message) {
-      doc.text(message, pageWidth / 2, footerY, { align: 'center', maxWidth: pageWidth - PDF_MARGIN_X * 2 });
-    }
-    doc.text(`Tel: ${CLINIC.phone}`, pageWidth / 2, footerY + 6, { align: 'center' });
-    doc.text(CLINIC.address, pageWidth / 2, footerY + 12, { align: 'center', maxWidth: pageWidth - PDF_MARGIN_X * 2 });
+    doc.text(`Tel: ${CLINIC.phone}`, cx, footerY, { align: 'center', maxWidth: mw });
+    doc.text(CLINIC.address, cx, footerY + 7, { align: 'center', maxWidth: mw });
     doc.setTextColor(0);
   }
 
+  function getPortalPatientId(patient) {
+    if (!patient || typeof patient !== 'object') return null;
+    const v = patient.id ?? patient.patientId ?? patient.referenceId;
+    return v != null && String(v).trim() !== '' ? String(v) : null;
+  }
+
   function addPatientInfoBlock(doc, patient, x, y, recordDate) {
-    const lh = 7;
+    const lh = 6;
+    const pid = getPortalPatientId(patient);
     const rows = [
       `Patient: ${patient.name || '-'}`,
-      patient.id ? `Patient ID: ${patient.id}` : '',
-      patient.dob ? `DOB: ${patient.dob}` : '',
-      patient.contact ? `Phone: ${patient.contact}` : '',
-      recordDate ? `Record date: ${recordDate}` : '',
-    ].filter(Boolean);
+      ...(recordDate ? [`Date: ${recordDate}`] : []),
+      ...(pid ? [`REFERENCE ID: ${pid}`] : []),
+      ...(patient.dob ? [`DOB: ${patient.dob}`] : []),
+      ...(patient.contact ? [`Phone: ${patient.contact}`] : []),
+    ];
     const boxH = rows.length * lh + 8;
-    const boxW = doc.internal.pageSize.getWidth() - PDF_MARGIN_X * 2;
+    const boxW = doc.internal.pageSize.getWidth() - PDF_MARGIN_LEFT - PDF_MARGIN_RIGHT;
     doc.setFillColor(248, 250, 252);
     doc.setDrawColor(226, 232, 240);
     doc.roundedRect(x, y - 4, boxW, boxH, 2, 2, 'FD');
@@ -341,18 +369,26 @@
     doc.setTextColor(0);
   }
 
+  /** mm — when a medication table was drawn, keep at least this gap below its bottom before the QR row. */
+  const MEDICATION_QR_CLEAR_BELOW_TABLE_MM = 8;
+
   /** Clinic website (right) + Facebook (left), same row — matches EMR printouts. */
-  async function addDualClinicQRs(doc, pageWidth, patientId) {
+  async function addDualClinicQRs(doc, pageWidth, patientId, options = {}) {
+    const { medicationTableFinalY = null } = options;
     const pageHeight = doc.internal.pageSize.getHeight();
     const size = 22;
-    const y = pageHeight - size - 38;
+    const baselineY = pageHeight - size - 52;
+    const y =
+      medicationTableFinalY != null && Number.isFinite(medicationTableFinalY)
+        ? Math.max(baselineY, medicationTableFinalY + MEDICATION_QR_CLEAR_BELOW_TABLE_MM)
+        : baselineY;
 
     const webUrl = buildPatientPortalURL(patientId || null);
     const webData = await getQRDataURL(webUrl);
     drawQRWithLabels(
       doc,
       webData,
-      pageWidth - size - PDF_MARGIN_X,
+      pageWidth - size - PDF_MARGIN_RIGHT,
       y,
       size,
       'Clinic website',
@@ -360,17 +396,17 @@
     );
 
     const fbData = await getQRDataURL(CLINIC.facebook, { dark: '#1877F2' });
-    drawQRWithLabels(doc, fbData, PDF_MARGIN_X, y, size, 'Facebook page', 'Scan to follow us');
+    drawQRWithLabels(doc, fbData, PDF_MARGIN_LEFT, y, size, 'Facebook page', 'Scan to follow us');
   }
 
-  async function finalizePatientPdf(doc, pageWidth, patient, footerMessage) {
-    const pid = patient && patient.id != null ? String(patient.id) : null;
+  async function finalizePatientPdf(doc, pageWidth, patient, options = {}) {
+    const pid = getPortalPatientId(patient);
     try {
-      await addDualClinicQRs(doc, pageWidth, pid);
+      await addDualClinicQRs(doc, pageWidth, pid, options);
     } catch (e) {
       console.warn('Could not embed QR codes on PDF', e);
     }
-    addPdfFooter(doc, pageWidth, footerMessage);
+    addPdfFooter(doc, pageWidth);
   }
 
   /** Glasses prescription PDF (mirrors the EMR layout, no Rx ID). */
@@ -384,22 +420,23 @@
     doc.setFontSize(15);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
+    const cx = PDF_CONTENT_CENTER_X(pageWidth);
     const title = item.glassesType === 'old' ? 'OLD GLASSES PRESCRIPTION' : 'OPTICAL PRESCRIPTION';
-    doc.text(title, pageWidth / 2, titleY, { align: 'center' });
+    doc.text(title, cx, titleY, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
     let nextY = titleY + 9;
     if (item.glassesType === 'old') {
       doc.setFillColor(254, 243, 199);
-      doc.roundedRect(pageWidth / 2 - 30, nextY - 1, 60, 9, 2, 2, 'F');
+      doc.roundedRect(cx - 30, nextY - 1, 60, 9, 2, 2, 'F');
       doc.setFontSize(8);
       doc.setTextColor(146, 64, 14);
-      doc.text('Historical record', pageWidth / 2, nextY + 5.5, { align: 'center' });
+      doc.text('Historical record', cx, nextY + 5.5, { align: 'center', maxWidth: cw });
       doc.setTextColor(0);
       nextY += 13;
     }
 
-    const tableStart = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, nextY + 2, item.date || '') + 2;
+    const tableStart = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, nextY + 2, item.date || '') + 2;
 
     const tableWidth = cw;
     const eyeColWidth = 58;
@@ -438,26 +475,26 @@
         5: { cellWidth: dataColWidth },
       },
       alternateRowStyles: { fillColor: [248, 250, 252] },
-      margin: { left: PDF_MARGIN_X, right: PDF_MARGIN_X },
+      margin: { left: PDF_MARGIN_LEFT, right: PDF_MARGIN_RIGHT },
     });
 
     let y = doc.lastAutoTable.finalY + 10;
     if (item.pd) {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(11);
-      doc.text(`Pupillary distance (PD): ${item.pd}`, PDF_MARGIN_X, y);
+      doc.text(`Pupillary distance (PD): ${item.pd}`, PDF_MARGIN_LEFT, y);
       y += 10;
     }
     if (item.notes) {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text('Notes', PDF_MARGIN_X, y);
+      doc.text('Notes', PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       const noteLines = doc.splitTextToSize(String(item.notes), cw - 4);
-      doc.text(noteLines, PDF_MARGIN_X, y + 6);
+      doc.text(noteLines, PDF_MARGIN_LEFT, y + 6);
     }
 
-    await finalizePatientPdf(doc, pageWidth, patient, 'This prescription is valid for 6 months from the date of issue.');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `glasses_${item.glassesType === 'old' ? 'old' : 'rx'}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -473,10 +510,10 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text('MEDICATION PRESCRIPTION', pageWidth / 2, 43, { align: 'center' });
+    doc.text('MEDICATION PRESCRIPTION', PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    const startAfterPatient = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || item.createdAt || '');
+    const startAfterPatient = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.date || item.createdAt || '');
 
     doc.autoTable({
       startY: startAfterPatient + 2,
@@ -509,21 +546,24 @@
         3: { cellWidth: 44 },
         4: { cellWidth: 24, halign: 'center' },
       },
-      margin: { left: PDF_MARGIN_X, right: PDF_MARGIN_X },
+      margin: { left: PDF_MARGIN_LEFT, right: PDF_MARGIN_RIGHT },
     });
 
     let y = doc.lastAutoTable.finalY + 10;
     if (item.instructions || item.tapering) {
+      doc.setCharSpace(0);
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text('Instructions', PDF_MARGIN_X, y);
+      doc.text('Instructions', PDF_MARGIN_LEFT, y, { charSpace: 0 });
       doc.setFont('helvetica', 'normal');
       const text = [item.instructions, item.tapering].filter(Boolean).join('\n\n');
       const lines = doc.splitTextToSize(text, cw);
-      doc.text(lines, PDF_MARGIN_X, y + 6);
+      doc.text(lines, PDF_MARGIN_LEFT, y + 6, { charSpace: 0 });
     }
 
-    await finalizePatientPdf(doc, pageWidth, patient, 'Please follow instructions carefully. Ask your pharmacist if you are unsure.');
+    await finalizePatientPdf(doc, pageWidth, patient, {
+      medicationTableFinalY: doc.lastAutoTable?.finalY ?? null,
+    });
     return {
       filename: `medication_${safeFileSegment(item.name)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -538,19 +578,19 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text('TREATMENT PLAN', pageWidth / 2, 43, { align: 'center' });
+    doc.text('TREATMENT PLAN', PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 6;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.date || '') + 6;
 
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`${label}`, PDF_MARGIN_X, y);
+      doc.text(`${label}`, PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       const lines = doc.splitTextToSize(String(value), cw);
-      doc.text(lines, PDF_MARGIN_X, y + 5);
+      doc.text(lines, PDF_MARGIN_LEFT, y + 5);
       y += 5 + Math.max(lines.length, 1) * 4.8 + 10;
     };
 
@@ -559,12 +599,12 @@
     if (item.followup_date || item.followupDate) {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`Follow-up date: ${item.followup_date || item.followupDate}`, PDF_MARGIN_X, y);
+      doc.text(`Follow-up date: ${item.followup_date || item.followupDate}`, PDF_MARGIN_LEFT, y);
       y += 12;
     }
     writeBlock('Notes', item.notes);
 
-    await finalizePatientPdf(doc, pageWidth, patient, '');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `treatment_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -579,30 +619,30 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text('INVESTIGATION REPORT', pageWidth / 2, 43, { align: 'center' });
+    doc.text('INVESTIGATION REPORT', PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 8;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.date || '') + 8;
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(10);
-    doc.text(`Type: ${item.type || '—'}`, PDF_MARGIN_X, y);
+    doc.text(`Type: ${item.type || '—'}`, PDF_MARGIN_LEFT, y);
     y += 12;
 
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`${label}`, PDF_MARGIN_X, y);
+      doc.text(`${label}`, PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       const lines = doc.splitTextToSize(String(value), cw);
-      doc.text(lines, PDF_MARGIN_X, y + 5);
+      doc.text(lines, PDF_MARGIN_LEFT, y + 5);
       y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
     writeBlock('Details', item.details);
     writeBlock('Results', item.results);
     writeBlock('Recommendations', item.recommendations);
 
-    await finalizePatientPdf(doc, pageWidth, patient, '');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `investigation_${safeFileSegment(item.type)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -617,30 +657,30 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text('EYE EXAMINATION REPORT', pageWidth / 2, 43, { align: 'center' });
+    doc.text('EYE EXAMINATION REPORT', PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || item.createdAt || '') + 6;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.date || item.createdAt || '') + 6;
 
     if (item.unaided_va) {
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text('Visual acuity (unaided)', PDF_MARGIN_X, y);
+      doc.text('Visual acuity (unaided)', PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       doc.text(
         `OD: ${item.unaided_va.right || '—'}          OS: ${item.unaided_va.left || '—'}`,
-        PDF_MARGIN_X + 52,
+        PDF_MARGIN_LEFT + 52,
         y
       );
       y += 11;
     }
     if (item.iop) {
       doc.setFont('helvetica', 'bold');
-      doc.text('Intraocular pressure', PDF_MARGIN_X, y);
+      doc.text('Intraocular pressure', PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       doc.text(
         `OD: ${item.iop.right || '—'} mmHg          OS: ${item.iop.left || '—'} mmHg`,
-        PDF_MARGIN_X + 52,
+        PDF_MARGIN_LEFT + 52,
         y
       );
       y += 11;
@@ -650,18 +690,23 @@
       if (!value) return;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`${label}`, PDF_MARGIN_X, y);
+      doc.text(`${label}`, PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       const lines = doc.splitTextToSize(String(value), cw);
-      doc.text(lines, PDF_MARGIN_X, y + 5);
+      doc.text(lines, PDF_MARGIN_LEFT, y + 5);
       y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
-    writeBlock('Anterior segment', item.anterior_segment);
-    writeBlock('Posterior segment', item.posterior_segment);
+    writeBlock('Lids', formatExamFinding(item.lids));
+    writeBlock('Adnexa', formatExamFinding(item.adnexa));
+    writeBlock('Anterior segment', formatExamFinding(item.anterior_segment));
+    writeBlock('Pupils', formatExamFinding(item.pupils));
+    writeBlock('Ocular motility', formatExamFinding(item.ocular_motility));
+    writeBlock('Posterior segment', formatExamFinding(item.posterior_segment));
+    writeBlock('Neuro-ophthalmic', formatExamFinding(item.neuro_ophthalmic));
     writeBlock('Diagnosis', item.diagnosis);
     writeBlock('Notes', item.notes);
 
-    await finalizePatientPdf(doc, pageWidth, patient, '');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `examination_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -676,18 +721,18 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text((item.type || 'MEDICAL REPORT').toUpperCase(), pageWidth / 2, 43, { align: 'center' });
+    doc.text((item.type || 'MEDICAL REPORT').toUpperCase(), PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    const y0 = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 8;
+    const y0 = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.date || '') + 8;
     if (item.content) {
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       const lines = doc.splitTextToSize(String(item.content), cw);
-      doc.text(lines, PDF_MARGIN_X, y0);
+      doc.text(lines, PDF_MARGIN_LEFT, y0);
     }
 
-    await finalizePatientPdf(doc, pageWidth, patient, '');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `report_${safeFileSegment(item.type) || 'report'}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -702,18 +747,18 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text('SURGICAL REPORT', pageWidth / 2, 43, { align: 'center' });
+    doc.text('SURGICAL REPORT', PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.datePerformed || item.dateScheduled || '') + 6;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.datePerformed || item.dateScheduled || '') + 6;
 
     const writeLine = (label, value) => {
       if (value == null || value === '') return;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`${label}:`, PDF_MARGIN_X, y);
+      doc.text(`${label}:`, PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
-      doc.text(String(value), PDF_MARGIN_X + 42, y);
+      doc.text(String(value), PDF_MARGIN_LEFT + 42, y);
       y += 9;
     };
     writeLine('Procedure', item.procedureName);
@@ -727,17 +772,17 @@
       if (!value) return;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`${label}`, PDF_MARGIN_X, y);
+      doc.text(`${label}`, PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       const lines = doc.splitTextToSize(String(value), cw);
-      doc.text(lines, PDF_MARGIN_X, y + 5);
+      doc.text(lines, PDF_MARGIN_LEFT, y + 5);
       y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
     writeBlock('Pre-operative diagnosis', item.preOpDiagnosis);
     writeBlock('Complications', item.complications);
     writeBlock('Post-operative instructions', item.postOpInstructions);
 
-    await finalizePatientPdf(doc, pageWidth, patient, '');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `surgery_${safeFileSegment(item.procedureName)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -752,19 +797,19 @@
     doc.setFontSize(13);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(14, 116, 144);
-    doc.text('LABORATORY RESULTS', pageWidth / 2, 43, { align: 'center' });
+    doc.text('LABORATORY RESULTS', PDF_CONTENT_CENTER_X(pageWidth), 43, { align: 'center', maxWidth: cw });
     doc.setTextColor(0);
 
-    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_X, 52, item.date || '') + 6;
+    let y = addPatientInfoBlock(doc, patient, PDF_MARGIN_LEFT, 52, item.date || '') + 6;
 
     const writeBlock = (label, value) => {
       if (!value) return;
       doc.setFont('helvetica', 'bold');
       doc.setFontSize(10);
-      doc.text(`${label}`, PDF_MARGIN_X, y);
+      doc.text(`${label}`, PDF_MARGIN_LEFT, y);
       doc.setFont('helvetica', 'normal');
       const lines = doc.splitTextToSize(String(value), cw);
-      doc.text(lines, PDF_MARGIN_X, y + 5);
+      doc.text(lines, PDF_MARGIN_LEFT, y + 5);
       y += 5 + Math.max(lines.length, 1) * 4.8 + 8;
     };
     writeBlock('Panel type', item.panelType);
@@ -773,7 +818,7 @@
     writeBlock('Fitness status', item.fitnessStatus);
     writeBlock('Notes', item.notes);
 
-    await finalizePatientPdf(doc, pageWidth, patient, '');
+    await finalizePatientPdf(doc, pageWidth, patient);
     return {
       filename: `lab_${safeFileSegment(item.panelType)}_${recordDateForFile(item) || safeFileSegment(item.id)}.pdf`,
       blob: doc.output('blob'),
@@ -823,20 +868,20 @@
       downloadBlob(filename, blob);
     } catch (e) {
       console.error('PDF generation failed', e);
-      alert('Could not generate the PDF. Please try again or contact the clinic.');
+      alert(t('alertPdfFailed'));
     }
   }
 
   async function downloadAllAsZip() {
     if (!currentBundle) return;
     if (typeof window.JSZip !== 'function') {
-      alert('ZIP library failed to load. Please refresh and try again.');
+      alert(t('alertZipLib'));
       return;
     }
     downloadAllPdfsBtn.disabled = true;
     const originalLabel = downloadAllPdfsBtn.textContent;
-    downloadAllPdfsBtn.textContent = 'Preparing your records…';
-    setStatus('Building PDFs…');
+    downloadAllPdfsBtn.textContent = t('zipPreparing');
+    setStatus(t('statusBuildingPdfs'));
     try {
       const zip = new window.JSZip();
       let total = 0;
@@ -849,26 +894,26 @@
           folder.file(filename, blob);
           total += 1;
         }
-        setStatus(`Built ${total} record${total === 1 ? '' : 's'}…`);
+        setStatus(t('statusBuiltRecords', { count: total }));
         // Yield to the UI so the status text actually paints.
         await new Promise((r) => setTimeout(r, 0));
       }
       if (total === 0) {
-        alert('There are no records to download yet.');
+        alert(t('alertNoRecords'));
         return;
       }
       // Include the raw JSON too for safekeeping.
       zip.file('records.json', JSON.stringify(currentBundle, null, 2));
 
-      setStatus('Compressing ZIP…');
+      setStatus(t('statusCompressing'));
       const blob = await zip.generateAsync({ type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 6 } });
       const stamp = new Date().toISOString().slice(0, 10);
       const fileSafeName = safeFileSegment(currentBundle.patient.name || currentBundle.patient.id);
       downloadBlob(`records_${fileSafeName}_${stamp}.zip`, blob);
-      setStatus(`Downloaded ${total} record${total === 1 ? '' : 's'} as PDF.`);
+      setStatus(t('statusDownloaded', { count: total }));
     } catch (e) {
       console.error('ZIP build failed', e);
-      alert('Could not build the ZIP. Please try again or contact the clinic.');
+      alert(t('alertZipFailed'));
       setStatus('');
     } finally {
       downloadAllPdfsBtn.disabled = false;
@@ -892,7 +937,7 @@
                     type="button"
                     data-section="${escapeHTML(sectionKey)}"
                     data-index="${itemIndex}">
-              Download PDF
+              ${escapeHTML(t('downloadPdf'))}
             </button>
           </div>
         </div>
@@ -906,12 +951,12 @@
       <table class="glasses-table">
         <thead>
           <tr>
-            <th>Eye</th><th>SPH</th><th>CYL</th><th>Axis</th><th>VA</th><th>ADD</th>
+            <th>${escapeHTML(t('labelEye'))}</th><th>${escapeHTML(t('labelSph'))}</th><th>${escapeHTML(t('labelCyl'))}</th><th>${escapeHTML(t('labelAxis'))}</th><th>${escapeHTML(t('labelVa'))}</th><th>${escapeHTML(t('labelAdd'))}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>OD</strong></td>
+            <td><strong>${escapeHTML(t('labelOd'))}</strong></td>
             <td>${escapeHTML(g.sph_right || '-')}</td>
             <td>${escapeHTML(g.cyl_right || '-')}</td>
             <td>${escapeHTML(g.axis_right || '-')}</td>
@@ -919,7 +964,7 @@
             <td rowspan="2">${escapeHTML(g.add_power || '-')}</td>
           </tr>
           <tr>
-            <td><strong>OS</strong></td>
+            <td><strong>${escapeHTML(t('labelOs'))}</strong></td>
             <td>${escapeHTML(g.sph_left || '-')}</td>
             <td>${escapeHTML(g.cyl_left || '-')}</td>
             <td>${escapeHTML(g.axis_left || '-')}</td>
@@ -927,15 +972,15 @@
           </tr>
         </tbody>
       </table>
-      ${g.pd ? `<p><b>PD:</b> ${escapeHTML(g.pd)}</p>` : ''}
-      ${g.notes ? `<p><b>Notes:</b> ${escapeHTML(g.notes)}</p>` : ''}
+      ${g.pd ? `<p><b>${escapeHTML(t('labelPd'))}:</b> ${escapeHTML(g.pd)}</p>` : ''}
+      ${g.notes ? `<p><b>${escapeHTML(t('labelNotes'))}:</b> ${escapeHTML(g.notes)}</p>` : ''}
     `;
   }
 
   function renderGlasses(item, i) {
     const isOld = item.glassesType === 'old';
     return recordCardShell(
-      isOld ? 'Old Glasses' : 'Glasses Prescription',
+      isOld ? t('cardOldGlasses') : t('cardGlassesRx'),
       fmtDate(item.date),
       glassesRowsHTML(item),
       'glasses', i
@@ -945,84 +990,85 @@
   function renderMedication(item, i) {
     const body = `
       <div class="record-grid">
-        ${item.type ? `<div><b>Type:</b> ${escapeHTML(item.type)}</div>` : ''}
-        ${item.dosage ? `<div><b>Dosage:</b> ${escapeHTML(item.dosage)}</div>` : ''}
-        ${item.frequency ? `<div><b>Frequency:</b> ${escapeHTML(item.frequency)}</div>` : ''}
-        ${item.duration ? `<div><b>Duration:</b> ${escapeHTML(item.duration)}</div>` : ''}
+        ${item.type ? `<div><b>${escapeHTML(t('labelType'))}:</b> ${escapeHTML(item.type)}</div>` : ''}
+        ${item.dosage ? `<div><b>${escapeHTML(t('labelDosage'))}:</b> ${escapeHTML(item.dosage)}</div>` : ''}
+        ${item.frequency ? `<div><b>${escapeHTML(t('labelFrequency'))}:</b> ${escapeHTML(item.frequency)}</div>` : ''}
+        ${item.duration ? `<div><b>${escapeHTML(t('labelDuration'))}:</b> ${escapeHTML(item.duration)}</div>` : ''}
       </div>
-      ${item.instructions ? `<p><b>Instructions:</b> ${escapeHTML(item.instructions)}</p>` : ''}
-      ${item.tapering ? `<p><b>Tapering:</b> ${escapeHTML(item.tapering)}</p>` : ''}
+      ${item.instructions ? `<p><b>${escapeHTML(t('labelInstructions'))}:</b> ${escapeHTML(item.instructions)}</p>` : ''}
+      ${item.tapering ? `<p><b>${escapeHTML(t('labelTapering'))}:</b> ${escapeHTML(item.tapering)}</p>` : ''}
     `;
-    return recordCardShell(item.name || 'Medication', fmtDate(item.date || item.createdAt), body, 'medications', i);
+    return recordCardShell(item.name || t('cardMedication'), fmtDate(item.date || item.createdAt), body, 'medications', i);
   }
 
   function renderTreatment(item, i) {
     const body = `
-      ${(item.medical_treatment || item.medicalTreatment) ? `<p><b>Medical:</b> ${escapeHTML(item.medical_treatment || item.medicalTreatment)}</p>` : ''}
-      ${(item.surgical_treatment || item.surgicalTreatment) ? `<p><b>Surgical:</b> ${escapeHTML(item.surgical_treatment || item.surgicalTreatment)}</p>` : ''}
-      ${(item.followup_date || item.followupDate) ? `<p><b>Follow-up:</b> ${escapeHTML(item.followup_date || item.followupDate)}</p>` : ''}
-      ${item.notes ? `<p><b>Notes:</b> ${escapeHTML(item.notes)}</p>` : ''}
+      ${(item.medical_treatment || item.medicalTreatment) ? `<p><b>${escapeHTML(t('labelMedical'))}:</b> ${escapeHTML(item.medical_treatment || item.medicalTreatment)}</p>` : ''}
+      ${(item.surgical_treatment || item.surgicalTreatment) ? `<p><b>${escapeHTML(t('labelSurgical'))}:</b> ${escapeHTML(item.surgical_treatment || item.surgicalTreatment)}</p>` : ''}
+      ${(item.followup_date || item.followupDate) ? `<p><b>${escapeHTML(t('labelFollowUp'))}:</b> ${escapeHTML(item.followup_date || item.followupDate)}</p>` : ''}
+      ${item.notes ? `<p><b>${escapeHTML(t('labelNotes'))}:</b> ${escapeHTML(item.notes)}</p>` : ''}
     `;
-    return recordCardShell('Treatment Plan', fmtDate(item.date), body, 'treatments', i);
+    return recordCardShell(t('cardTreatment'), fmtDate(item.date), body, 'treatments', i);
   }
 
   function renderInvestigation(item, i) {
     const body = `
-      ${item.details ? `<p><b>Details:</b> ${escapeHTML(item.details)}</p>` : ''}
-      ${item.results ? `<p><b>Results:</b> ${escapeHTML(item.results)}</p>` : ''}
-      ${item.recommendations ? `<p><b>Recommendations:</b> ${escapeHTML(item.recommendations)}</p>` : ''}
+      ${item.details ? `<p><b>${escapeHTML(t('labelDetails'))}:</b> ${escapeHTML(item.details)}</p>` : ''}
+      ${item.results ? `<p><b>${escapeHTML(t('labelResults'))}:</b> ${escapeHTML(item.results)}</p>` : ''}
+      ${item.recommendations ? `<p><b>${escapeHTML(t('labelRecommendations'))}:</b> ${escapeHTML(item.recommendations)}</p>` : ''}
     `;
-    return recordCardShell(item.type || 'Investigation', fmtDate(item.date), body, 'investigations', i);
+    return recordCardShell(item.type || t('cardInvestigation'), fmtDate(item.date), body, 'investigations', i);
   }
 
   function renderExamination(item, i) {
     const body = `
-      ${item.unaided_va ? `<p><b>Unaided VA:</b> OD ${escapeHTML(item.unaided_va.right || '-')} / OS ${escapeHTML(item.unaided_va.left || '-')}</p>` : ''}
-      ${item.iop ? `<p><b>IOP:</b> OD ${escapeHTML(item.iop.right || '-')} mmHg / OS ${escapeHTML(item.iop.left || '-')} mmHg</p>` : ''}
-      ${item.anterior_segment ? `<p><b>Anterior segment:</b> ${escapeHTML(item.anterior_segment)}</p>` : ''}
-      ${item.posterior_segment ? `<p><b>Posterior segment:</b> ${escapeHTML(item.posterior_segment)}</p>` : ''}
-      ${item.diagnosis ? `<p><b>Diagnosis:</b> ${escapeHTML(item.diagnosis)}</p>` : ''}
-      ${item.notes ? `<p><b>Notes:</b> ${escapeHTML(item.notes)}</p>` : ''}
+      ${item.unaided_va ? `<p><b>${escapeHTML(t('labelUnaidedVa'))}:</b> ${escapeHTML(t('labelOd'))} ${escapeHTML(item.unaided_va.right || '-')} / ${escapeHTML(t('labelOs'))} ${escapeHTML(item.unaided_va.left || '-')}</p>` : ''}
+      ${item.iop ? `<p><b>${escapeHTML(t('labelIop'))}:</b> ${escapeHTML(t('labelOd'))} ${escapeHTML(item.iop.right || '-')} mmHg / ${escapeHTML(t('labelOs'))} ${escapeHTML(item.iop.left || '-')} mmHg</p>` : ''}
+      ${formatExamFinding(item.lids) ? `<p><b>${escapeHTML(t('labelLids'))}:</b> ${escapeHTML(formatExamFinding(item.lids))}</p>` : ''}
+      ${formatExamFinding(item.anterior_segment) ? `<p><b>${escapeHTML(t('labelAnterior'))}:</b> ${escapeHTML(formatExamFinding(item.anterior_segment))}</p>` : ''}
+      ${formatExamFinding(item.posterior_segment) ? `<p><b>${escapeHTML(t('labelPosterior'))}:</b> ${escapeHTML(formatExamFinding(item.posterior_segment))}</p>` : ''}
+      ${item.diagnosis ? `<p><b>${escapeHTML(t('labelDiagnosis'))}:</b> ${escapeHTML(item.diagnosis)}</p>` : ''}
+      ${item.notes ? `<p><b>${escapeHTML(t('labelNotes'))}:</b> ${escapeHTML(item.notes)}</p>` : ''}
     `;
-    return recordCardShell('Examination', fmtDate(item.date || item.createdAt), body, 'examinations', i);
+    return recordCardShell(t('cardExamination'), fmtDate(item.date || item.createdAt), body, 'examinations', i);
   }
 
   function renderReport(item, i) {
     const body = item.content ? `<p style="white-space:pre-wrap">${escapeHTML(item.content)}</p>` : '';
-    return recordCardShell(item.type || 'Medical Report', fmtDate(item.date), body, 'reports', i);
+    return recordCardShell(item.type || t('cardReport'), fmtDate(item.date), body, 'reports', i);
   }
 
   function renderSurgery(item, i) {
     const body = `
-      ${item.eye ? `<p><b>Eye:</b> ${escapeHTML(item.eye)}</p>` : ''}
-      ${item.surgeryType ? `<p><b>Type:</b> ${escapeHTML(item.surgeryType)}</p>` : ''}
-      ${item.preOpDiagnosis ? `<p><b>Pre-op diagnosis:</b> ${escapeHTML(item.preOpDiagnosis)}</p>` : ''}
-      ${item.iolPower ? `<p><b>IOL:</b> ${escapeHTML(`${item.iolType || ''} ${item.iolModel || ''} ${item.iolPower}D`)}</p>` : ''}
-      ${item.complications ? `<p><b>Complications:</b> ${escapeHTML(item.complications)}</p>` : ''}
-      ${item.postOpInstructions ? `<p><b>Post-op:</b> ${escapeHTML(item.postOpInstructions)}</p>` : ''}
+      ${item.eye ? `<p><b>${escapeHTML(t('labelEye'))}:</b> ${escapeHTML(item.eye)}</p>` : ''}
+      ${item.surgeryType ? `<p><b>${escapeHTML(t('labelType'))}:</b> ${escapeHTML(item.surgeryType)}</p>` : ''}
+      ${item.preOpDiagnosis ? `<p><b>${escapeHTML(t('labelPreOp'))}:</b> ${escapeHTML(item.preOpDiagnosis)}</p>` : ''}
+      ${item.iolPower ? `<p><b>${escapeHTML(t('labelIol'))}:</b> ${escapeHTML(`${item.iolType || ''} ${item.iolModel || ''} ${item.iolPower}D`)}</p>` : ''}
+      ${item.complications ? `<p><b>${escapeHTML(t('labelComplications'))}:</b> ${escapeHTML(item.complications)}</p>` : ''}
+      ${item.postOpInstructions ? `<p><b>${escapeHTML(t('labelPostOp'))}:</b> ${escapeHTML(item.postOpInstructions)}</p>` : ''}
     `;
-    return recordCardShell(item.procedureName || 'Surgery', fmtDate(item.datePerformed || item.dateScheduled), body, 'surgeries', i);
+    return recordCardShell(item.procedureName || t('cardSurgery'), fmtDate(item.datePerformed || item.dateScheduled), body, 'surgeries', i);
   }
 
   function renderLab(item, i) {
     const body = `
-      ${item.purpose ? `<p><b>Purpose:</b> ${escapeHTML(item.purpose)}</p>` : ''}
-      ${item.results ? `<p><b>Results:</b> ${escapeHTML(item.results)}</p>` : ''}
-      ${item.fitnessStatus ? `<p><b>Fitness:</b> ${escapeHTML(item.fitnessStatus)}</p>` : ''}
-      ${item.notes ? `<p><b>Notes:</b> ${escapeHTML(item.notes)}</p>` : ''}
+      ${item.purpose ? `<p><b>${escapeHTML(t('labelPurpose'))}:</b> ${escapeHTML(item.purpose)}</p>` : ''}
+      ${item.results ? `<p><b>${escapeHTML(t('labelResults'))}:</b> ${escapeHTML(item.results)}</p>` : ''}
+      ${item.fitnessStatus ? `<p><b>${escapeHTML(t('labelFitness'))}:</b> ${escapeHTML(item.fitnessStatus)}</p>` : ''}
+      ${item.notes ? `<p><b>${escapeHTML(t('labelNotes'))}:</b> ${escapeHTML(item.notes)}</p>` : ''}
     `;
-    return recordCardShell(item.panelType || 'Lab Result', fmtDate(item.date), body, 'labs', i);
+    return recordCardShell(item.panelType || t('cardLab'), fmtDate(item.date), body, 'labs', i);
   }
 
   const SECTIONS = [
-    { key: 'glasses',        label: 'Glasses',         render: renderGlasses },
-    { key: 'medications',    label: 'Medications',     render: renderMedication },
-    { key: 'treatments',     label: 'Treatments',      render: renderTreatment },
-    { key: 'investigations', label: 'Investigations',  render: renderInvestigation },
-    { key: 'reports',        label: 'Medical Reports', render: renderReport },
-    { key: 'examinations',   label: 'Examinations',    render: renderExamination },
-    { key: 'surgeries',      label: 'Surgeries',       render: renderSurgery },
-    { key: 'labs',           label: 'Lab Results',     render: renderLab },
+    { key: 'glasses',        labelKey: 'sectionGlasses',        render: renderGlasses },
+    { key: 'medications',    labelKey: 'sectionMedications',    render: renderMedication },
+    { key: 'treatments',     labelKey: 'sectionTreatments',     render: renderTreatment },
+    { key: 'investigations', labelKey: 'sectionInvestigations', render: renderInvestigation },
+    { key: 'reports',        labelKey: 'sectionReports',        render: renderReport },
+    { key: 'examinations',   labelKey: 'sectionExaminations',   render: renderExamination },
+    { key: 'surgeries',      labelKey: 'sectionSurgeries',      render: renderSurgery },
+    { key: 'labs',           labelKey: 'sectionLabs',           render: renderLab },
   ];
 
   function activateTab(key) {
@@ -1036,9 +1082,9 @@
     recordsSection.classList.remove('hidden');
     logoutBtn.classList.remove('hidden');
 
-    patientNameEl.textContent = bundle.patient.name || 'Patient';
-    const metaBits = [`ID ${bundle.patient.id}`];
-    if (bundle.patient.dob) metaBits.push(`DOB ${bundle.patient.dob}`);
+    patientNameEl.textContent = bundle.patient.name || t('patientFallback');
+    const metaBits = [`${t('metaId')} ${bundle.patient.id}`];
+    if (bundle.patient.dob) metaBits.push(`${t('metaDob')} ${bundle.patient.dob}`);
     if (bundle.patient.contact) metaBits.push(bundle.patient.contact);
     patientMetaEl.textContent = metaBits.join(' · ');
     generatedAtEl.textContent = fmtDate(bundle.generatedAt);
@@ -1053,7 +1099,7 @@
       tab.type = 'button';
       tab.className = 'record-tab';
       tab.dataset.key = sec.key;
-      tab.innerHTML = `${sec.label}<span class="count">${items.length}</span>`;
+      tab.innerHTML = `${t(sec.labelKey)}<span class="count">${items.length}</span>`;
       tab.addEventListener('click', () => activateTab(sec.key));
       tabsEl.appendChild(tab);
 
@@ -1062,7 +1108,7 @@
       panel.dataset.key = sec.key;
       panel.innerHTML = items.length
         ? items.map((it, i) => sec.render(it, i)).join('')
-        : '<div class="empty">No records in this section.</div>';
+        : `<div class="empty">${escapeHTML(t('emptySection'))}</div>`;
       panelsEl.appendChild(panel);
 
       if (items.length && !firstNonEmpty) firstNonEmpty = sec.key;
@@ -1096,14 +1142,14 @@
     if (!input) return;
     const submitBtn = loginForm.querySelector('button[type="submit"]');
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Loading…';
+    submitBtn.textContent = t('loginLoading');
     try {
       const result = await loginLookup(input);
       if (!result.ok) {
         if (result.reason === 'ambiguous_name') {
-          showLogin('Multiple patients share that exact name. Please sign in with your Patient ID (the highlighted ID on your prescription) instead.');
+          showLogin(t('loginErrorAmbiguous'));
         } else {
-          showLogin('No records found. Please double-check your Patient ID or full name, or contact the clinic at 01005602267.');
+          showLogin(t('loginErrorNotFound'));
         }
         return;
       }
@@ -1112,10 +1158,10 @@
       if (parseHashId()) history.replaceState(null, '', location.pathname);
     } catch (err) {
       console.error(err);
-      showLogin('Something went wrong. Please try again or contact the clinic.');
+      showLogin(t('loginErrorGeneric'));
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Sign in';
+      submitBtn.textContent = t('loginSubmit');
     }
   });
 
@@ -1148,6 +1194,13 @@
     const item = items[idx];
     if (item) void downloadOneRecord(sectionKey, item);
   });
+
+  if (window.PortalI18n) {
+    PortalI18n.onChange(() => {
+      PortalI18n.applyStaticI18n();
+      if (currentBundle) showBundle(currentBundle);
+    });
+  }
 
   // Resume / deep-link entry point.
   (async function init() {

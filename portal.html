@@ -1,52 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Patient Portal · Dr. Mahmoud Sami</title>
-  <meta name="description" content="Patient portal: log in with your Patient ID to access and download your eye-care records." />
+  <title>بوابة المريض · د. محمود سامي</title>
+  <meta name="description" content="بوابة المريض: سجّل الدخول برقم المريض للاطلاع على سجلاتك وتحميلها." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%230e7490'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23fff'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="portal.css" />
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('mahmoud_portal_locale_v1') === 'en') {
+          document.documentElement.lang = 'en';
+          document.documentElement.dir = 'ltr';
+        }
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </head>
 <body class="portal-body">
   <header class="site-header">
     <div class="brand">
       <div class="brand-logo" aria-hidden="true"></div>
       <div>
-        <h1>Patient Portal</h1>
-        <p class="brand-sub">Dr. Mahmoud Sami Abouzeid · Consultant Ophthalmologist</p>
+        <h1 data-i18n="brandTitle">بوابة المريض</h1>
+        <p class="brand-sub" data-i18n="brandSub">د. محمود سامي أبوزيد · استشاري طب وجراحة العيون</p>
       </div>
     </div>
     <nav class="site-nav">
-      <a href="index.html">← Home</a>
-      <button id="logout-btn" class="btn btn-secondary hidden" type="button">Sign out</button>
+      <button id="lang-toggle-btn" class="btn btn-secondary btn-lang" type="button" title="التبديل إلى الإنجليزية">English</button>
+      <a href="index.html" data-i18n="navHome">الرئيسية ←</a>
+      <button id="logout-btn" class="btn btn-secondary hidden" type="button" data-i18n="navSignOut">تسجيل الخروج</button>
     </nav>
   </header>
 
   <main class="portal-main">
     <section id="login-section" class="card">
-      <h2>Access your records</h2>
-      <p class="muted">
-        Sign in with either the <strong>Patient ID</strong> highlighted on your
-        prescription, or with your <strong>full name</strong>
-        (first&nbsp;+&nbsp;middle&nbsp;+&nbsp;last, exactly as registered at the clinic).
+      <h2 data-i18n="loginHeading">الوصول إلى سجلاتك</h2>
+      <p class="muted" data-i18n="loginIntroHtml" data-i18n-html>
+        سجّل الدخول إما بـ<strong>رقم المريض</strong> الظاهر على وصفتك، أو بـ<strong>اسمك الكامل</strong>
+        (الاسم الأول + الأوسط + الأخير، كما هو مسجّل في العيادة تماماً).
       </p>
       <form id="login-form" class="login-form" autocomplete="off">
-        <label for="patient-id" class="form-label">Patient ID or full name</label>
+        <label for="patient-id" class="form-label" data-i18n="loginLabel">رقم المريض أو الاسم الكامل</label>
         <input
           id="patient-id"
           name="patient-id"
           class="form-input"
           required
-          placeholder="e.g. 12345  or  Ahmed Hassan Ali"
+          data-i18n-placeholder="loginPlaceholder"
+          placeholder="مثال: 12345  أو  أحمد حسن علي"
           autocomplete="off"
           inputmode="text"
         />
-        <button class="btn btn-primary btn-lg" type="submit">Sign in</button>
+        <button class="btn btn-primary btn-lg" type="submit" data-i18n="loginSubmit">تسجيل الدخول</button>
         <p id="login-error" class="error hidden" role="alert"></p>
       </form>
-      <p class="muted small">
-        Don't have your ID or your name doesn't work? Contact the clinic at
+      <p class="muted small" data-i18n="loginHelpHtml" data-i18n-html>
+        ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على
         <a href="tel:+201005602267">01005602267</a>.
       </p>
     </section>
@@ -58,12 +69,12 @@
           <p class="muted" id="patient-meta">—</p>
         </div>
         <div class="patient-actions">
-          <button id="download-all-pdfs-btn" class="btn btn-primary" type="button" title="Download every record as a PDF, bundled into a single ZIP">
-            Download all my records (ZIP of PDFs)
+          <button id="download-all-pdfs-btn" class="btn btn-primary" type="button" data-i18n="downloadAllZip" data-i18n-title="downloadAllZipTitle" title="تحميل كل السجل كملف PDF في أرشيف ZIP واحد">
+            تحميل كل السجلات (ZIP من ملفات PDF)
           </button>
-          <button id="print-btn" class="btn btn-secondary" type="button">Print this page</button>
-          <button id="download-all-json-btn" class="btn btn-secondary" type="button" title="Power-user option: raw JSON of every record">
-            Download as JSON
+          <button id="print-btn" class="btn btn-secondary" type="button" data-i18n="printPage">طباعة هذه الصفحة</button>
+          <button id="download-all-json-btn" class="btn btn-secondary" type="button" data-i18n="downloadJson" data-i18n-title="downloadJsonTitle" title="خيار متقدم: بيانات JSON الخام">
+            تحميل JSON
           </button>
         </div>
         <p id="download-status" class="muted small hidden" aria-live="polite"></p>
@@ -73,15 +84,14 @@
 
       <div id="record-panels"></div>
 
-      <p class="muted small footer-note">
-        Records last published on <span id="generated-at">—</span>. If something is missing,
-        ask the clinic to re-publish your bundle.
+      <p class="muted small footer-note" data-i18n="footerNoteHtml" data-i18n-html>
+        آخر نشر للسجلات في <span id="generated-at">—</span>. إذا كان شيء ناقصاً، اطلب من العيادة إعادة نشر ملفك.
       </p>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> Dr. Mahmoud Sami Eye Care Clinic.</p>
+    <p data-i18n="siteFooter">© <span id="year"></span> عيادة د. محمود سامي لطب العيون.</p>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
 
@@ -95,6 +105,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+  <script src="portal-i18n.js"></script>
   <script src="portal.js"></script>
 </body>
 </html>
