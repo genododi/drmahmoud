@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-18T17:09:31.319Z",
+  "generatedAt": "2026-05-18T18:07:26.515Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -19,6 +19,44 @@
   },
   "glasses": [],
   "medications": [
+    {
+      "type": "Ointment",
+      "name": "Dexatrol Ointment",
+      "genericName": "Dexamethasone + Neomycin + Polymyxin B ointment",
+      "dosage": "0.5 inch ribbon",
+      "frequency": "Once daily",
+      "duration": "5 days",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to affected eye",
+      "notes": "",
+      "isSteroid": true,
+      "id": "1779126533371",
+      "patientId": "7NVAO",
+      "date_prescribed": "2026-05-18",
+      "createdAt": "2026-05-18T17:48:54.670Z",
+      "updatedAt": "2026-05-18T17:48:54.670Z",
+      "patientName": "Ahmed Alaa"
+    },
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Advanced",
+      "genericName": "Sodium hyaluronate 0.15% advanced lubricant",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1779126371304",
+      "patientId": "7NVAO",
+      "date_prescribed": "2026-05-18",
+      "createdAt": "2026-05-18T17:46:13.839Z",
+      "updatedAt": "2026-05-18T17:46:13.839Z",
+      "patientName": "Ahmed Alaa"
+    },
     {
       "type": "Eye Drops",
       "name": "Epichrome Plus",
@@ -39,27 +77,8 @@
       "patientName": "Ahmed Alaa"
     },
     {
-      "type": "Ointment",
-      "name": "Tacrolimus 0.03% Eye Ointment",
-      "genericName": "Tacrolimus 0.03% ophthalmic ointment (VKC)",
-      "dosage": "Thin ribbon",
-      "frequency": "Once daily",
-      "duration": "1 week",
-      "regimenEntries": [],
-      "tapering": "",
-      "instructions": "",
-      "notes": "",
-      "isSteroid": false,
-      "id": "1779123981067",
-      "patientId": "7NVAO",
-      "date_prescribed": "2026-05-18",
-      "createdAt": "2026-05-18T17:06:59.887Z",
-      "updatedAt": "2026-05-18T17:06:59.887Z",
-      "patientName": "Ahmed Alaa"
-    },
-    {
       "type": "Eye Drops",
-      "name": "Patanol",
+      "name": "optest",
       "genericName": "Olopatadine 0.1%",
       "dosage": "1 drop",
       "frequency": "BID (2 times daily)",
@@ -73,11 +92,38 @@
       "patientId": "7NVAO",
       "date_prescribed": "2026-05-18",
       "createdAt": "2026-05-18T16:44:00.164Z",
-      "updatedAt": "2026-05-18T16:44:00.164Z",
+      "updatedAt": "2026-05-18T17:43:19.482Z",
       "patientName": "Ahmed Alaa"
     }
   ],
-  "treatments": [],
+  "treatments": [
+    {
+      "medical_treatment": "",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "7NVAO",
+      "date": "2026-05-18",
+      "id": "5e361e73-f0aa-4768-b048-6db221c8ecce",
+      "createdAt": "2026-05-18T17:48:54.768Z",
+      "updatedAt": "2026-05-18T17:48:54.768Z",
+      "patientName": "Ahmed Alaa"
+    },
+    {
+      "medical_treatment": "",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "7NVAO",
+      "date": "2026-05-18",
+      "id": "37f5a6b0-fba5-4cda-9ea4-b76a6e345480",
+      "createdAt": "2026-05-18T17:46:13.939Z",
+      "updatedAt": "2026-05-18T17:46:13.939Z",
+      "patientName": "Ahmed Alaa"
+    }
+  ],
   "investigations": [],
   "examinations": [
     {
