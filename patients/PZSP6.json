@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-19T19:45:28.973Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "PZSP6",
+    "name": "Neven Ismail",
+    "dob": "1967-11-24",
+    "age": 58,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": "01000107034"
+  },
+  "glasses": [],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
