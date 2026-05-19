@@ -95,16 +95,10 @@
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
 
-  <!-- PDF & ZIP runtime (used to build downloadable PDFs from the patient's bundle) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- ZIP for bulk download; PDFs use the same EMR templates as clinic printouts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="portal-pdf.bundle.js"></script>
   <script src="portal-i18n.js"></script>
   <script src="portal.js"></script>
 </body>
