@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-18T18:07:26.515Z",
+  "generatedAt": "2026-05-19T07:53:03.748Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -15,7 +15,7 @@
     "age": 9,
     "chiefComplaint": "left red eye",
     "history": "vkc",
-    "contact": null
+    "contact": "0115 4359751"
   },
   "glasses": [],
   "medications": [
@@ -54,7 +54,7 @@
       "patientId": "7NVAO",
       "date_prescribed": "2026-05-18",
       "createdAt": "2026-05-18T17:46:13.839Z",
-      "updatedAt": "2026-05-18T17:46:13.839Z",
+      "updatedAt": "2026-05-18T18:29:09.790Z",
       "patientName": "Ahmed Alaa"
     },
     {
@@ -66,14 +66,14 @@
       "duration": "2 weeks",
       "regimenEntries": [],
       "tapering": "",
-      "instructions": "",
+      "instructions": "Apply to both eyes",
       "notes": "",
       "isSteroid": false,
       "id": "1779124018333",
       "patientId": "7NVAO",
       "date_prescribed": "2026-05-18",
       "createdAt": "2026-05-18T17:07:00.042Z",
-      "updatedAt": "2026-05-18T17:07:00.042Z",
+      "updatedAt": "2026-05-18T18:29:26.465Z",
       "patientName": "Ahmed Alaa"
     },
     {
@@ -85,14 +85,14 @@
       "duration": "2 weeks",
       "regimenEntries": [],
       "tapering": "",
-      "instructions": "",
+      "instructions": "Apply to both eyes",
       "notes": "",
       "isSteroid": false,
       "id": "1779122483758",
       "patientId": "7NVAO",
       "date_prescribed": "2026-05-18",
       "createdAt": "2026-05-18T16:44:00.164Z",
-      "updatedAt": "2026-05-18T17:43:19.482Z",
+      "updatedAt": "2026-05-18T18:29:16.826Z",
       "patientName": "Ahmed Alaa"
     }
   ],
@@ -102,25 +102,12 @@
       "surgical_treatment": "",
       "investigations": "",
       "followup_date": "",
-      "notes": "",
+      "notes": "عدم فرك العين\nالبعد عن الحرارة والشمس\nالالتزام بالعلاج الموصي به",
       "patientId": "7NVAO",
       "date": "2026-05-18",
       "id": "5e361e73-f0aa-4768-b048-6db221c8ecce",
       "createdAt": "2026-05-18T17:48:54.768Z",
-      "updatedAt": "2026-05-18T17:48:54.768Z",
-      "patientName": "Ahmed Alaa"
-    },
-    {
-      "medical_treatment": "",
-      "surgical_treatment": "",
-      "investigations": "",
-      "followup_date": "",
-      "notes": "",
-      "patientId": "7NVAO",
-      "date": "2026-05-18",
-      "id": "37f5a6b0-fba5-4cda-9ea4-b76a6e345480",
-      "createdAt": "2026-05-18T17:46:13.939Z",
-      "updatedAt": "2026-05-18T17:46:13.939Z",
+      "updatedAt": "2026-05-19T07:42:45.931Z",
       "patientName": "Ahmed Alaa"
     }
   ],
