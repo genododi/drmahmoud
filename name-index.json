@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-19T10:48:56.053Z",
+  "generatedAt": "2026-05-19T19:45:31.005Z",
   "byName": {
     "afaf ibrahim": "FGCNY",
     "basem mafdy": "9TEFB",
@@ -9,7 +9,8 @@
     "heba hamed": "YZ0KM",
     "amany siam ramadan": "4QWH8",
     "ahmed alaa": "7NVAO",
-    "kholoud siam": "AZKPB"
+    "kholoud siam": "AZKPB",
+    "neven ismail": "PZSP6"
   },
   "byId": {
     "FGCNY": "Afaf ibrahim",
@@ -19,6 +20,7 @@
     "YZ0KM": "Heba Hamed",
     "4QWH8": "Amany siam ramadan",
     "7NVAO": "Ahmed Alaa",
-    "AZKPB": "kholoud siam"
+    "AZKPB": "kholoud siam",
+    "PZSP6": "Neven Ismail"
   }
 }
