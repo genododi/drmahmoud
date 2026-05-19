@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-19T10:48:54.211Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "AZKPB",
+    "name": "kholoud siam",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": "red eye ou",
+    "history": "nill",
+    "contact": "01559285445"
+  },
+  "glasses": [],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "AZKPB",
+      "date": "2026-05-18",
+      "unaided_va": {
+        "right": "6/9",
+        "left": "6/9"
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "+2.00",
+          "cyl": "-1.75",
+          "axis": "55",
+          "va": "6/6"
+        },
+        "left": {
+          "sph": "+1.00",
+          "cyl": "-1.00",
+          "axis": "97",
+          "va": "6/6"
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "20",
+        "left": "18"
+      },
+      "lids": "OU: Normal lids and lashes",
+      "adnexa": "",
+      "anterior_segment": "OU: Corneal abrasion",
+      "pupils": "OU: PERRLA",
+      "ocular_motility": "OU: Full extraocular movements",
+      "posterior_segment": "OU: Clear media",
+      "neuro_ophthalmic": "OU: Confrontation visual fields full",
+      "diagnosis": "[H16.0] Corneal ulcer",
+      "icdCode": {
+        "code": "H16.0",
+        "description": "Corneal ulcer",
+        "descriptionAr": "قرحة القرنية",
+        "keywords": [
+          "corneal ulcer",
+          "ulcerative keratitis",
+          "قرحة القرنية"
+        ],
+        "score": 9,
+        "isCustom": false,
+        "id": "H16.0"
+      },
+      "id": "20ad4ebf-4dd9-4cb3-a12c-66537ba01675",
+      "createdAt": "2026-05-18T15:58:43.809Z",
+      "updatedAt": "2026-05-18T15:58:43.809Z",
+      "patientName": "kholoud siam"
+    }
+  ],
+  "reports": [
+    {
+      "patientId": "AZKPB",
+      "date": "2026-05-18",
+      "reportType": "general",
+      "title": "General Ophthalmology Report",
+      "sections": {
+        "Patient Demographics": "Name: kholoud siam\nPatient ID: AZKPB\nChief complaint: red eye ou\nMedical history: nill",
+        "Referring / Attending Physician": "Dr. Mahmoud Sami Abouzeid",
+        "Reason for Visit": "Left red eye ",
+        "Examination Summary": "Examination date: 2026-05-18\nUnaided VA — OD: 6/9, OS: 6/9\nIOP — OD: 20, OS: 18 mmHg\nSubjective refraction — OD: — / —, OS: — / —\nAutorefraction — OD: +2.00 / -1.75 × 55°  VA 6/6, OS: +1.00 / -1.00 × 97°  VA 6/6\nLids: OU: Normal lids and lashes\nAnterior segment: OU: Corneal abrasion\nPupils: OU: PERRLA\nOcular motility: OU: Full extraocular movements\nPosterior segment: OU: Clear media\nNeuro-ophthalmic: OU: Confrontation visual fields full",
+        "Diagnosis": "[H16.0] Corneal ulcer",
+        "Plan / Recommendations": "Necessitates rest for 3 days at least"
+      },
+      "summary": "Patient Demographics: Name: kholoud siam\nPatient ID: AZKPB\nChief complaint: red ey… | Referring / Attending Physician: Dr. Mahmoud Sami Abouzeid… | Reason for Visit: Left red eye … | Examination Summary: Examination date: 2026-05-18\nUnaided VA — OD: 6/9, OS: 6/9\nI… | Diagnosis: [H16.0] Corneal ulcer… | Plan / Recommendations: Necessitates rest for 3 days at least…",
+      "doctorNotes": "Patient should follow up after 3 days & to be compliant on her prescribed drops",
+      "signature": "",
+      "freeformContent": "",
+      "language": "en",
+      "id": "101765f2-7670-4d2d-bd53-777e609bae22",
+      "createdAt": "2026-05-18T16:04:58.713Z",
+      "updatedAt": "2026-05-18T16:47:42.316Z",
+      "patientName": "kholoud siam"
+    }
+  ],
+  "surgeries": [],
+  "labs": []
+}
