@@ -7,6 +7,7 @@
   <meta name="description" content="بوابة المريض: سجّل الدخول برقم المريض للاطلاع على سجلاتك وتحميلها." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%230e7490'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23fff'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="portal.css" />
+  <link rel="stylesheet" href="telexam-call.css" />
   <script>
     (function () {
       try {
@@ -60,6 +61,19 @@
         ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على
         <a href="tel:+201005602267">01005602267</a>.
       </p>
+      <div class="card telexam-portal-card" style="margin-top:1.25rem;">
+        <h3 data-i18n="telexamPortalTitle">فحص هاتفي (Telexam)</h3>
+        <p class="muted small" data-i18n="telexamPortalIntro">أدخل هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص الهاتفي.</p>
+        <form data-telexam-call-form class="telexam-call-form" autocomplete="tel">
+          <label for="telexam-portal-phone" data-i18n="telexamPortalPhone">رقم هاتفك</label>
+          <input id="telexam-portal-phone" name="caller-phone" type="tel" class="form-input" dir="ltr" required />
+          <label for="telexam-portal-name" data-i18n="telexamPortalName">الاسم (اختياري)</label>
+          <input id="telexam-portal-name" name="caller-name" type="text" class="form-input" />
+          <button type="submit" class="btn btn-primary" data-i18n="telexamPortalSubmit">إبلاغ العيادة والاتصال</button>
+          <p class="telexam-call-status hidden" data-success-text="تم الإرسال — جارٍ فتح الاتصال…"></p>
+          <p class="telexam-call-error hidden" data-error-text="أدخل رقم هاتف صالحاً."></p>
+        </form>
+      </div>
     </section>
 
     <section id="records-section" class="hidden">
@@ -100,6 +114,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="portal-pdf.bundle.js"></script>
   <script src="portal-i18n.js"></script>
+  <script src="telexam-call.js"></script>
   <script src="portal.js"></script>
 </body>
 </html>

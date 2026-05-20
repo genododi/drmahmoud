@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="telexam-call.css" />
   <style>
     :root {
       --navy:#0b1628; --navy-2:#0f1f3a; --navy-3:#152848;
@@ -341,6 +342,7 @@
   <div class="hero-cta">
     <a href="tel:01005602267" class="btn-primary" id="cta-book">احجز موعدك</a>
     <a href="#services" class="btn-outline" id="cta-services">خدماتنا</a>
+    <a href="#telexam" class="btn-outline" id="cta-telexam">فحص هاتفي (Telexam)</a>
     <a href="portal.html" class="btn-portal" id="cta-portal" aria-label="بوابة المريض — تحميل سجلاتك">
       <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/>
@@ -420,6 +422,25 @@
         <p class="service-desc"  id="s6-desc">فحوصات عينية متكاملة ورعاية طبية متواصلة وإدارة صحة البصر على المدى البعيد لجميع الأعمار.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TELEXAM -->
+<section id="telexam" class="telexam-call-section">
+  <div class="telexam-call-inner section-inner">
+    <p class="section-label reveal" id="telexam-label">فحص هاتفي</p>
+    <h2 class="section-title reveal" id="telexam-title">اتصل بالعيادة — <em>Telexam</em></h2>
+    <p class="muted reveal" id="telexam-intro">أدخل رقم هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص الهاتفي. سيظهر تنبيه على محطة الطبيب عند فتح نظام السجلات.</p>
+    <form class="telexam-call-form reveal" data-telexam-call-form autocomplete="tel">
+      <label for="telexam-caller-phone" id="telexam-phone-label">رقم هاتفك</label>
+      <input id="telexam-caller-phone" name="caller-phone" type="tel" inputmode="tel" dir="ltr" placeholder="010xxxxxxxx" required />
+      <label for="telexam-caller-name" id="telexam-name-label">الاسم (اختياري)</label>
+      <input id="telexam-caller-name" name="caller-name" type="text" placeholder="الاسم كما في العيادة" />
+      <button type="submit" class="btn-primary" id="telexam-submit">إبلاغ العيادة والاتصال الآن</button>
+      <p class="telexam-call-status hidden" id="telexam-status" data-success-text="تم إرسال الإشعار — جارٍ فتح الاتصال…"></p>
+      <p class="telexam-call-error hidden" id="telexam-error" data-error-text="أدخل رقم هاتف صالحاً."></p>
+    </form>
+    <p class="telexam-call-line-hint reveal" id="telexam-line-hint">خط العيادة: <span class="ltr-text">010 0560 2267</span> · <span class="ltr-text">+201005602267</span></p>
   </div>
 </section>
 
@@ -537,7 +558,12 @@ const T={
     mapLabel:'طالبية، الهرم · القاهرة',
     btnCall:'اتصل الآن',btnDir:'خريطة الوصول',
     footer:'© ٢٠٢٥ د. محمود سامي — استشاري طب وجراحة العيون',
-    qrLabel:'امسح للوصول للموقع'
+    qrLabel:'امسح للوصول للموقع',
+    ctaTelexam:'فحص هاتفي (Telexam)',
+    telexamLabel:'فحص هاتفي',telexamTitle:'اتصل بالعيادة — <em>Telexam</em>',
+    telexamIntro:'أدخل رقم هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص الهاتفي. سيظهر تنبيه على محطة الطبيب عند فتح نظام السجلات.',
+    telexamPhoneLabel:'رقم هاتفك',telexamNameLabel:'الاسم (اختياري)',
+    telexamSubmit:'إبلاغ العيادة والاتصال الآن',telexamLineHint:'خط العيادة:'
   },
   en:{
     lang:'en',dir:'ltr',
@@ -573,7 +599,12 @@ const T={
     mapLabel:'Talbieh, Haram · Cairo',
     btnCall:'Call Now',btnDir:'Get Directions',
     footer:'© 2025 Dr. Mahmoud Sami — Consultant Ophthalmologist',
-    qrLabel:'Scan to visit website'
+    qrLabel:'Scan to visit website',
+    ctaTelexam:'Telexam (phone exam)',
+    telexamLabel:'Telexam',telexamTitle:'Call the clinic — <em>Telexam</em>',
+    telexamIntro:'Enter your phone number to notify the clinic before dialling the telexam line. The doctor\'s EMR workstation will ring when the app is open.',
+    telexamPhoneLabel:'Your phone number',telexamNameLabel:'Name (optional)',
+    telexamSubmit:'Notify clinic & call now',telexamLineHint:'Clinic line:'
   }
 };
 
@@ -600,6 +631,14 @@ function setLang(l){
   document.getElementById('hero-tagline').innerHTML=c.heroTagline;
   document.getElementById('cta-book').textContent=c.ctaBook;
   document.getElementById('cta-services').textContent=c.ctaServices;
+  if(document.getElementById('cta-telexam'))document.getElementById('cta-telexam').textContent=c.ctaTelexam;
+  if(document.getElementById('telexam-label'))document.getElementById('telexam-label').textContent=c.telexamLabel;
+  if(document.getElementById('telexam-title'))document.getElementById('telexam-title').innerHTML=c.telexamTitle;
+  if(document.getElementById('telexam-intro'))document.getElementById('telexam-intro').textContent=c.telexamIntro;
+  if(document.getElementById('telexam-phone-label'))document.getElementById('telexam-phone-label').textContent=c.telexamPhoneLabel;
+  if(document.getElementById('telexam-name-label'))document.getElementById('telexam-name-label').textContent=c.telexamNameLabel;
+  if(document.getElementById('telexam-submit'))document.getElementById('telexam-submit').textContent=c.telexamSubmit;
+  if(document.getElementById('telexam-line-hint'))document.getElementById('telexam-line-hint').innerHTML=c.telexamLineHint+' <span class="ltr-text">010 0560 2267</span> · <span class="ltr-text">+201005602267</span>';
   document.getElementById('scroll-label').textContent=c.scrollLabel;
   // about
   document.getElementById('about-label').textContent=c.aboutLabel;
@@ -630,5 +669,6 @@ function setLang(l){
   if(document.getElementById('qr-label'))document.getElementById('qr-label').textContent=c.qrLabel;
 }
 </script>
+<script src="telexam-call.js"></script>
 </body>
 </html>

@@ -1,0 +1,90 @@
+.telexam-call-section {
+  background: linear-gradient(135deg, #0f172a 0%, #134e4a 100%);
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
+  color: #f8fafc;
+}
+
+.telexam-call-inner {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.telexam-call-section .section-label {
+  color: #c9a84c;
+}
+
+.telexam-call-section .section-title {
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.telexam-call-section .muted {
+  color: rgba(248, 250, 252, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.telexam-call-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: start;
+}
+
+.telexam-call-form label {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.9);
+}
+
+.telexam-call-form input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  background: rgba(15, 23, 42, 0.5);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.telexam-call-form input::placeholder {
+  color: rgba(248, 250, 252, 0.45);
+}
+
+.telexam-call-form .btn-primary {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.telexam-call-status,
+.telexam-call-error {
+  font-size: 0.88rem;
+  margin: 0.5rem 0 0;
+}
+
+.telexam-call-status {
+  color: #5eead4;
+}
+
+.telexam-call-error {
+  color: #fca5a5;
+}
+
+.telexam-call-error.hidden,
+.telexam-call-status.hidden {
+  display: none;
+}
+
+.telexam-call-line-hint {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  opacity: 0.75;
+}
+
+.telexam-call-line-hint .ltr-text {
+  direction: ltr;
+  display: inline-block;
+}

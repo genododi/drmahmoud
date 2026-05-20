@@ -25,6 +25,12 @@
       loginLoading: 'Loading…',
       loginHelpHtml:
         "Don't have your ID or your name doesn't work? Contact the clinic at <a href=\"tel:+201005602267\">01005602267</a>.",
+      telexamPortalTitle: 'Telexam (phone examination)',
+      telexamPortalIntro:
+        'Enter your phone to notify the clinic before calling the telexam line (+201005602267).',
+      telexamPortalPhone: 'Your phone number',
+      telexamPortalName: 'Name (optional)',
+      telexamPortalSubmit: 'Notify clinic & call',
       loginErrorAmbiguous:
         'Multiple patients share that exact name. Please sign in with your Patient ID (the highlighted ID on your prescription) instead.',
       loginErrorNotFound:
@@ -126,6 +132,11 @@
       loginLoading: 'جاري التحميل…',
       loginHelpHtml:
         'ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على <a href="tel:+201005602267">01005602267</a>.',
+      telexamPortalTitle: 'فحص هاتفي (Telexam)',
+      telexamPortalIntro: 'أدخل هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص (+201005602267).',
+      telexamPortalPhone: 'رقم هاتفك',
+      telexamPortalName: 'الاسم (اختياري)',
+      telexamPortalSubmit: 'إبلاغ العيادة والاتصال',
       loginErrorAmbiguous:
         'يوجد أكثر من مريض بهذا الاسم. يرجى تسجيل الدخول برقم المريض (الرقم البارز على وصفتك).',
       loginErrorNotFound:
