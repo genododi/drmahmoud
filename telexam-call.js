@@ -13,6 +13,7 @@
 (function () {
   const STORAGE_KEY = 'ophtho_telexam_pending_signal_v1';
   const CHANNEL = 'ophtho-telexam-incoming';
+  const PIPELINE_ID = 'telexam-emr-tunnel';
 
   function getPostUrl() {
     if (window.TELEXAM_SIGNAL_POST_URL) return String(window.TELEXAM_SIGNAL_POST_URL).trim();
@@ -21,11 +22,13 @@
     return '';
   }
 
-  function buildSignal(callerPhone, callerName) {
+  function buildSignal(callerName) {
+    var requestName = String(callerName || '').trim();
     return {
       id: 'sig-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9),
-      callerPhone: String(callerPhone || '').trim(),
-      callerName: String(callerName || '').trim(),
+      callerName: requestName,
+      requestName: requestName,
+      pipelineId: PIPELINE_ID,
       source: 'patient-website',
       createdAt: new Date().toISOString(),
     };
@@ -55,25 +58,15 @@
     });
   }
 
-  function normalizePhone(input) {
-    var digits = String(input || '').replace(/\D/g, '');
-    if (!digits) return '';
-    if (digits.indexOf('20') === 0 && digits.length >= 12) return '+' + digits;
-    if (digits.charAt(0) === '0' && digits.length === 11) return '+20' + digits.slice(1);
-    if (digits.length === 10 && digits.charAt(0) === '1') return '+20' + digits;
-    return digits.length >= 10 ? '+' + digits : '';
-  }
-
   window.TelexamCall = {
     request: function (opts) {
       opts = opts || {};
-      var phone = normalizePhone(opts.callerPhone || opts.phone || '');
       var name = String(opts.callerName || opts.name || '').trim();
-      if (!phone) {
-        if (opts.onError) opts.onError(new Error('phone_required'));
-        return Promise.reject(new Error('phone_required'));
+      if (!name) {
+        if (opts.onError) opts.onError(new Error('name_required'));
+        return Promise.reject(new Error('name_required'));
       }
-      var signal = buildSignal(phone, name);
+      var signal = buildSignal(name);
       publishLocal(signal);
       return postHub(signal).then(function () {
         if (opts.onSuccess) opts.onSuccess(signal);
@@ -88,13 +81,11 @@
     form.dataset.telexamWired = '1';
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var phoneEl = form.querySelector('[name="caller-phone"], [name="callerPhone"], #telexam-caller-phone');
       var nameEl = form.querySelector('[name="caller-name"], [name="callerName"], #telexam-caller-name');
       var statusEl = form.querySelector('.telexam-call-status');
       var errEl = form.querySelector('.telexam-call-error');
       if (errEl) errEl.classList.add('hidden');
       window.TelexamCall.request({
-        callerPhone: phoneEl ? phoneEl.value : '',
         callerName: nameEl ? nameEl.value : '',
       })
         .then(function () {

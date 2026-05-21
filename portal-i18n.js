@@ -25,13 +25,13 @@
       loginLoading: 'Loading…',
       loginHelpHtml:
         "Don't have your ID or your name doesn't work? Contact the clinic at <a href=\"tel:+201005602267\">01005602267</a>.",
-      telexamPortalTitle: 'Telexam (phone examination)',
+      telexamPortalTitle: 'Telexam EMR request',
       telexamPortalIntro:
-        'Enter your phone to send a telexam request to the clinic EMR. No clinic cellular call is opened.',
-      telexamPortalPhone: 'Your phone number',
-      telexamPortalName: 'Name (optional)',
+        'Enter your patient name as registered at the clinic to send a request through the Telexam EMR tunnel. No phone number or cellular call is used.',
+      telexamPortalName: 'Patient name',
       telexamPortalSubmit: 'Send telexam request',
       telexamPortalSuccess: 'Request sent — wait for the doctor to answer in the EMR.',
+      telexamPortalError: 'Enter the patient name as registered at the clinic.',
       loginErrorAmbiguous:
         'Multiple patients share that exact name. Please sign in with your Patient ID (the highlighted ID on your prescription) instead.',
       loginErrorNotFound:
@@ -133,12 +133,12 @@
       loginLoading: 'جاري التحميل…',
       loginHelpHtml:
         'ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على <a href="tel:+201005602267">01005602267</a>.',
-      telexamPortalTitle: 'فحص هاتفي (Telexam)',
-      telexamPortalIntro: 'أدخل هاتفك لإرسال طلب فحص إلى نظام العيادة دون فتح اتصال بخط المحمول.',
-      telexamPortalPhone: 'رقم هاتفك',
-      telexamPortalName: 'الاسم (اختياري)',
+      telexamPortalTitle: 'طلب Telexam عبر النظام',
+      telexamPortalIntro: 'أدخل اسم المريض كما هو مسجل في العيادة لإرسال الطلب عبر Telexam EMR tunnel دون رقم هاتف أو مكالمة محمول.',
+      telexamPortalName: 'اسم المريض',
       telexamPortalSubmit: 'إرسال طلب الفحص',
       telexamPortalSuccess: 'تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام.',
+      telexamPortalError: 'أدخل اسم المريض كما هو مسجل في العيادة.',
       loginErrorAmbiguous:
         'يوجد أكثر من مريض بهذا الاسم. يرجى تسجيل الدخول برقم المريض (الرقم البارز على وصفتك).',
       loginErrorNotFound:
@@ -275,6 +275,9 @@
     });
     document.querySelectorAll('[data-i18n-success-text]').forEach((el) => {
       el.dataset.successText = t(el.getAttribute('data-i18n-success-text'));
+    });
+    document.querySelectorAll('[data-i18n-error-text]').forEach((el) => {
+      el.dataset.errorText = t(el.getAttribute('data-i18n-error-text'));
     });
     const langBtn = document.getElementById('lang-toggle-btn');
     if (langBtn) {
