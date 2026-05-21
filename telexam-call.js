@@ -1,17 +1,16 @@
 /**
- * Patient-facing Telexam "call clinic" flow for the static clinic website.
+ * Patient-facing Telexam request flow for the static clinic website.
  *
  * On button click:
  * 1. POSTs an incoming-call signal to the optional HTTP hub (cross-device).
  * 2. Writes to same-origin localStorage / BroadcastChannel (same device, same origin).
- * 3. Opens the clinic voice line (tel:+201005602267).
+ * 3. Does not open the clinic cellular voice line; the EMR rings from the request.
  *
  * Hub URL (optional, cross-device): set window.TELEXAM_SIGNAL_POST_URL before this script,
  * or meta[name="telexam-signal-post"]. When unset, only same-origin localStorage / BroadcastChannel
  * are used — no HTTP POST (GitHub Pages has no `/telexam/signals` endpoint).
  */
 (function () {
-  const CLINIC_PHONE_E164 = '+201005602267';
   const STORAGE_KEY = 'ophtho_telexam_pending_signal_v1';
   const CHANNEL = 'ophtho-telexam-incoming';
 
@@ -66,8 +65,7 @@
   }
 
   window.TelexamCall = {
-    clinicPhone: CLINIC_PHONE_E164,
-    notifyAndCall: function (opts) {
+    request: function (opts) {
       opts = opts || {};
       var phone = normalizePhone(opts.callerPhone || opts.phone || '');
       var name = String(opts.callerName || opts.name || '').trim();
@@ -78,14 +76,12 @@
       var signal = buildSignal(phone, name);
       publishLocal(signal);
       return postHub(signal).then(function () {
-        if (opts.openDialer !== false) {
-          window.location.href = 'tel:' + CLINIC_PHONE_E164;
-        }
         if (opts.onSuccess) opts.onSuccess(signal);
         return signal;
       });
     },
   };
+  window.TelexamCall.notifyAndCall = window.TelexamCall.request;
 
   function wireForm(form) {
     if (!form || form.dataset.telexamWired) return;
@@ -97,7 +93,7 @@
       var statusEl = form.querySelector('.telexam-call-status');
       var errEl = form.querySelector('.telexam-call-error');
       if (errEl) errEl.classList.add('hidden');
-      window.TelexamCall.notifyAndCall({
+      window.TelexamCall.request({
         callerPhone: phoneEl ? phoneEl.value : '',
         callerName: nameEl ? nameEl.value : '',
       })

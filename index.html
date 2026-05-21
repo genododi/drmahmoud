@@ -430,18 +430,18 @@
 <section id="telexam" class="telexam-call-section">
   <div class="telexam-call-inner section-inner">
     <p class="section-label reveal" id="telexam-label">فحص هاتفي</p>
-    <h2 class="section-title reveal" id="telexam-title">اتصل بالعيادة — <em>Telexam</em></h2>
-    <p class="muted reveal" id="telexam-intro">أدخل رقم هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص الهاتفي. سيظهر تنبيه على محطة الطبيب عند فتح نظام السجلات.</p>
+    <h2 class="section-title reveal" id="telexam-title">اطلب الفحص عبر النظام — <em>Telexam</em></h2>
+    <p class="muted reveal" id="telexam-intro">أدخل رقم هاتفك لإرسال طلب فحص هاتفي إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب دون الاتصال بخط العيادة المحمول.</p>
     <form class="telexam-call-form reveal" data-telexam-call-form autocomplete="tel">
       <label for="telexam-caller-phone" id="telexam-phone-label">رقم هاتفك</label>
       <input id="telexam-caller-phone" name="caller-phone" type="tel" inputmode="tel" dir="ltr" placeholder="010xxxxxxxx" required />
       <label for="telexam-caller-name" id="telexam-name-label">الاسم (اختياري)</label>
       <input id="telexam-caller-name" name="caller-name" type="text" placeholder="الاسم كما في العيادة" />
-      <button type="submit" class="btn-primary" id="telexam-submit">إبلاغ العيادة والاتصال الآن</button>
-      <p class="telexam-call-status hidden" id="telexam-status" data-success-text="تم إرسال الإشعار — جارٍ فتح الاتصال…"></p>
+      <button type="submit" class="btn-primary" id="telexam-submit">إرسال طلب الفحص</button>
+      <p class="telexam-call-status hidden" id="telexam-status" data-success-text="تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام."></p>
       <p class="telexam-call-error hidden" id="telexam-error" data-error-text="أدخل رقم هاتف صالحاً."></p>
     </form>
-    <p class="telexam-call-line-hint reveal" id="telexam-line-hint">خط العيادة: <span class="ltr-text">010 0560 2267</span> · <span class="ltr-text">+201005602267</span></p>
+    <p class="telexam-call-line-hint reveal" id="telexam-line-hint">قناة مستقلة: طلب إنترنت إلى نظام السجلات، بدون مكالمة محمول.</p>
   </div>
 </section>
 
@@ -561,10 +561,11 @@ const T={
     footer:'© ٢٠٢٥ د. محمود سامي — استشاري طب وجراحة العيون',
     qrLabel:'امسح للوصول للموقع',
     ctaTelexam:'فحص هاتفي (Telexam)',
-    telexamLabel:'فحص هاتفي',telexamTitle:'اتصل بالعيادة — <em>Telexam</em>',
-    telexamIntro:'أدخل رقم هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص الهاتفي. سيظهر تنبيه على محطة الطبيب عند فتح نظام السجلات.',
+    telexamLabel:'فحص هاتفي',telexamTitle:'اطلب الفحص عبر النظام — <em>Telexam</em>',
+    telexamIntro:'أدخل رقم هاتفك لإرسال طلب فحص هاتفي إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب دون الاتصال بخط العيادة المحمول.',
     telexamPhoneLabel:'رقم هاتفك',telexamNameLabel:'الاسم (اختياري)',
-    telexamSubmit:'إبلاغ العيادة والاتصال الآن',telexamLineHint:'خط العيادة:'
+    telexamSubmit:'إرسال طلب الفحص',telexamSuccess:'تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام.',
+    telexamLineHint:'قناة مستقلة: طلب إنترنت إلى نظام السجلات، بدون مكالمة محمول.'
   },
   en:{
     lang:'en',dir:'ltr',
@@ -602,10 +603,11 @@ const T={
     footer:'© 2025 Dr. Mahmoud Sami — Consultant Ophthalmologist',
     qrLabel:'Scan to visit website',
     ctaTelexam:'Telexam (phone exam)',
-    telexamLabel:'Telexam',telexamTitle:'Call the clinic — <em>Telexam</em>',
-    telexamIntro:'Enter your phone number to notify the clinic before dialling the telexam line. The doctor\'s EMR workstation will ring when the app is open.',
+    telexamLabel:'Telexam',telexamTitle:'Request through the EMR — <em>Telexam</em>',
+    telexamIntro:'Enter your phone number to send a telexam request to the clinic EMR. The doctor\'s workstation rings without using the clinic cellular line.',
     telexamPhoneLabel:'Your phone number',telexamNameLabel:'Name (optional)',
-    telexamSubmit:'Notify clinic & call now',telexamLineHint:'Clinic line:'
+    telexamSubmit:'Send telexam request',telexamSuccess:'Request sent — wait for the doctor to answer in the EMR.',
+    telexamLineHint:'Independent channel: internet request to the EMR, no cellular call.'
   }
 };
 
@@ -639,7 +641,8 @@ function setLang(l){
   if(document.getElementById('telexam-phone-label'))document.getElementById('telexam-phone-label').textContent=c.telexamPhoneLabel;
   if(document.getElementById('telexam-name-label'))document.getElementById('telexam-name-label').textContent=c.telexamNameLabel;
   if(document.getElementById('telexam-submit'))document.getElementById('telexam-submit').textContent=c.telexamSubmit;
-  if(document.getElementById('telexam-line-hint'))document.getElementById('telexam-line-hint').innerHTML=c.telexamLineHint+' <span class="ltr-text">010 0560 2267</span> · <span class="ltr-text">+201005602267</span>';
+  if(document.getElementById('telexam-status'))document.getElementById('telexam-status').dataset.successText=c.telexamSuccess;
+  if(document.getElementById('telexam-line-hint'))document.getElementById('telexam-line-hint').textContent=c.telexamLineHint;
   document.getElementById('scroll-label').textContent=c.scrollLabel;
   // about
   document.getElementById('about-label').textContent=c.aboutLabel;

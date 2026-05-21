@@ -27,10 +27,11 @@
         "Don't have your ID or your name doesn't work? Contact the clinic at <a href=\"tel:+201005602267\">01005602267</a>.",
       telexamPortalTitle: 'Telexam (phone examination)',
       telexamPortalIntro:
-        'Enter your phone to notify the clinic before calling the telexam line (+201005602267).',
+        'Enter your phone to send a telexam request to the clinic EMR. No clinic cellular call is opened.',
       telexamPortalPhone: 'Your phone number',
       telexamPortalName: 'Name (optional)',
-      telexamPortalSubmit: 'Notify clinic & call',
+      telexamPortalSubmit: 'Send telexam request',
+      telexamPortalSuccess: 'Request sent — wait for the doctor to answer in the EMR.',
       loginErrorAmbiguous:
         'Multiple patients share that exact name. Please sign in with your Patient ID (the highlighted ID on your prescription) instead.',
       loginErrorNotFound:
@@ -133,10 +134,11 @@
       loginHelpHtml:
         'ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على <a href="tel:+201005602267">01005602267</a>.',
       telexamPortalTitle: 'فحص هاتفي (Telexam)',
-      telexamPortalIntro: 'أدخل هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص (+201005602267).',
+      telexamPortalIntro: 'أدخل هاتفك لإرسال طلب فحص إلى نظام العيادة دون فتح اتصال بخط المحمول.',
       telexamPortalPhone: 'رقم هاتفك',
       telexamPortalName: 'الاسم (اختياري)',
-      telexamPortalSubmit: 'إبلاغ العيادة والاتصال',
+      telexamPortalSubmit: 'إرسال طلب الفحص',
+      telexamPortalSuccess: 'تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام.',
       loginErrorAmbiguous:
         'يوجد أكثر من مريض بهذا الاسم. يرجى تسجيل الدخول برقم المريض (الرقم البارز على وصفتك).',
       loginErrorNotFound:
@@ -270,6 +272,9 @@
     });
     document.querySelectorAll('[data-i18n-title]').forEach((el) => {
       el.title = t(el.getAttribute('data-i18n-title'));
+    });
+    document.querySelectorAll('[data-i18n-success-text]').forEach((el) => {
+      el.dataset.successText = t(el.getAttribute('data-i18n-success-text'));
     });
     const langBtn = document.getElementById('lang-toggle-btn');
     if (langBtn) {

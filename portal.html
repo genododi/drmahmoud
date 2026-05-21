@@ -64,14 +64,14 @@
       </p>
       <div class="card telexam-portal-card" style="margin-top:1.25rem;">
         <h3 data-i18n="telexamPortalTitle">فحص هاتفي (Telexam)</h3>
-        <p class="muted small" data-i18n="telexamPortalIntro">أدخل هاتفك لإبلاغ العيادة قبل الاتصال على خط الفحص الهاتفي.</p>
+        <p class="muted small" data-i18n="telexamPortalIntro">أدخل هاتفك لإرسال طلب فحص إلى نظام العيادة دون الاتصال بخط المحمول.</p>
         <form data-telexam-call-form class="telexam-call-form" autocomplete="tel">
           <label for="telexam-portal-phone" data-i18n="telexamPortalPhone">رقم هاتفك</label>
           <input id="telexam-portal-phone" name="caller-phone" type="tel" class="form-input" dir="ltr" required />
           <label for="telexam-portal-name" data-i18n="telexamPortalName">الاسم (اختياري)</label>
           <input id="telexam-portal-name" name="caller-name" type="text" class="form-input" />
-          <button type="submit" class="btn btn-primary" data-i18n="telexamPortalSubmit">إبلاغ العيادة والاتصال</button>
-          <p class="telexam-call-status hidden" data-success-text="تم الإرسال — جارٍ فتح الاتصال…"></p>
+          <button type="submit" class="btn btn-primary" data-i18n="telexamPortalSubmit">إرسال طلب الفحص</button>
+          <p class="telexam-call-status hidden" data-success-text="تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام." data-i18n-success-text="telexamPortalSuccess"></p>
           <p class="telexam-call-error hidden" data-error-text="أدخل رقم هاتف صالحاً."></p>
         </form>
       </div>
