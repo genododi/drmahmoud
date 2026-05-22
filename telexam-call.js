@@ -14,12 +14,14 @@
   const STORAGE_KEY = 'ophtho_telexam_pending_signal_v1';
   const CHANNEL = 'ophtho-telexam-incoming';
   const PIPELINE_ID = 'telexam-emr-tunnel';
+  const DEFAULT_RENDER_SIGNAL_URL = 'https://telexam-services.onrender.com/telexam/signals';
 
   function getPostUrl() {
-    if (window.TELEXAM_SIGNAL_POST_URL) return String(window.TELEXAM_SIGNAL_POST_URL).trim();
+    var url = '';
+    if (window.TELEXAM_SIGNAL_POST_URL) url = String(window.TELEXAM_SIGNAL_POST_URL).trim();
     var meta = document.querySelector('meta[name="telexam-signal-post"]');
-    if (meta && meta.content) return meta.content.trim();
-    return '';
+    if (!url && meta && meta.content) url = meta.content.trim();
+    return url === DEFAULT_RENDER_SIGNAL_URL ? '' : url;
   }
 
   function buildSignal(callerName) {
