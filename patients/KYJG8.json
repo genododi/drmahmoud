@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-05-23T17:30:41.695Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "KYJG8",
+    "name": "Mayar abdelrahman",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Brimonidine",
+      "genericName": "Brimonidine 0.2%",
+      "dosage": "1 drop",
+      "frequency": "BID (2 times daily)",
+      "duration": "3 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1779556804261",
+      "patientId": "KYJG8",
+      "date_prescribed": "2026-05-23",
+      "createdAt": "2026-05-23T17:20:07.046Z",
+      "updatedAt": "2026-05-23T17:20:07.046Z",
+      "patientName": "Mayar abdelrahman"
+    },
+    {
+      "type": "Eye Drops",
+      "name": "Nevxal",
+      "genericName": "Nepafenac 0.1%",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "3 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1779556776325",
+      "patientId": "KYJG8",
+      "date_prescribed": "2026-05-23",
+      "createdAt": "2026-05-23T17:20:06.946Z",
+      "updatedAt": "2026-05-23T17:25:03.927Z",
+      "patientName": "Mayar abdelrahman"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "fup monthly",
+      "patientId": "KYJG8",
+      "date": "2026-05-23",
+      "id": "8c4717cb-9751-4727-b84c-164d4c58da76",
+      "createdAt": "2026-05-23T17:20:07.119Z",
+      "updatedAt": "2026-05-23T17:30:34.908Z",
+      "patientName": "Mayar abdelrahman",
+      "medicalTreatment": "Brimonidine & nevxal eye drops",
+      "surgicalTreatment": "nill"
+    }
+  ],
+  "investigations": [
+    {
+      "patientId": "KYJG8",
+      "type": "Visual Field",
+      "subtype": "vf_24_2",
+      "details": "f/up papilledema",
+      "status": "Scheduled",
+      "recommendations": "Fundus after 3 weeks",
+      "results": "improved papilledema grading one grade in each eye",
+      "id": "d819686d-4c25-459a-816d-c4caa561c383",
+      "createdAt": "2026-05-23T17:24:02.033Z",
+      "updatedAt": "2026-05-23T17:24:02.033Z",
+      "patientName": "Mayar abdelrahman"
+    }
+  ],
+  "examinations": [
+    {
+      "patientId": "KYJG8",
+      "date": "2026-05-23",
+      "unaided_va": {
+        "right": "0.7",
+        "left": "0.8"
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "+0.5",
+          "cyl": "-0.5",
+          "axis": "65",
+          "va": ""
+        },
+        "left": {
+          "sph": "+0.75",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "12",
+        "left": "10"
+      },
+      "lids": {
+        "right": "Normal lids and lashes",
+        "left": "Normal lids and lashes"
+      },
+      "adnexa": {
+        "right": "Normal adnexa",
+        "left": "Normal adnexa"
+      },
+      "anterior_segment": {
+        "right": "Quiet anterior segment",
+        "left": "Quiet anterior segment"
+      },
+      "pupils": {
+        "right": "PERRLA",
+        "left": "PERRLA"
+      },
+      "ocular_motility": {
+        "right": "Full extraocular movements",
+        "left": "Full extraocular movements"
+      },
+      "posterior_segment": {
+        "right": "Clear media",
+        "left": "Clear media"
+      },
+      "neuro_ophthalmic": {
+        "right": "PapilledemaG2",
+        "left": "Papilledema G3"
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "id": "d4656fae-7cf6-430a-89a4-5348e32cbfea",
+      "createdAt": "2026-05-23T17:22:09.515Z",
+      "updatedAt": "2026-05-23T17:27:50.265Z",
+      "patientName": "Mayar abdelrahman"
+    }
+  ],
+  "reports": [
+    {
+      "patientId": "KYJG8",
+      "date": "2026-05-23",
+      "reportType": "general",
+      "title": "General Ophthalmology Report",
+      "sections": {
+        "Patient Demographics": "Name: Mayar abdelrahman\nPatient ID: KYJG8",
+        "Referring / Attending Physician": "Dr. Mahmoud Sami Abouzeid",
+        "Examination Summary": "Examination date: 2026-05-23\nUnaided VA — OD: 0.7, OS: 0.8\nIOP — OD: 12, OS: 10 mmHg\nAutorefraction — OD: +0.5 / -0.5 × 65°, OS: +0.75 / —\nLids:\nNormal lids and lashes\nAdnexa:\nNormal adnexa\nAnterior segment:\nQuiet anterior segment\nPupils:\nPERRLA\nOcular motility:\nFull extraocular movements\nPosterior segment:\nClear media\nNeuro-ophthalmic:\nOD: PapilledemaG2\nOS: Papilledema G3",
+        "Diagnosis": "papilledema ou",
+        "Plan / Recommendations": "f/up monthly",
+        "Reason for Visit": "Neurology referral"
+      },
+      "sectionInclusion": {
+        "Patient Demographics": true,
+        "Referring / Attending Physician": true,
+        "Reason for Visit": true,
+        "Examination Summary": true,
+        "Diagnosis": true,
+        "Plan / Recommendations": true,
+        "__freeform__": true,
+        "__doctorNotes__": true,
+        "__signature__": true,
+        "__clinicalAppendix__": true
+      },
+      "summary": "Patient Demographics: Name: Mayar abdelrahman\nPatient ID: KYJG8… | Referring / Attending Physician: Dr. Mahmoud Sami Abouzeid… | Examination Summary: Examination date: 2026-05-23\nUnaided VA — OD: 0.7, OS: 0.8\nI… | Diagnosis: papilledema ou… | Plan / Recommendations: f/up monthly… | Reason for Visit: Neurology referral…",
+      "doctorNotes": "stick on eye drops treatment & visual field to be repeated monthly",
+      "signature": "Dr. Mahmoud Sami Abouzeid\nMD, FRCS (Glasgow), PhD\nConsultant Ophthalmologist",
+      "freeformContent": "",
+      "language": "en",
+      "id": "efc9fe6e-3721-4c7c-8ca5-b391fb164866",
+      "createdAt": "2026-05-23T17:29:29.482Z",
+      "updatedAt": "2026-05-23T17:29:29.482Z",
+      "patientName": "Mayar abdelrahman"
+    }
+  ],
+  "surgeries": [],
+  "labs": []
+}
