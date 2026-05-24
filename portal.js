@@ -57,6 +57,34 @@
 
   let currentBundle = null;
 
+  function getPortalAccessLogUrl() {
+    let url = '';
+    if (window.PORTAL_ACCESS_LOG_URL) url = String(window.PORTAL_ACCESS_LOG_URL).trim();
+    const meta = document.querySelector('meta[name="portal-access-log-post"]');
+    if (!url && meta && meta.content) url = meta.content.trim();
+    return url;
+  }
+
+  function postAccessLog(bundle) {
+    const url = getPortalAccessLogUrl();
+    if (!url || !bundle?.patient) return;
+    const event = {
+      patientId: bundle.patient.id || '',
+      patientName: bundle.patient.name || '',
+      accessedAt: new Date().toISOString(),
+      source: 'patient-portal',
+    };
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ event }),
+      credentials: 'omit',
+      keepalive: true,
+    }).catch(function () {
+      /* access logging is best-effort and must never block patient login */
+    });
+  }
+
   function parseHashId() {
     const h = (location.hash || '').replace(/^#/, '');
     if (!h) return null;
@@ -506,6 +534,7 @@
       }
       setSession(result.bundle);
       showBundle(result.bundle);
+      postAccessLog(result.bundle);
       if (parseHashId()) history.replaceState(null, '', location.pathname);
     } catch (err) {
       console.error(err);

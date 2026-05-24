@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>بوابة المريض · د. محمود سامي</title>
   <meta name="description" content="بوابة المريض: سجّل الدخول برقم المريض للاطلاع على سجلاتك وتحميلها." />
+  <meta name="portal-access-log-post" content="https://telexam-services.onrender.com/portal/access-log" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%230e7490'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23fff'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="portal.css" />
   <link rel="stylesheet" href="telexam-call.css" />
@@ -61,6 +62,16 @@
         ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على
         <a href="tel:+201005602267">01005602267</a>.
       </p>
+      <div class="clinic-address-box">
+        <strong data-i18n="clinicAddressLabel">عنوان العيادة</strong>
+        <p data-i18n="clinicAddressText">د. محمود سامي أبوزيد - ١ ش زكي نبوي - برج الكوثر - طالبية الهرم</p>
+        <a href="https://www.google.com/maps/search/?api=1&query=%D8%AF%20%D9%85%D8%AD%D9%85%D9%88%D8%AF%20%D8%B3%D8%A7%D9%85%D9%8A%20%D8%A3%D8%A8%D9%88%D8%B2%D9%8A%D8%AF%20%D9%A1%20%D8%B4%20%D8%B2%D9%83%D9%8A%20%D9%86%D8%A8%D9%88%D9%8A%20%D8%A8%D8%B1%D8%AC%20%D8%A7%D9%84%D9%83%D9%88%D8%AB%D8%B1%20%D8%B7%D8%A7%D9%84%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%87%D8%B1%D9%85"
+           target="_blank"
+           rel="noopener"
+           data-i18n="clinicAddressMaps">
+          فتح الموقع على خرائط Google
+        </a>
+      </div>
       <div class="card telexam-portal-card" style="margin-top:1.25rem;">
         <h3 data-i18n="telexamPortalTitle">طلب Telexam عبر النظام</h3>
         <p class="muted small" data-i18n="telexamPortalIntro">أدخل اسمك لإرسال طلب فحص إلى نظام العيادة دون رقم هاتف أو خط المحمول.</p>
@@ -104,6 +115,7 @@
 
   <footer class="site-footer">
     <p data-i18n="siteFooter">© <span id="year"></span> عيادة د. محمود سامي لطب العيون.</p>
+    <p class="footer-address" data-i18n="clinicAddressText">د. محمود سامي أبوزيد - ١ ش زكي نبوي - برج الكوثر - طالبية الهرم</p>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
 

@@ -25,6 +25,10 @@
       loginLoading: 'Loading…',
       loginHelpHtml:
         "Don't have your ID or your name doesn't work? Contact the clinic at <a href=\"tel:+201005602267\">01005602267</a>.",
+      clinicAddressLabel: 'Clinic address',
+      clinicAddressText:
+        'Dr. Mahmoud Sami Abouzeid - 1 Zaki Nabawi St. - Al-Kawthar Tower - Talbieh, Haram',
+      clinicAddressMaps: 'Open location on Google Maps',
       telexamPortalTitle: 'Telexam EMR request',
       telexamPortalIntro:
         'Enter your patient name as registered at the clinic to send a request through the Telexam EMR tunnel. No phone number or cellular call is used.',
@@ -133,6 +137,9 @@
       loginLoading: 'جاري التحميل…',
       loginHelpHtml:
         'ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على <a href="tel:+201005602267">01005602267</a>.',
+      clinicAddressLabel: 'عنوان العيادة',
+      clinicAddressText: 'د. محمود سامي أبوزيد - ١ ش زكي نبوي - برج الكوثر - طالبية الهرم',
+      clinicAddressMaps: 'فتح الموقع على خرائط Google',
       telexamPortalTitle: 'طلب Telexam عبر النظام',
       telexamPortalIntro: 'أدخل اسم المريض كما هو مسجل في العيادة لإرسال الطلب عبر Telexam EMR tunnel دون رقم هاتف أو مكالمة محمول.',
       telexamPortalName: 'اسم المريض',
