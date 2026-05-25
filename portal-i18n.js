@@ -7,10 +7,11 @@
     en: {
       pageTitle: 'Patient Portal · Dr. Mahmoud Sami',
       metaDescription:
-        'Patient portal: log in with your Patient ID to access and download your eye-care records.',
+        'Patient portal: 24/7 online service to access and download your eye-care records.',
       brandTitle: 'Patient Portal',
       brandSub: 'Dr. Mahmoud Sami Abouzeid · Consultant Ophthalmologist',
       navHome: '← Home',
+      navShareClinic: 'Share clinic link',
       navSignOut: 'Sign out',
       langSwitchToAr: 'العربية',
       langSwitchToEn: 'English',
@@ -25,6 +26,7 @@
       loginLoading: 'Loading…',
       loginHelpHtml:
         "Don't have your ID or your name doesn't work? Contact the clinic at <a href=\"tel:+201005602267\">01005602267</a>.",
+      clinicService247: '24/7 continuous online service',
       clinicAddressLabel: 'Clinic address',
       clinicAddressText:
         'Dr. Mahmoud Sami Abouzeid - 1 Zaki Nabawi St. - Al-Kawthar Tower - Talbieh, Haram',
@@ -120,10 +122,11 @@
     ar: {
       pageTitle: 'بوابة المريض · د. محمود سامي',
       metaDescription:
-        'بوابة المريض: سجّل الدخول برقم المريض للاطلاع على سجلاتك وتحميلها.',
+        'بوابة المريض: خدمة الكترونية متواصلة 24/7 للاطلاع على سجلاتك وتحميلها.',
       brandTitle: 'بوابة المريض',
       brandSub: 'د. محمود سامي أبوزيد · استشاري طب وجراحة العيون',
       navHome: 'الرئيسية ←',
+      navShareClinic: 'مشاركة الموقع',
       navSignOut: 'تسجيل الخروج',
       langSwitchToAr: 'العربية',
       langSwitchToEn: 'English',
@@ -138,6 +141,7 @@
       loginLoading: 'جاري التحميل…',
       loginHelpHtml:
         'ليس لديك الرقم أو الاسم لا يعمل؟ تواصل مع العيادة على <a href="tel:+201005602267">01005602267</a>.',
+      clinicService247: 'خدمة الكترونية متواصلة 24/7',
       clinicAddressLabel: 'عنوان العيادة',
       clinicAddressText: 'د. محمود سامي أبوزيد - ١ ش زكي نبوي - برج الكوثر - طالبية الهرم',
       clinicAddressMaps: 'فتح الموقع على خرائط Google',

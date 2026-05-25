@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>د. محمود سامي — استشاري طب وجراحة العيون</title>
-  <meta name="description" content="د. محمود سامي أبوزيد — استشاري طب وجراحة العيون. العنوان: ١ ش زكي نبوي، برج الكوثر، طالبية الهرم. احجز أو افتح الموقع على خرائط Google." />
+  <meta name="description" content="د. محمود سامي أبوزيد — استشاري طب وجراحة العيون. خدمة الكترونية متواصلة 24/7، بوابة المرضى، Telexam، وخرائط Google." />
+  <meta name="keywords" content="د محمود سامي أبوزيد, عيادة عيون طالبية الهرم, دكتور عيون الهرم, بوابة المرضى, Telexam, خدمة الكترونية 24/7, ophthalmologist Giza" />
   <meta property="og:title" content="د. محمود سامي أبوزيد · عيادة العيون" />
-  <meta property="og:description" content="١ ش زكي نبوي، برج الكوثر، طالبية الهرم. بوابة المرضى، خرائط Google، وصفحة Facebook الرسمية." />
+  <meta property="og:description" content="١ ش زكي نبوي، برج الكوثر، طالبية الهرم. خدمة الكترونية متواصلة 24/7، بوابة المرضى، خرائط Google، وصفحة Facebook الرسمية." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://genododi.github.io/drmahmoud/" />
   <meta name="telexam-signal-post" content="https://telexam-services.onrender.com/telexam/signals" />
@@ -176,6 +177,11 @@
       opacity:0;animation:fadeUp .8s .85s forwards
     }
     [dir="ltr"] .hero-tagline{font-family:var(--font-en);font-style:italic;font-size:clamp(1rem,2.5vw,1.35rem);line-height:1.75}
+    .hero-service247{
+      margin-top:1rem;color:var(--gold-lt);font-family:var(--font-ar);
+      font-size:1rem;font-weight:600;opacity:0;animation:fadeUp .8s .95s forwards
+    }
+    [dir="ltr"] .hero-service247{font-family:var(--font-ui);font-size:.86rem;letter-spacing:.08em;text-transform:uppercase}
     .hero-cta{
       margin-top:2.8rem;display:flex;gap:1.1rem;flex-wrap:wrap;justify-content:center;
       opacity:0;animation:fadeUp .8s 1.05s forwards
@@ -365,10 +371,12 @@
   <p class="hero-creds">MSc &nbsp;·&nbsp; MRCSEd &nbsp;·&nbsp; FICO</p>
   <div class="hero-divider"></div>
   <p class="hero-tagline" id="hero-tagline">متخصص في استعادة البصر والحفاظ عليه بأحدث التقنيات الجراحية ودقة علمية رفيعة وعناية شخصية بكل مريض</p>
+  <p class="hero-service247" id="hero-service247">خدمة الكترونية متواصلة 24/7</p>
   <div class="hero-cta">
     <a href="tel:01005602267" class="btn-primary" id="cta-book">احجز موعدك</a>
     <a href="#services" class="btn-outline" id="cta-services">خدماتنا</a>
     <a href="#telexam" class="btn-outline" id="cta-telexam">Telexam</a>
+    <button type="button" class="btn-outline" id="cta-share">مشاركة الموقع</button>
     <a href="portal.html" class="btn-portal" id="cta-portal" aria-label="بوابة المريض — تحميل سجلاتك">
       <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/>
@@ -558,9 +566,11 @@ const T={
     ctaPortal:'بوابة المريض — تحميل سجلاتك',
     ctaPortalBadge:'جديد',
     ctaPortalAria:'بوابة المريض — تحميل سجلاتك',
+    ctaShare:'مشاركة الموقع',
     heroEyebrow:'استشاري طب وجراحة العيون · القاهرة، مصر',
     heroTitle:'د. محمود<br/><span class="accent">سامي</span>',
     heroTagline:'متخصص في استعادة البصر والحفاظ عليه بأحدث التقنيات الجراحية ودقة علمية رفيعة وعناية شخصية بكل مريض',
+    heroService247:'خدمة الكترونية متواصلة 24/7',
     ctaBook:'احجز موعدك',ctaServices:'خدماتنا',scrollLabel:'تمرير',
     aboutLabel:'نبذة عن الطبيب',
     aboutTitle:'خبرة <em>متميزة</em> في طب وجراحة العيون',
@@ -600,9 +610,11 @@ const T={
     ctaPortal:'Patient Portal — download your records',
     ctaPortalBadge:'NEW',
     ctaPortalAria:'Patient Portal — download your records',
+    ctaShare:'Share clinic link',
     heroEyebrow:'Consultant Ophthalmologist · Cairo, Egypt',
     heroTitle:'Dr. Mahmoud<br/><span class="accent">Sami</span>',
     heroTagline:'Dedicated to restoring and preserving your most precious sense — with precision, compassion, and surgical excellence.',
+    heroService247:'24/7 continuous online service',
     ctaBook:'Book Appointment',ctaServices:'Our Services',scrollLabel:'Scroll',
     aboutLabel:'About the Doctor',
     aboutTitle:'A lifetime of <em>precision</em> in ophthalmology',
@@ -657,9 +669,11 @@ function setLang(l){
   document.getElementById('hero-eyebrow').textContent=c.heroEyebrow;
   document.getElementById('hero-title').innerHTML=c.heroTitle;
   document.getElementById('hero-tagline').innerHTML=c.heroTagline;
+  if(document.getElementById('hero-service247'))document.getElementById('hero-service247').textContent=c.heroService247;
   document.getElementById('cta-book').textContent=c.ctaBook;
   document.getElementById('cta-services').textContent=c.ctaServices;
   if(document.getElementById('cta-telexam'))document.getElementById('cta-telexam').textContent=c.ctaTelexam;
+  if(document.getElementById('cta-share'))document.getElementById('cta-share').textContent=c.ctaShare;
   if(document.getElementById('telexam-label'))document.getElementById('telexam-label').textContent=c.telexamLabel;
   if(document.getElementById('telexam-title'))document.getElementById('telexam-title').innerHTML=c.telexamTitle;
   if(document.getElementById('telexam-intro'))document.getElementById('telexam-intro').textContent=c.telexamIntro;
@@ -697,6 +711,25 @@ function setLang(l){
   document.getElementById('footer-copy').textContent=c.footer;
   if(document.getElementById('qr-label'))document.getElementById('qr-label').textContent=c.qrLabel;
 }
+
+document.getElementById('cta-share')?.addEventListener('click', async () => {
+  const data = {
+    title: document.title,
+    text: document.documentElement.lang === 'ar'
+      ? 'عيادة د. محمود سامي لطب وجراحة العيون'
+      : 'Dr. Mahmoud Sami Eye Care Clinic',
+    url: 'https://genododi.github.io/drmahmoud/'
+  };
+  try {
+    if (navigator.share) await navigator.share(data);
+    else {
+      await navigator.clipboard.writeText(data.url);
+      alert(document.documentElement.lang === 'ar' ? 'تم نسخ رابط الموقع' : 'Clinic link copied');
+    }
+  } catch (error) {
+    if (error?.name !== 'AbortError') alert(data.url);
+  }
+});
 </script>
 <script src="telexam-call.js"></script>
 </body>

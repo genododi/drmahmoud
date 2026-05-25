@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>بوابة المريض · د. محمود سامي</title>
-  <meta name="description" content="بوابة المريض: سجّل الدخول برقم المريض للاطلاع على سجلاتك وتحميلها." />
+  <meta name="description" content="بوابة المريض: خدمة الكترونية متواصلة 24/7 للاطلاع على سجلاتك وتحميلها." />
   <meta name="portal-access-log-post" content="https://telexam-services.onrender.com/portal/access-log" />
   <meta name="telexam-signal-post" content="https://telexam-services.onrender.com/telexam/signals" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%230e7490'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23fff'/%3E%3C/svg%3E" />
@@ -33,6 +33,7 @@
     <nav class="site-nav">
       <button id="lang-toggle-btn" class="btn btn-secondary btn-lang" type="button" title="التبديل إلى الإنجليزية">English</button>
       <a href="index.html" data-i18n="navHome">الرئيسية ←</a>
+      <button id="share-clinic-btn" class="btn btn-secondary" type="button" data-i18n="navShareClinic">مشاركة الموقع</button>
       <button id="logout-btn" class="btn btn-secondary hidden" type="button" data-i18n="navSignOut">تسجيل الخروج</button>
     </nav>
   </header>
@@ -40,6 +41,7 @@
   <main class="portal-main">
     <section id="login-section" class="card">
       <h2 data-i18n="loginHeading">الوصول إلى سجلاتك</h2>
+      <p class="muted small" data-i18n="clinicService247">خدمة الكترونية متواصلة 24/7</p>
       <p class="muted" data-i18n="loginIntroHtml" data-i18n-html>
         سجّل الدخول إما بـ<strong>رقم المريض</strong> الظاهر على وصفتك، أو بـ<strong>اسمك الكامل</strong>
         (الاسم الأول + الأوسط + الأخير، كما هو مسجّل في العيادة تماماً).
@@ -128,6 +130,26 @@
   <script src="portal-pdf.bundle.js"></script>
   <script src="portal-i18n.js"></script>
   <script src="telexam-call.js"></script>
+  <script>
+    document.getElementById('share-clinic-btn')?.addEventListener('click', async () => {
+      const data = {
+        title: document.title,
+        text: document.documentElement.lang === 'ar'
+          ? 'عيادة د. محمود سامي لطب وجراحة العيون'
+          : 'Dr. Mahmoud Sami Eye Care Clinic',
+        url: 'https://genododi.github.io/drmahmoud/'
+      };
+      try {
+        if (navigator.share) await navigator.share(data);
+        else {
+          await navigator.clipboard.writeText(data.url);
+          alert(document.documentElement.lang === 'ar' ? 'تم نسخ رابط الموقع' : 'Clinic link copied');
+        }
+      } catch (error) {
+        if (error?.name !== 'AbortError') alert(data.url);
+      }
+    });
+  </script>
   <script src="portal.js"></script>
 </body>
 </html>
