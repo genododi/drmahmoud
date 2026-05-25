@@ -4,11 +4,11 @@
  * On button click:
  * 1. POSTs an incoming-call signal to the optional HTTP hub (cross-device).
  * 2. Writes to same-origin localStorage / BroadcastChannel (same device, same origin).
- * 3. Does not open the clinic cellular voice line; the EMR rings from the request.
+ * 3. Does not open the clinic cellular voice line; the EMR rings from the tunnel request.
  *
  * Hub URL (optional, cross-device): set window.TELEXAM_SIGNAL_POST_URL before this script,
- * or meta[name="telexam-signal-post"]. When unset, only same-origin localStorage / BroadcastChannel
- * are used — no HTTP POST (GitHub Pages has no `/telexam/signals` endpoint).
+ * or meta[name="telexam-signal-post"]. When unset, requests post to the Render
+ * Telexam hub, with same-origin localStorage / BroadcastChannel kept as fallback.
  */
 (function () {
   const STORAGE_KEY = 'ophtho_telexam_pending_signal_v1';
@@ -21,16 +21,20 @@
     if (window.TELEXAM_SIGNAL_POST_URL) url = String(window.TELEXAM_SIGNAL_POST_URL).trim();
     var meta = document.querySelector('meta[name="telexam-signal-post"]');
     if (!url && meta && meta.content) url = meta.content.trim();
-    return url === DEFAULT_RENDER_SIGNAL_URL ? '' : url;
+    return url || DEFAULT_RENDER_SIGNAL_URL;
   }
 
-  function buildSignal(callerName) {
+  function buildSignal(callerName, message) {
     var requestName = String(callerName || '').trim();
+    var cleanMessage = String(message || '').trim().slice(0, 1000);
     return {
       id: 'sig-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9),
       callerName: requestName,
       requestName: requestName,
       pipelineId: PIPELINE_ID,
+      mode: 'chat_voice',
+      requestType: 'chat_voice_tunnel',
+      message: cleanMessage,
       source: 'patient-website',
       createdAt: new Date().toISOString(),
     };
@@ -64,11 +68,12 @@
     request: function (opts) {
       opts = opts || {};
       var name = String(opts.callerName || opts.name || '').trim();
+      var message = String(opts.message || '').trim();
       if (!name) {
         if (opts.onError) opts.onError(new Error('name_required'));
         return Promise.reject(new Error('name_required'));
       }
-      var signal = buildSignal(name);
+      var signal = buildSignal(name, message);
       publishLocal(signal);
       return postHub(signal).then(function () {
         if (opts.onSuccess) opts.onSuccess(signal);
@@ -84,11 +89,13 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var nameEl = form.querySelector('[name="caller-name"], [name="callerName"], #telexam-caller-name');
+      var messageEl = form.querySelector('[name="message"], [name="chat-message"], #telexam-chat-message, #telexam-portal-message');
       var statusEl = form.querySelector('.telexam-call-status');
       var errEl = form.querySelector('.telexam-call-error');
       if (errEl) errEl.classList.add('hidden');
       window.TelexamCall.request({
         callerName: nameEl ? nameEl.value : '',
+        message: messageEl ? messageEl.value : '',
       })
         .then(function () {
           if (statusEl) {

@@ -198,10 +198,16 @@ main { max-width: 1000px; margin: 0 auto; padding: 32px; }
   font-size: 0.88rem;
 }
 
-.telexam-portal-card .telexam-call-form input {
+.telexam-portal-card .telexam-call-form input,
+.telexam-portal-card .telexam-call-form textarea {
   background: var(--input-bg, #fff);
   color: inherit;
   border: 1px solid var(--border, #e2e8f0);
+}
+
+.telexam-portal-card .telexam-call-form textarea {
+  min-height: 82px;
+  resize: vertical;
 }
 
 .portal-body { background: linear-gradient(180deg, #f0f9fb 0%, #f8fafc 200px); min-height: 100vh; }

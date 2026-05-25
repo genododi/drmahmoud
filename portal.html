@@ -6,6 +6,7 @@
   <title>بوابة المريض · د. محمود سامي</title>
   <meta name="description" content="بوابة المريض: سجّل الدخول برقم المريض للاطلاع على سجلاتك وتحميلها." />
   <meta name="portal-access-log-post" content="https://telexam-services.onrender.com/portal/access-log" />
+  <meta name="telexam-signal-post" content="https://telexam-services.onrender.com/telexam/signals" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%230e7490'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23fff'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="portal.css" />
   <link rel="stylesheet" href="telexam-call.css" />
@@ -65,7 +66,7 @@
       <div class="clinic-address-box">
         <strong data-i18n="clinicAddressLabel">عنوان العيادة</strong>
         <p data-i18n="clinicAddressText">د. محمود سامي أبوزيد - ١ ش زكي نبوي - برج الكوثر - طالبية الهرم</p>
-        <a href="https://www.google.com/maps/search/?api=1&query=%D8%AF%20%D9%85%D8%AD%D9%85%D9%88%D8%AF%20%D8%B3%D8%A7%D9%85%D9%8A%20%D8%A3%D8%A8%D9%88%D8%B2%D9%8A%D8%AF%20%D9%A1%20%D8%B4%20%D8%B2%D9%83%D9%8A%20%D9%86%D8%A8%D9%88%D9%8A%20%D8%A8%D8%B1%D8%AC%20%D8%A7%D9%84%D9%83%D9%88%D8%AB%D8%B1%20%D8%B7%D8%A7%D9%84%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%87%D8%B1%D9%85"
+        <a href="https://maps.app.goo.gl/jPd1kYSkANo8NEtTA"
            target="_blank"
            rel="noopener"
            data-i18n="clinicAddressMaps">
@@ -74,12 +75,14 @@
       </div>
       <div class="card telexam-portal-card" style="margin-top:1.25rem;">
         <h3 data-i18n="telexamPortalTitle">طلب Telexam عبر النظام</h3>
-        <p class="muted small" data-i18n="telexamPortalIntro">أدخل اسمك لإرسال طلب فحص إلى نظام العيادة دون رقم هاتف أو خط المحمول.</p>
+        <p class="muted small" data-i18n="telexamPortalIntro">أدخل اسمك لإرسال طلب فحص إلى نظام العيادة للدردشة أو المكالمة الصوتية داخل النظام دون رقم هاتف أو خط المحمول.</p>
         <form data-telexam-call-form class="telexam-call-form" autocomplete="name">
           <label for="telexam-portal-name" data-i18n="telexamPortalName">اسم المريض</label>
           <input id="telexam-portal-name" name="caller-name" type="text" class="form-input" autocomplete="name" required />
+          <label for="telexam-portal-message" data-i18n="telexamPortalMessage">رسالة قصيرة للطبيب</label>
+          <textarea id="telexam-portal-message" name="message" class="form-input" rows="3"></textarea>
           <button type="submit" class="btn btn-primary" data-i18n="telexamPortalSubmit">إرسال طلب الفحص</button>
-          <p class="telexam-call-status hidden" data-success-text="تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام." data-i18n-success-text="telexamPortalSuccess"></p>
+          <p class="telexam-call-status hidden" data-success-text="تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام." data-i18n-success-text="telexamPortalSuccess"></p>
           <p class="telexam-call-error hidden" data-error-text="أدخل اسم المريض كما هو مسجل في العيادة." data-i18n-error-text="telexamPortalError"></p>
         </form>
       </div>

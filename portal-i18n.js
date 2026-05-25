@@ -31,10 +31,11 @@
       clinicAddressMaps: 'Open location on Google Maps',
       telexamPortalTitle: 'Telexam EMR request',
       telexamPortalIntro:
-        'Enter your patient name as registered at the clinic to send a request through the Telexam EMR tunnel. No phone number or cellular call is used.',
+        'Enter your patient name as registered at the clinic to send a request through the Telexam EMR tunnel for in-system chat or voice. No phone number or cellular call is used.',
       telexamPortalName: 'Patient name',
+      telexamPortalMessage: 'Short message for the doctor',
       telexamPortalSubmit: 'Send telexam request',
-      telexamPortalSuccess: 'Request sent — wait for the doctor to answer in the EMR.',
+      telexamPortalSuccess: 'Request sent — wait for the doctor to answer by in-system voice or chat.',
       telexamPortalError: 'Enter the patient name as registered at the clinic.',
       loginErrorAmbiguous:
         'Multiple patients share that exact name. Please sign in with your Patient ID (the highlighted ID on your prescription) instead.',
@@ -141,10 +142,11 @@
       clinicAddressText: 'د. محمود سامي أبوزيد - ١ ش زكي نبوي - برج الكوثر - طالبية الهرم',
       clinicAddressMaps: 'فتح الموقع على خرائط Google',
       telexamPortalTitle: 'طلب Telexam عبر النظام',
-      telexamPortalIntro: 'أدخل اسم المريض كما هو مسجل في العيادة لإرسال الطلب عبر Telexam EMR tunnel دون رقم هاتف أو مكالمة محمول.',
+      telexamPortalIntro: 'أدخل اسم المريض كما هو مسجل في العيادة لإرسال الطلب عبر Telexam EMR tunnel للدردشة أو المكالمة الصوتية داخل النظام دون رقم هاتف أو مكالمة محمول.',
       telexamPortalName: 'اسم المريض',
+      telexamPortalMessage: 'رسالة قصيرة للطبيب',
       telexamPortalSubmit: 'إرسال طلب الفحص',
-      telexamPortalSuccess: 'تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام.',
+      telexamPortalSuccess: 'تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام.',
       telexamPortalError: 'أدخل اسم المريض كما هو مسجل في العيادة.',
       loginErrorAmbiguous:
         'يوجد أكثر من مريض بهذا الاسم. يرجى تسجيل الدخول برقم المريض (الرقم البارز على وصفتك).',

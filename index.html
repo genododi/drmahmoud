@@ -9,6 +9,7 @@
   <meta property="og:description" content="١ ش زكي نبوي، برج الكوثر، طالبية الهرم. بوابة المرضى، خرائط Google، وصفحة Facebook الرسمية." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://genododi.github.io/drmahmoud/" />
+  <meta name="telexam-signal-post" content="https://telexam-services.onrender.com/telexam/signals" />
   <link rel="canonical" href="https://genododi.github.io/drmahmoud/" />
   <script type="application/ld+json">
   {
@@ -367,7 +368,7 @@
   <div class="hero-cta">
     <a href="tel:01005602267" class="btn-primary" id="cta-book">احجز موعدك</a>
     <a href="#services" class="btn-outline" id="cta-services">خدماتنا</a>
-    <a href="#telexam" class="btn-outline" id="cta-telexam">فحص هاتفي (Telexam)</a>
+    <a href="#telexam" class="btn-outline" id="cta-telexam">Telexam</a>
     <a href="portal.html" class="btn-portal" id="cta-portal" aria-label="بوابة المريض — تحميل سجلاتك">
       <svg class="portal-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/>
@@ -453,17 +454,19 @@
 <!-- TELEXAM -->
 <section id="telexam" class="telexam-call-section">
   <div class="telexam-call-inner section-inner">
-    <p class="section-label reveal" id="telexam-label">فحص هاتفي</p>
+    <p class="section-label reveal" id="telexam-label">Telexam</p>
     <h2 class="section-title reveal" id="telexam-title">اطلب الفحص عبر النظام — <em>Telexam</em></h2>
-    <p class="muted reveal" id="telexam-intro">أدخل اسمك كما هو مسجل في العيادة لإرسال طلب فحص هاتفي إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب دون استخدام رقم هاتف أو خط المحمول.</p>
+    <p class="muted reveal" id="telexam-intro">أدخل اسمك كما هو مسجل في العيادة لإرسال طلب فحص إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب للدردشة أو المكالمة الصوتية داخل النظام دون رقم هاتف أو خط المحمول.</p>
     <form class="telexam-call-form reveal" data-telexam-call-form autocomplete="name">
       <label for="telexam-caller-name" id="telexam-name-label">اسم المريض</label>
       <input id="telexam-caller-name" name="caller-name" type="text" autocomplete="name" placeholder="الاسم كما في العيادة" required />
+      <label for="telexam-chat-message" id="telexam-message-label">رسالة قصيرة للطبيب</label>
+      <textarea id="telexam-chat-message" name="message" rows="3" placeholder="اكتب سبب الطلب أو رسالتك"></textarea>
       <button type="submit" class="btn-primary" id="telexam-submit">إرسال طلب الفحص</button>
-      <p class="telexam-call-status hidden" id="telexam-status" data-success-text="تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام."></p>
+      <p class="telexam-call-status hidden" id="telexam-status" data-success-text="تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام."></p>
       <p class="telexam-call-error hidden" id="telexam-error" data-error-text="أدخل اسم المريض كما هو مسجل في العيادة."></p>
     </form>
-    <p class="telexam-call-line-hint reveal" id="telexam-line-hint">قناة مخصصة: Telexam EMR tunnel من موقع العيادة إلى نظام السجلات، بدون رقم هاتف أو مكالمة محمول.</p>
+    <p class="telexam-call-line-hint reveal" id="telexam-line-hint">قناة مخصصة: Telexam EMR tunnel من موقع العيادة إلى نظام السجلات، للدردشة والمكالمات الصوتية داخل النظام فقط، بدون رقم هاتف أو مكالمة محمول.</p>
   </div>
 </section>
 
@@ -502,7 +505,7 @@
         </div>
         <div style="margin-top:1.4rem;display:flex;gap:1rem;flex-wrap:wrap;">
           <a href="tel:01005602267" class="btn-primary" id="btn-call" style="flex:1;text-align:center;">اتصل الآن</a>
-          <a href="https://www.google.com/maps/search/?api=1&query=%D8%AF%20%D9%85%D8%AD%D9%85%D9%88%D8%AF%20%D8%B3%D8%A7%D9%85%D9%8A%20%D8%A3%D8%A8%D9%88%D8%B2%D9%8A%D8%AF%20%D9%A1%20%D8%B4%20%D8%B2%D9%83%D9%8A%20%D9%86%D8%A8%D9%88%D9%8A%20%D8%A8%D8%B1%D8%AC%20%D8%A7%D9%84%D9%83%D9%88%D8%AB%D8%B1%20%D8%B7%D8%A7%D9%84%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%87%D8%B1%D9%85" target="_blank" rel="noopener" class="btn-outline" id="btn-dir" style="flex:1;text-align:center;">خريطة الوصول</a>
+          <a href="https://maps.app.goo.gl/jPd1kYSkANo8NEtTA" target="_blank" rel="noopener" class="btn-outline" id="btn-dir" style="flex:1;text-align:center;">خريطة الوصول</a>
         </div>
 
       <!-- QR CODE -->
@@ -583,11 +586,11 @@ const T={
     footer:'© ٢٠٢٥ د. محمود سامي — استشاري طب وجراحة العيون',
     qrLabel:'امسح للوصول للموقع',
     ctaTelexam:'طلب Telexam عبر النظام',
-    telexamLabel:'فحص هاتفي',telexamTitle:'اطلب الفحص عبر النظام — <em>Telexam</em>',
-    telexamIntro:'أدخل اسمك كما هو مسجل في العيادة لإرسال طلب فحص هاتفي إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب دون استخدام رقم هاتف أو خط المحمول.',
-    telexamNameLabel:'اسم المريض',
-    telexamSubmit:'إرسال طلب الفحص',telexamSuccess:'تم إرسال الطلب — انتظر اتصال الطبيب عبر النظام.',
-    telexamLineHint:'قناة مخصصة: Telexam EMR tunnel من موقع العيادة إلى نظام السجلات، بدون رقم هاتف أو مكالمة محمول.'
+    telexamLabel:'Telexam',telexamTitle:'اطلب الفحص عبر النظام — <em>Telexam</em>',
+    telexamIntro:'أدخل اسمك كما هو مسجل في العيادة لإرسال طلب فحص إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب للدردشة أو المكالمة الصوتية داخل النظام دون رقم هاتف أو خط المحمول.',
+    telexamNameLabel:'اسم المريض',telexamMessageLabel:'رسالة قصيرة للطبيب',
+    telexamSubmit:'إرسال طلب الفحص',telexamSuccess:'تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام.',
+    telexamLineHint:'قناة مخصصة: Telexam EMR tunnel من موقع العيادة إلى نظام السجلات، للدردشة والمكالمات الصوتية داخل النظام فقط، بدون رقم هاتف أو مكالمة محمول.'
   },
   en:{
     lang:'en',dir:'ltr',
@@ -626,10 +629,10 @@ const T={
     qrLabel:'Scan to visit website',
     ctaTelexam:'Telexam EMR request',
     telexamLabel:'Telexam',telexamTitle:'Request through the EMR — <em>Telexam</em>',
-    telexamIntro:'Enter your patient name as registered at the clinic to send a telexam request to the EMR. The doctor\'s workstation rings without using any phone number or cellular line.',
-    telexamNameLabel:'Patient name',
-    telexamSubmit:'Send telexam request',telexamSuccess:'Request sent — wait for the doctor to answer in the EMR.',
-    telexamLineHint:'Dedicated channel: Telexam EMR tunnel from the clinic website to the EMR, no phone number or cellular call.'
+    telexamIntro:'Enter your patient name as registered at the clinic to send a telexam request to the EMR. The doctor workstation rings for in-system chat or voice without using any phone number or cellular line.',
+    telexamNameLabel:'Patient name',telexamMessageLabel:'Short message for the doctor',
+    telexamSubmit:'Send telexam request',telexamSuccess:'Request sent — wait for the doctor to answer by in-system voice or chat.',
+    telexamLineHint:'Dedicated channel: Telexam EMR tunnel from the clinic website to the EMR for in-system chat and voice only, no phone number or cellular call.'
   }
 };
 
@@ -661,6 +664,7 @@ function setLang(l){
   if(document.getElementById('telexam-title'))document.getElementById('telexam-title').innerHTML=c.telexamTitle;
   if(document.getElementById('telexam-intro'))document.getElementById('telexam-intro').textContent=c.telexamIntro;
   if(document.getElementById('telexam-name-label'))document.getElementById('telexam-name-label').textContent=c.telexamNameLabel;
+  if(document.getElementById('telexam-message-label'))document.getElementById('telexam-message-label').textContent=c.telexamMessageLabel;
   if(document.getElementById('telexam-submit'))document.getElementById('telexam-submit').textContent=c.telexamSubmit;
   if(document.getElementById('telexam-status'))document.getElementById('telexam-status').dataset.successText=c.telexamSuccess;
   if(document.getElementById('telexam-line-hint'))document.getElementById('telexam-line-hint').textContent=c.telexamLineHint;
