@@ -470,7 +470,7 @@
       <input id="telexam-caller-name" name="caller-name" type="text" autocomplete="name" placeholder="الاسم كما في العيادة" required />
       <label for="telexam-chat-message" id="telexam-message-label">رسالة قصيرة للطبيب</label>
       <textarea id="telexam-chat-message" name="message" rows="3" placeholder="اكتب سبب الطلب أو رسالتك"></textarea>
-      <button type="submit" class="btn-primary" id="telexam-submit">إرسال طلب الفحص</button>
+      <button type="submit" class="btn-primary" id="telexam-submit">اتصل بالعيادة عبر النظام الآن</button>
       <p class="telexam-call-status hidden" id="telexam-status" data-success-text="تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام."></p>
       <p class="telexam-call-error hidden" id="telexam-error" data-error-text="أدخل اسم المريض كما هو مسجل في العيادة."></p>
     </form>
@@ -599,7 +599,7 @@ const T={
     telexamLabel:'Telexam',telexamTitle:'اطلب الفحص عبر النظام — <em>Telexam</em>',
     telexamIntro:'أدخل اسمك كما هو مسجل في العيادة لإرسال طلب فحص إلى نظام العيادة. سيظهر تنبيه على محطة الطبيب للدردشة أو المكالمة الصوتية داخل النظام دون رقم هاتف أو خط المحمول.',
     telexamNameLabel:'اسم المريض',telexamMessageLabel:'رسالة قصيرة للطبيب',
-    telexamSubmit:'إرسال طلب الفحص',telexamSuccess:'تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام.',
+    telexamSubmit:'اتصل بالعيادة عبر النظام الآن',telexamSuccess:'تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام.',
     telexamLineHint:'قناة مخصصة: Telexam EMR tunnel من موقع العيادة إلى نظام السجلات، للدردشة والمكالمات الصوتية داخل النظام فقط، بدون رقم هاتف أو مكالمة محمول.'
   },
   en:{
@@ -643,7 +643,7 @@ const T={
     telexamLabel:'Telexam',telexamTitle:'Request through the EMR — <em>Telexam</em>',
     telexamIntro:'Enter your patient name as registered at the clinic to send a telexam request to the EMR. The doctor workstation rings for in-system chat or voice without using any phone number or cellular line.',
     telexamNameLabel:'Patient name',telexamMessageLabel:'Short message for the doctor',
-    telexamSubmit:'Send telexam request',telexamSuccess:'Request sent — wait for the doctor to answer by in-system voice or chat.',
+    telexamSubmit:'Ring the EMR now',telexamSuccess:'Request sent — wait for the doctor to answer by in-system voice or chat.',
     telexamLineHint:'Dedicated channel: Telexam EMR tunnel from the clinic website to the EMR for in-system chat and voice only, no phone number or cellular call.'
   }
 };

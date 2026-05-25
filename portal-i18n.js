@@ -37,6 +37,7 @@
       telexamPortalName: 'Patient name',
       telexamPortalMessage: 'Short message for the doctor',
       telexamPortalSubmit: 'Send telexam request',
+      telexamPortalCall: 'Ring the EMR now',
       telexamPortalSuccess: 'Request sent — wait for the doctor to answer by in-system voice or chat.',
       telexamPortalError: 'Enter the patient name as registered at the clinic.',
       loginErrorAmbiguous:
@@ -150,6 +151,7 @@
       telexamPortalName: 'اسم المريض',
       telexamPortalMessage: 'رسالة قصيرة للطبيب',
       telexamPortalSubmit: 'إرسال طلب الفحص',
+      telexamPortalCall: 'اتصل بالعيادة عبر النظام الآن',
       telexamPortalSuccess: 'تم إرسال الطلب — انتظر رد الطبيب بالصوت أو الدردشة داخل النظام.',
       telexamPortalError: 'أدخل اسم المريض كما هو مسجل في العيادة.',
       loginErrorAmbiguous:
