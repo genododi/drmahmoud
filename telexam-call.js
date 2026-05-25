@@ -7,21 +7,20 @@
  * 3. Does not open the clinic cellular voice line; the EMR rings from the tunnel request.
  *
  * Hub URL (optional, cross-device): set window.TELEXAM_SIGNAL_POST_URL before this script,
- * or meta[name="telexam-signal-post"]. When unset, requests post to the Render
- * Telexam hub, with same-origin localStorage / BroadcastChannel kept as fallback.
+ * or meta[name="telexam-signal-post"]. When unset, requests stay local so the
+ * public site does not produce noisy CORS errors when a remote hub is offline.
  */
 (function () {
   const STORAGE_KEY = 'ophtho_telexam_pending_signal_v1';
   const CHANNEL = 'ophtho-telexam-incoming';
   const PIPELINE_ID = 'telexam-emr-tunnel';
-  const DEFAULT_RENDER_SIGNAL_URL = 'https://telexam-services.onrender.com/telexam/signals';
 
   function getPostUrl() {
     var url = '';
     if (window.TELEXAM_SIGNAL_POST_URL) url = String(window.TELEXAM_SIGNAL_POST_URL).trim();
     var meta = document.querySelector('meta[name="telexam-signal-post"]');
     if (!url && meta && meta.content) url = meta.content.trim();
-    return url || DEFAULT_RENDER_SIGNAL_URL;
+    return url;
   }
 
   function buildSignal(callerName, message) {
@@ -54,11 +53,20 @@
   function postHub(signal) {
     var url = getPostUrl();
     if (!url) return Promise.resolve();
+    var payload = JSON.stringify({ signal: signal });
+    try {
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, new Blob([payload], { type: 'text/plain' }));
+        return Promise.resolve();
+      }
+    } catch (e) { /* fallback below */ }
     return fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ signal: signal }),
+      headers: { 'Content-Type': 'text/plain' },
+      body: payload,
       credentials: 'omit',
+      mode: 'no-cors',
+      keepalive: true,
     }).catch(function () {
       /* hub optional — local signaling still attempted */
     });
