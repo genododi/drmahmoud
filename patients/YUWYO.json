@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-01T18:38:19.408Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "YUWYO",
+    "name": "Yasin Gamal",
+    "dob": null,
+    "age": 12,
+    "chiefComplaint": "Checkup",
+    "history": "nill",
+    "contact": null
+  },
+  "glasses": [
+    {
+      "id": "eed7e083-f9e4-4bec-9ae3-3f65c51d889f",
+      "createdAt": "2026-06-01T18:17:13.225Z",
+      "patientId": "YUWYO",
+      "date": "2026-06-01",
+      "glassesType": "new",
+      "sph_right": "-3.25",
+      "cyl_right": "-0.25",
+      "axis_right": "170",
+      "va_right": "6/6",
+      "sph_left": "-3.25",
+      "cyl_left": "-0.25",
+      "axis_left": "170",
+      "va_left": "6/6",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "updatedAt": "2026-06-01T18:17:13.225Z",
+      "patientName": "Yasin Gamal"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
