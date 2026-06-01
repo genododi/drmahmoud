@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-01T16:54:43.854Z",
+  "generatedAt": "2026-06-01T18:38:21.949Z",
   "byName": {
     "afaf ibrahim": "FGCNY",
     "basem mafdy": "9TEFB",
@@ -14,7 +14,8 @@
     "mahmoud sami": "3JEUG",
     "mayar abdelrahman": "KYJG8",
     "laila ali hemeda": "NOPSV",
-    "heba ahmed": "2QP92"
+    "heba ahmed": "2QP92",
+    "yasin gamal": "YUWYO"
   },
   "byId": {
     "FGCNY": "Afaf ibrahim",
@@ -29,6 +30,7 @@
     "3JEUG": "Mahmoud Sami",
     "KYJG8": "Mayar abdelrahman",
     "NOPSV": "Laila Ali hemeda",
-    "2QP92": "Heba Ahmed"
+    "2QP92": "Heba Ahmed",
+    "YUWYO": "Yasin Gamal"
   }
 }
