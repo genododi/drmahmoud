@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-01T16:54:41.424Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "2QP92",
+    "name": "Heba Ahmed",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": "DOV",
+    "history": "pre DM - hysteryectomy ",
+    "contact": null
+  },
+  "glasses": [
+    {
+      "id": "d789e6b4-6afa-46a4-8e91-6bb02ee2273c",
+      "createdAt": "2026-06-01T16:48:56.754Z",
+      "patientId": "2QP92",
+      "date": "2026-06-01",
+      "glassesType": "new",
+      "sph_right": "",
+      "cyl_right": "",
+      "axis_right": "",
+      "va_right": "",
+      "sph_left": "",
+      "cyl_left": "",
+      "axis_left": "",
+      "va_left": "",
+      "add_power": "+1.25",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "updatedAt": "2026-06-01T16:48:56.754Z",
+      "patientName": "Heba Ahmed"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Advanced",
+      "genericName": "Sodium hyaluronate 0.15% advanced lubricant",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1780332669717",
+      "patientId": "2QP92",
+      "date_prescribed": "2026-06-01",
+      "createdAt": "2026-06-01T16:51:14.747Z",
+      "updatedAt": "2026-06-01T16:51:14.747Z",
+      "patientName": "Heba Ahmed"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "2QP92",
+      "date": "2026-06-01",
+      "id": "262a11af-1288-4be3-abce-732229a53c59",
+      "createdAt": "2026-06-01T16:51:14.977Z",
+      "updatedAt": "2026-06-01T16:51:14.977Z",
+      "patientName": "Heba Ahmed"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
