@@ -17,7 +17,7 @@
  */
 
 (function () {
-  const t = (key, vars) => (window.PortalI18n ? PortalI18n.t(key, vars) : key);
+  const t = (key, vars) => (window.PortalI18n ? window.PortalI18n.t(key, vars) : key);
 
   const SESSION_KEY = 'mahmoud_portal_session_v1';
 
@@ -138,45 +138,65 @@
     return _nameIndexPromise;
   }
 
+  let _allPatientsPromise = null;
+  function loadAllPatients() {
+    if (_allPatientsPromise) return _allPatientsPromise;
+    _allPatientsPromise = fetch('portal_all_patients.json', { cache: 'no-store' })
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+    return _allPatientsPromise;
+  }
+
+  function isUsableBundle(bundle) {
+    return Boolean(bundle && typeof bundle === 'object' && bundle.patient && bundle.patient.id);
+  }
+
+  async function loadPatientBundleById(patientId) {
+    const id = String(patientId || '').trim();
+    if (!id) return null;
+    try {
+      const r = await fetch(`patients/${encodeURIComponent(id)}.json`, { cache: 'no-store' });
+      if (!r.ok) return null;
+      const bundle = await r.json();
+      return isUsableBundle(bundle) ? bundle : null;
+    } catch {
+      return null;
+    }
+  }
+
+  async function loadCombinedBundle(patientId) {
+    const id = String(patientId || '').trim();
+    if (!id) return null;
+    const all = await loadAllPatients();
+    const bundle = all && typeof all === 'object' ? all[id] : null;
+    return isUsableBundle(bundle) ? bundle : null;
+  }
+
   async function loginLookup(rawInput) {
     const input = String(rawInput || '').trim();
     if (!input) return { ok: false, reason: 'not_found' };
 
-    const indiv = `patients/${encodeURIComponent(input)}.json`;
-    try {
-      const r = await fetch(indiv, { cache: 'no-store' });
-      if (r.ok) return { ok: true, bundle: await r.json() };
-    } catch { /* fall through */ }
-
-    try {
-      const r = await fetch('portal_all_patients.json', { cache: 'no-store' });
-      if (r.ok) {
-        const all = await r.json();
-        if (all && typeof all === 'object' && all[input]) {
-          return { ok: true, bundle: all[input] };
-        }
-      }
-    } catch { /* fall through */ }
-
     const index = await loadNameIndex();
+    const hasIdIndex = Boolean(index && index.byId && typeof index.byId === 'object');
+    const indexedDirectId = hasIdIndex && Object.prototype.hasOwnProperty.call(index.byId, input);
+
+    if (indexedDirectId || !hasIdIndex) {
+      const bundle = await loadPatientBundleById(input);
+      if (bundle) return { ok: true, bundle };
+    }
+
+    const directCombinedBundle = await loadCombinedBundle(input);
+    if (directCombinedBundle) return { ok: true, bundle: directCombinedBundle };
+
     if (index && index.byName) {
       const key = normalizeName(input);
       if (key && Object.prototype.hasOwnProperty.call(index.byName, key)) {
         const mapped = index.byName[key];
         if (mapped == null) return { ok: false, reason: 'ambiguous_name' };
-        try {
-          const r = await fetch(`patients/${encodeURIComponent(mapped)}.json`, { cache: 'no-store' });
-          if (r.ok) return { ok: true, bundle: await r.json() };
-        } catch { /* fall through */ }
-        try {
-          const r = await fetch('portal_all_patients.json', { cache: 'no-store' });
-          if (r.ok) {
-            const all = await r.json();
-            if (all && typeof all === 'object' && all[mapped]) {
-              return { ok: true, bundle: all[mapped] };
-            }
-          }
-        } catch { /* fall through */ }
+        const bundle = await loadPatientBundleById(mapped);
+        if (bundle) return { ok: true, bundle };
+        const combinedBundle = await loadCombinedBundle(mapped);
+        if (combinedBundle) return { ok: true, bundle: combinedBundle };
       }
     }
 
@@ -187,7 +207,7 @@
     if (!s) return '—';
     const d = new Date(s);
     if (Number.isNaN(d.getTime())) return s;
-    const dateLocale = window.PortalI18n ? PortalI18n.dateLocale() : undefined;
+    const dateLocale = window.PortalI18n ? window.PortalI18n.dateLocale() : undefined;
     return d.toLocaleDateString(dateLocale, { year: 'numeric', month: 'short', day: 'numeric' });
   }
 
@@ -576,8 +596,8 @@
   });
 
   if (window.PortalI18n) {
-    PortalI18n.onChange(() => {
-      PortalI18n.applyStaticI18n();
+    window.PortalI18n.onChange(() => {
+      window.PortalI18n.applyStaticI18n();
       if (currentBundle) showBundle(currentBundle);
     });
   }
