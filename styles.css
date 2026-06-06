@@ -31,6 +31,7 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .container{width:min(var(--container), calc(100% - 36px));margin-inline:auto}
 .section-pad{padding:92px 0}
+section[id]{scroll-margin-top:96px}
 .skip-link{position:absolute;inset-inline-start:16px;top:-60px;background:#fff;color:#000;padding:10px 14px;border-radius:10px;z-index:1000}
 .skip-link:focus{top:16px}
 
@@ -61,7 +62,7 @@ img{max-width:100%;display:block}
 .brand strong{display:block;font-weight:900;font-size:1.05rem}
 .brand small{display:block;color:var(--muted);font-size:.78rem;margin-top:-3px}
 
-.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;align-items:center;gap:16px}
 .nav-links a{color:var(--muted);font-weight:700;font-size:.95rem}
 .nav-links a:hover{color:#fff}
 .lang-toggle{
@@ -179,9 +180,39 @@ h3{font-size:1.2rem;font-weight:900}
   background:var(--surface-2);
   color:var(--dark);
 }
-.services-section .eyebrow,.faq-section .eyebrow{color:#9b6f20}
-.services-section .section-heading p,.faq-section .section-heading p{color:var(--dark-muted)}
+.services-section .eyebrow,.faq-section .eyebrow,.surgical-section .eyebrow{color:#9b6f20}
+.services-section .section-heading p,.faq-section .section-heading p,.surgical-section .section-heading p{color:var(--dark-muted)}
 .section-heading{text-align:center;max-width:760px;margin:0 auto 42px}
+
+.surgical-section{
+  background:#eef4f8;
+  color:var(--dark);
+}
+.experience-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+}
+.experience-card{
+  background:#fff;
+  border:1px solid #dfe8f0;
+  border-radius:8px;
+  padding:26px;
+  box-shadow:0 16px 44px rgba(16,32,51,.08);
+}
+.experience-card p{color:var(--dark-muted)}
+.experience-card .check-list li{color:var(--dark-muted)}
+.highlight-card{
+  grid-row:span 3;
+  background:
+    linear-gradient(135deg,rgba(215,173,93,.16),rgba(103,215,255,.1)),
+    #fff;
+  border-color:rgba(155,111,32,.28);
+}
+.highlight-card h3{
+  font-size:1.65rem;
+  margin-bottom:14px;
+}
 
 .services-grid{
   display:grid;
@@ -347,6 +378,8 @@ html[dir="ltr"] .hero-copy, html[dir="ltr"] .section-intro, html[dir="ltr"] .con
   .brand small{display:none}
   .brand-mark{width:42px;height:42px}
   .hero-grid,.two-col,.portal-grid,.contact-grid{grid-template-columns:1fr}
+  .experience-grid{grid-template-columns:1fr}
+  .highlight-card{grid-row:auto}
   .services-grid{grid-template-columns:1fr 1fr}
   .timeline{grid-template-columns:1fr 1fr}
   .trust-strip{grid-template-columns:1fr}
@@ -370,4 +403,4 @@ html[dir="ltr"] .hero-copy, html[dir="ltr"] .section-intro, html[dir="ltr"] .con
 }
 
 .telexam-points{margin:22px 0 0}
-.brand small{max-width:520px}
+.brand small{max-width:450px}

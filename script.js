@@ -5,17 +5,26 @@ const translations = {
     items: {
       "عيادة عيون متخصصة · طالبية الهرم، الجيزة": "Specialized eye clinic · Talbeya El-Haram, Giza",
       "رعاية عيون دقيقة تجمع بين الخبرة الجراحية والاهتمام الشخصي.": "Precise eye care combining surgical experience with personal attention.",
-      "فحص شامل وتشخيص واضح وخطة علاج مناسبة لكل حالة — من فحوصات النظر والعدسات إلى جراحات المياه البيضاء، تصحيح الإبصار، الجفون، القنوات الدمعية، والشبكية.": "Comprehensive examination, clear diagnosis, and tailored treatment plans — from refraction and lenses to cataract surgery, refractive surgery, eyelids, lacrimal surgery, and retina care.",
+      "تقييم طبي منظم، شرح مفهوم للنتائج، وخطة علاج ومتابعة تناسب حالة كل مريض — من فحوصات النظر والعدسات إلى جراحات المياه البيضاء، تصحيح الإبصار، الجفون، القنوات الدمعية، والشبكية.": "Structured assessment, clear explanation of results, and a treatment and follow-up plan tailored to each patient.",
       "احجز موعدك الآن": "Book now",
       "واتساب العيادة": "Clinic WhatsApp",
       "استعرض الخدمات": "View services",
+      "الرئيسية": "Home",
       "عن الطبيب": "About",
+      "الخبرة الجراحية": "Surgical experience",
       "الخدمات": "Services",
       "رحلة المريض": "Patient journey",
       "بوابة المريض": "Patient portal",
       "التواصل": "Contact",
       "عن الطبيب": "About",
       "د. محمود سامي أبوزيد": "Dr. Mahmoud Sami Abouzeid",
+      "الخبرة الجراحية": "Surgical experience",
+      "خبرة عملية في جراحات العيون مع اهتمام بالتقنيات الحديثة": "Practical surgical experience with modern eye-care technologies",
+      "تصحيح الإبصار الحديث": "Modern refractive surgery",
+      "FemtoSMILE Pro باستخدام ZEISS VISUMAX 800": "FemtoSMILE Pro using ZEISS VISUMAX 800",
+      "جراحات المياه البيضاء والعدسات": "Cataract and lens surgery",
+      "جراحات الجفون والقنوات الدمعية": "Eyelid and lacrimal surgery",
+      "الشبكية وفحوصات الأطفال المبتسرين": "Retina and premature infant screening",
       "التخصصات والخدمات": "Services",
       "رعاية متكاملة لصحة العين": "Comprehensive eye care",
       "فحص شامل للعين": "Comprehensive eye exam",
@@ -44,6 +53,18 @@ const translations = {
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+
+document.querySelectorAll("[data-home-link]").forEach(link => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    const onHome = /\/(?:index\.html)?$/.test(window.location.pathname);
+    if (onHome && !window.location.hash && !window.location.search) {
+      window.location.reload();
+    } else {
+      window.location.assign("index.html");
+    }
+  });
+});
 
 menuToggle?.addEventListener("click", () => {
   const expanded = menuToggle.getAttribute("aria-expanded") === "true";
