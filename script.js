@@ -68,10 +68,30 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
 document.getElementById("telexamForm")?.addEventListener("submit", (event) => {
   event.preventDefault();
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+
   const name = document.getElementById("patientName").value.trim();
+  const phone = document.getElementById("patientPhone")?.value.trim() || "";
   const age = document.getElementById("patientAge")?.value.trim() || "";
+  const purpose = document.getElementById("patientPurpose")?.value || "";
+  const duration = document.getElementById("symptomDuration")?.value.trim() || "";
   const message = document.getElementById("patientMessage").value.trim();
-  const text = `مرحبًا عيادة د. محمود سامي، أريد طلب Telexam.\nالاسم: ${name}\nالعمر/رقم الملف: ${age || "غير مذكور"}\nالشكوى/المتابعة: ${message || "أريد حجز/متابعة."}`;
+  const redFlags = document.getElementById("redFlags")?.checked ? "نعم - توجد علامة خطر ويُرجى الرد العاجل" : "لا";
+
+  const text = [
+    "مرحبًا عيادة د. محمود سامي، أريد طلب Telexam.",
+    `الاسم: ${name}`,
+    `رقم الهاتف: ${phone}`,
+    `العمر/رقم الملف: ${age || "غير مذكور"}`,
+    `نوع الطلب: ${purpose || "غير محدد"}`,
+    `مدة الشكوى: ${duration || "غير مذكورة"}`,
+    `علامات خطر: ${redFlags}`,
+    `الشكوى/المتابعة: ${message}`,
+    "",
+    "سأرفق صور التقارير أو الروشتات في هذه المحادثة إن وجدت."
+  ].join("\n");
+
   window.open(`https://wa.me/201005602267?text=${encodeURIComponent(text)}`, "_blank", "noopener");
 });
 
