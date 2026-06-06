@@ -69,8 +69,9 @@ document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 document.getElementById("telexamForm")?.addEventListener("submit", (event) => {
   event.preventDefault();
   const name = document.getElementById("patientName").value.trim();
+  const age = document.getElementById("patientAge")?.value.trim() || "";
   const message = document.getElementById("patientMessage").value.trim();
-  const text = `مرحبًا عيادة د. محمود سامي، أنا ${name}. ${message || "أريد حجز/متابعة."}`;
+  const text = `مرحبًا عيادة د. محمود سامي، أريد طلب Telexam.\nالاسم: ${name}\nالعمر/رقم الملف: ${age || "غير مذكور"}\nالشكوى/المتابعة: ${message || "أريد حجز/متابعة."}`;
   window.open(`https://wa.me/201005602267?text=${encodeURIComponent(text)}`, "_blank", "noopener");
 });
 

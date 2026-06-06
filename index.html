@@ -57,7 +57,7 @@
         <span class="brand-mark" aria-hidden="true">𓂀</span>
         <span>
           <strong>د. محمود سامي</strong>
-          <small>طب وجراحة العيون</small>
+          <small>استشاري طب و جراحة العيون - زميل الكلية الملكية لطب و جراحة العيون بانجلترا - زميل المجلس الدولي للعيون بسويسرا</small>
         </span>
       </a>
 
@@ -89,10 +89,12 @@
             فحص شامل وتشخيص واضح وخطة علاج مناسبة لكل حالة — من فحوصات النظر والعدسات إلى جراحات المياه البيضاء، تصحيح الإبصار، الجفون، القنوات الدمعية، والشبكية.
           </p>
 
-          <div class="credential-row" aria-label="المؤهلات">
-            <span>MSc</span>
-            <span>MRCSEd</span>
+          <div class="credential-row" aria-label="الشهادات">
+            <span>FRCS(Ophth)Glasgow</span>
             <span>FICO</span>
+            <span>MRCSEd</span>
+            <span>MSc</span>
+            <span>PhDc</span>
           </div>
 
           <div class="cta-row">
@@ -109,14 +111,14 @@
         </div>
 
         <aside class="hero-card reveal">
-          <div class="doctor-photo-placeholder">
-            <span>ضع صورة الطبيب هنا</span>
+          <div class="doctor-photo">
+            <img src="doctor-photo.png" alt="د. محمود سامي أبوزيد - استشاري طب وجراحة العيون">
           </div>
           <div class="appointment-card">
             <p class="card-label">للحجز والاستفسار</p>
             <a class="phone-link" href="tel:+201005602267">010 0560 2267</a>
             <p>١ ش زكي نبوي، برج الكوثر<br>طالبية الهرم — الجيزة</p>
-            <a class="mini-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/">افتح خريطة الوصول ←</a>
+            <a class="mini-link" target="_blank" rel="noopener" href="https://maps.app.goo.gl/rAPGpHb79LxKx9Ck7">افتح خريطة الوصول ←</a>
           </div>
         </aside>
       </div>
@@ -237,8 +239,13 @@
           <p class="eyebrow">خدمات إلكترونية</p>
           <h2>بوابة المريض وTelexam</h2>
           <p>
-            يمكن للمريض تحميل الروشتات والبيانات من بوابة العيادة، أو إرسال طلب فحص عبر النظام عند الحاجة للمتابعة الإلكترونية.
+            خدمة Telexam تساعدك على إرسال الشكوى أو صورة التقرير/الروشتة وطلب متابعة مبدئية قبل أو بعد الزيارة. الخدمة لا تستبدل الكشف داخل العيادة، لكنها تسهّل تنظيم المتابعة وتحديد مدى الحاجة للحضور العاجل.
           </p>
+          <ul class="check-list telexam-points">
+            <li>مناسبة للمتابعة بعد الكشف أو العملية.</li>
+            <li>تساعد في ترتيب موعد سريع للحالات العاجلة.</li>
+            <li>يمكن إرسال الأعراض، مدة الشكوى، وصور التقارير عبر واتساب.</li>
+          </ul>
           <div class="cta-row">
             <a class="btn btn-primary" href="portal.html">افتح بوابة المريض</a>
             <a class="btn btn-secondary" href="#contact">تواصل مع العيادة</a>
@@ -246,17 +253,21 @@
         </div>
 
         <form class="telexam-card reveal" id="telexamForm">
-          <h3>طلب تواصل سريع</h3>
+          <h3>Telexam — متابعة إلكترونية مبدئية</h3>
           <label>
             اسم المريض
             <input type="text" id="patientName" placeholder="اكتب الاسم كما هو مسجل" required>
           </label>
           <label>
-            رسالة قصيرة
-            <textarea id="patientMessage" rows="4" placeholder="مثال: أحتاج متابعة بعد الكشف"></textarea>
+            العمر / رقم الملف إن وجد
+            <input type="text" id="patientAge" placeholder="مثال: ٤٥ سنة / كود 1023">
           </label>
-          <button class="btn btn-primary full" type="submit">إرسال عبر واتساب العيادة</button>
-          <p class="form-note">سيتم فتح واتساب برسالة جاهزة. لا ترسل بيانات طبية حساسة عبر الرسائل العامة.</p>
+          <label>
+            الشكوى أو طلب المتابعة
+            <textarea id="patientMessage" rows="4" placeholder="مثال: متابعة بعد عملية مياه بيضاء - احمرار بسيط منذ يومين"></textarea>
+          </label>
+          <button class="btn btn-primary full" type="submit">إرسال طلب Telexam عبر واتساب</button>
+          <p class="form-note">في الألم الشديد، فقدان الرؤية المفاجئ، إصابة العين، أو احمرار شديد بعد جراحة: لا تنتظر الرد الإلكتروني وتوجّه للطوارئ/العيادة فورًا.</p>
         </form>
       </div>
     </section>
@@ -299,7 +310,7 @@
               <strong>واتساب</strong>
               <span>راسل العيادة مباشرة</span>
             </a>
-            <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/">
+            <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/rAPGpHb79LxKx9Ck7">
               <strong>العنوان</strong>
               <span>١ ش زكي نبوي، برج الكوثر، طالبية الهرم — الجيزة</span>
             </a>
@@ -320,7 +331,7 @@
     <div class="container footer-grid">
       <div>
         <strong>د. محمود سامي</strong>
-        <p>استشاري طب وجراحة العيون · MSc · MRCSEd · FICO</p>
+        <p>استشاري طب و جراحة العيون - زميل الكلية الملكية لطب و جراحة العيون بانجلترا - زميل المجلس الدولي للعيون بسويسرا</p>
       </div>
       <div class="footer-links">
         <a href="#services">الخدمات</a>
@@ -328,7 +339,7 @@
         <a href="tel:+201005602267">اتصل الآن</a>
       </div>
     </div>
-    <p class="copyright">© 2026 د. محمود سامي — جميع الحقوق محفوظة.</p>
+    <p class="copyright">© 2026 د. محمود سامي أبوزيد — جميع الحقوق محفوظة.</p>
   </footer>
 
   <a class="floating-whatsapp" href="https://wa.me/201005602267" target="_blank" rel="noopener" aria-label="واتساب العيادة">واتساب</a>
