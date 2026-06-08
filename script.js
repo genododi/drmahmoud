@@ -81,6 +81,50 @@ const inlineChatForm = document.getElementById("inlineChatForm");
 const chatFiles = document.getElementById("chatFiles");
 const chatFileList = document.getElementById("chatFileList");
 
+function enforceStandardWebsiteView() {
+  const readerClasses = [
+    "reader-mode",
+    "reading-mode",
+    "read-mode",
+    "simplified-mode",
+    "is-reader",
+    "reader"
+  ];
+
+  document.documentElement.dataset.siteView = "standard";
+  document.body?.setAttribute("data-standard-view", "true");
+  document.documentElement.classList.remove(...readerClasses);
+  document.body?.classList.remove(...readerClasses);
+
+  const url = new URL(window.location.href);
+  const readerParams = ["reader", "readermode", "reading", "simplified"];
+  let changed = false;
+
+  readerParams.forEach(param => {
+    if (url.searchParams.has(param)) {
+      url.searchParams.delete(param);
+      changed = true;
+    }
+  });
+
+  if (url.searchParams.get("mode") === "reader") {
+    url.searchParams.delete("mode");
+    changed = true;
+  }
+
+  if (/^#(?:reader|readermode|reading|simplified)$/i.test(url.hash)) {
+    url.hash = "";
+    changed = true;
+  }
+
+  if (changed) {
+    window.history.replaceState(null, "", url.pathname + url.search + url.hash);
+  }
+}
+
+enforceStandardWebsiteView();
+window.addEventListener("pageshow", enforceStandardWebsiteView);
+
 document.querySelectorAll("[data-home-link]").forEach(link => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
