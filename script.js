@@ -7,6 +7,7 @@ const translations = {
       "رعاية عيون دقيقة تجمع بين الخبرة الجراحية والاهتمام الشخصي.": "Precise eye care combining surgical experience with personal attention.",
       "تقييم طبي منظم، شرح مفهوم للنتائج، وخطة علاج ومتابعة تناسب حالة كل مريض — من فحوصات النظر والعدسات إلى جراحات المياه البيضاء، تصحيح الإبصار، الجفون، القنوات الدمعية، والشبكية.": "Structured assessment, clear explanation of results, and a treatment and follow-up plan tailored to each patient.",
       "احجز موعدك الآن": "Book now",
+      "دردشة مباشرة": "Live chat",
       "واتساب العيادة": "Clinic WhatsApp",
       "استعرض الخدمات": "View services",
       "الرئيسية": "Home",
@@ -27,12 +28,22 @@ const translations = {
       "جراحات الجفون والقنوات الدمعية": "Eyelid and lacrimal surgery",
       "الشبكية وفحوصات الأطفال المبتسرين": "Retina and premature infant screening",
       "ميزة جديدة عند بداية الصفحة": "New homepage feature",
-      "دردشة مباشرة مع العيادة عبر Facebook Messenger": "Live chat with the clinic through Facebook Messenger",
+      "دردشة مباشرة داخل الموقع مع رفع المستندات": "On-site live chat with document upload",
       "إعجاب بالصفحة أولًا": "Like the page first",
       "ابدأ الدردشة وارفع ملفاتك": "Start chat and upload files",
       "متابعة أسرع": "Faster follow-up",
       "صندوق دردشة للمريض مع رفع المستندات": "Patient chat box with document upload",
       "افتح صندوق الدردشة": "Open chat box",
+      "ابدأ المحادثة الآن": "Start conversation now",
+      "دردشة مباشرة ورفع مستندات": "Live chat and document upload",
+      "ابدأ الدردشة": "Start chat",
+      "دردشة مباشرة مع العيادة": "Live chat with the clinic",
+      "اكتب رسالتك وارفع صور التقارير": "Write your message and upload report images",
+      "الاسم": "Name",
+      "رقم الهاتف": "Phone number",
+      "الرسالة": "Message",
+      "رفع مستندات أو صور": "Upload documents or images",
+      "إرسال الطلب داخل الدردشة": "Send request in chat",
       "تابع الصفحة للرد السريع": "Follow the page for faster replies",
       "التخصصات والخدمات": "Services",
       "رعاية متكاملة لصحة العين": "Comprehensive eye care",
@@ -63,6 +74,12 @@ const translations = {
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
 const startupChatPop = document.getElementById("startupChatPop");
+const inlineChatBox = document.getElementById("inlineChatBox");
+const inlineChatBackdrop = document.getElementById("inlineChatBackdrop");
+const inlineChatMessages = document.getElementById("inlineChatMessages");
+const inlineChatForm = document.getElementById("inlineChatForm");
+const chatFiles = document.getElementById("chatFiles");
+const chatFileList = document.getElementById("chatFileList");
 
 document.querySelectorAll("[data-home-link]").forEach(link => {
   link.addEventListener("click", (event) => {
@@ -83,6 +100,74 @@ if (startupChatPop && sessionStorage.getItem("drmahmoudChatPopClosed") === "1") 
 document.querySelector(".chat-pop-close")?.addEventListener("click", () => {
   startupChatPop?.classList.add("is-hidden");
   sessionStorage.setItem("drmahmoudChatPopClosed", "1");
+});
+
+function openInlineChat() {
+  inlineChatBox?.classList.remove("is-hidden");
+  inlineChatBackdrop?.classList.remove("is-hidden");
+  startupChatPop?.classList.add("is-hidden");
+  document.getElementById("chatPatientName")?.focus();
+}
+
+function closeInlineChat() {
+  inlineChatBox?.classList.add("is-hidden");
+  inlineChatBackdrop?.classList.add("is-hidden");
+}
+
+function addChatBubble(text, type = "clinic") {
+  if (!inlineChatMessages) return;
+  const bubble = document.createElement("div");
+  bubble.className = `chat-bubble ${type === "patient" ? "patient-bubble" : "clinic-bubble"}`;
+  bubble.textContent = text;
+  inlineChatMessages.appendChild(bubble);
+  inlineChatMessages.scrollTop = inlineChatMessages.scrollHeight;
+}
+
+document.querySelectorAll("[data-open-chat]").forEach(button => {
+  button.addEventListener("click", openInlineChat);
+});
+
+document.querySelector(".inline-chat-close")?.addEventListener("click", closeInlineChat);
+inlineChatBackdrop?.addEventListener("click", closeInlineChat);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeInlineChat();
+});
+
+chatFiles?.addEventListener("change", () => {
+  if (!chatFileList) return;
+  const files = Array.from(chatFiles.files || []);
+  chatFileList.innerHTML = "";
+
+  if (!files.length) {
+    chatFileList.textContent = "";
+    return;
+  }
+
+  files.forEach(file => {
+    const item = document.createElement("span");
+    const size = file.size >= 1024 * 1024
+      ? `${(file.size / 1024 / 1024).toFixed(1)} MB`
+      : `${Math.max(1, Math.round(file.size / 1024))} KB`;
+    item.textContent = `${file.name} · ${size}`;
+    chatFileList.appendChild(item);
+  });
+});
+
+inlineChatForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (!inlineChatForm.reportValidity()) return;
+
+  const name = document.getElementById("chatPatientName")?.value.trim() || "المريض";
+  const message = document.getElementById("chatPatientMessage")?.value.trim() || "";
+  const filesCount = chatFiles?.files?.length || 0;
+  const fileText = filesCount ? ` وتم اختيار ${filesCount} ملف/ملفات للمعاينة.` : "";
+
+  addChatBubble(`${name}: ${message}${fileText}`, "patient");
+  addChatBubble("تم تجهيز طلبك داخل صندوق الدردشة. الإرسال الفعلي للمرفقات يحتاج ربط الموقع بخدمة رسائل أو نظام العيادة، وللحالات العاجلة اتصل بالعيادة فورًا.", "clinic");
+
+  inlineChatForm.reset();
+  if (chatFileList) chatFileList.textContent = "";
 });
 
 menuToggle?.addEventListener("click", () => {
