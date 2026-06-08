@@ -13,6 +13,7 @@ const translations = {
       "عن الطبيب": "About",
       "الخبرة الجراحية": "Surgical experience",
       "الخدمات": "Services",
+      "الدردشة المباشرة": "Live chat",
       "رحلة المريض": "Patient journey",
       "بوابة المريض": "Patient portal",
       "التواصل": "Contact",
@@ -25,6 +26,14 @@ const translations = {
       "جراحات المياه البيضاء والعدسات": "Cataract and lens surgery",
       "جراحات الجفون والقنوات الدمعية": "Eyelid and lacrimal surgery",
       "الشبكية وفحوصات الأطفال المبتسرين": "Retina and premature infant screening",
+      "ميزة جديدة عند بداية الصفحة": "New homepage feature",
+      "دردشة مباشرة مع العيادة عبر Facebook Messenger": "Live chat with the clinic through Facebook Messenger",
+      "إعجاب بالصفحة أولًا": "Like the page first",
+      "ابدأ الدردشة وارفع ملفاتك": "Start chat and upload files",
+      "متابعة أسرع": "Faster follow-up",
+      "صندوق دردشة للمريض مع رفع المستندات": "Patient chat box with document upload",
+      "افتح صندوق الدردشة": "Open chat box",
+      "تابع الصفحة للرد السريع": "Follow the page for faster replies",
       "التخصصات والخدمات": "Services",
       "رعاية متكاملة لصحة العين": "Comprehensive eye care",
       "فحص شامل للعين": "Comprehensive eye exam",
@@ -53,6 +62,7 @@ const translations = {
 
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");
+const startupChatPop = document.getElementById("startupChatPop");
 
 document.querySelectorAll("[data-home-link]").forEach(link => {
   link.addEventListener("click", (event) => {
@@ -64,6 +74,15 @@ document.querySelectorAll("[data-home-link]").forEach(link => {
       window.location.assign("index.html");
     }
   });
+});
+
+if (startupChatPop && sessionStorage.getItem("drmahmoudChatPopClosed") === "1") {
+  startupChatPop.classList.add("is-hidden");
+}
+
+document.querySelector(".chat-pop-close")?.addEventListener("click", () => {
+  startupChatPop?.classList.add("is-hidden");
+  sessionStorage.setItem("drmahmoudChatPopClosed", "1");
 });
 
 menuToggle?.addEventListener("click", () => {
