@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-10T17:22:08.258Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "7XJEM",
+    "name": "Mohamed adelreheem",
+    "dob": null,
+    "age": 29,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": "01111957532"
+  },
+  "glasses": [],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "7XJEM",
+      "date": "2026-06-10",
+      "unaided_va": {
+        "right": "4/60",
+        "left": "2/60"
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "-9",
+          "cyl": "-2.50",
+          "axis": "20",
+          "va": "2/60"
+        },
+        "left": {
+          "sph": "-7",
+          "cyl": "-2.00",
+          "axis": "125",
+          "va": "4/60"
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "KCN",
+        "left": "KCN"
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "id": "66c5c693-d309-4056-9d26-8e47f7e49c84",
+      "createdAt": "2026-06-10T17:16:03.387Z",
+      "updatedAt": "2026-06-10T17:16:03.387Z",
+      "patientName": "Mohamed adelreheem"
+    }
+  ],
+  "reports": [],
+  "surgeries": [
+    {
+      "patientId": "7XJEM",
+      "surgeryType": "major",
+      "procedureName": "CXL",
+      "procedureCode": "",
+      "eye": "OU",
+      "surgeonName": "Dr. Mahmoud Sami Abouzeid",
+      "dateScheduled": "",
+      "datePerformed": "2026-06-10",
+      "anesthesiaType": "Topical",
+      "preOpDiagnosis": "",
+      "postOpDiagnosis": "",
+      "surgicalNotes": "KCN clear cornea",
+      "complications": "",
+      "status": "Scheduled",
+      "iolRequired": false,
+      "iolModel": "",
+      "iolType": "",
+      "iolPower": "",
+      "targetRefraction": "",
+      "biometryMethod": "IOLMaster",
+      "axialLength": "",
+      "kReadings": {
+        "k1": "",
+        "k2": "",
+        "axis": ""
+      },
+      "aConstant": "",
+      "patientName": "Mohamed adelreheem",
+      "id": "97495b6a-532e-4da8-a251-dbc03950e531",
+      "createdAt": "2026-06-10T17:17:53.201Z",
+      "updatedAt": "2026-06-10T17:18:03.660Z"
+    }
+  ],
+  "labs": []
+}
