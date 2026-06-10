@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-19T10:48:54.211Z",
+  "generatedAt": "2026-06-10T17:49:32.111Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -12,7 +12,7 @@
     "id": "AZKPB",
     "name": "kholoud siam",
     "dob": null,
-    "age": null,
+    "age": 27,
     "chiefComplaint": "red eye ou",
     "history": "nill",
     "contact": "01559285445"
@@ -105,25 +105,36 @@
   "reports": [
     {
       "patientId": "AZKPB",
-      "date": "2026-05-18",
+      "date": "2026-05-20",
       "reportType": "general",
-      "title": "General Ophthalmology Report",
+      "title": "Bed Rest Certificate",
       "sections": {
         "Patient Demographics": "Name: kholoud siam\nPatient ID: AZKPB\nChief complaint: red eye ou\nMedical history: nill",
         "Referring / Attending Physician": "Dr. Mahmoud Sami Abouzeid",
-        "Reason for Visit": "Left red eye ",
-        "Examination Summary": "Examination date: 2026-05-18\nUnaided VA — OD: 6/9, OS: 6/9\nIOP — OD: 20, OS: 18 mmHg\nSubjective refraction — OD: — / —, OS: — / —\nAutorefraction — OD: +2.00 / -1.75 × 55°  VA 6/6, OS: +1.00 / -1.00 × 97°  VA 6/6\nLids: OU: Normal lids and lashes\nAnterior segment: OU: Corneal abrasion\nPupils: OU: PERRLA\nOcular motility: OU: Full extraocular movements\nPosterior segment: OU: Clear media\nNeuro-ophthalmic: OU: Confrontation visual fields full",
-        "Diagnosis": "[H16.0] Corneal ulcer",
-        "Plan / Recommendations": "Necessitates rest for 3 days at least"
+        "Reason for Visit": "red eye ou",
+        "Examination Summary": "Examination date: 2026-05-18\nUnaided VA — OD: 6/9, OS: 6/9\nIOP — OD: 20, OS: 18 mmHg\nSubjective refraction — OD: — / —, OS: — / —\nAutorefraction — OD: +2.00 / -1.75 × 55°  VA 6/6, OS: +1.00 / -1.00 × 97°  VA 6/6\nLids:\nNormal lids and lashes\nAnterior segment:\nCorneal abrasion\nPupils:\nPERRLA\nOcular motility:\nFull extraocular movements\nPosterior segment:\nClear media\nNeuro-ophthalmic:\nConfrontation visual fields full",
+        "Diagnosis": "[H16.0] Corneal ulcer"
       },
-      "summary": "Patient Demographics: Name: kholoud siam\nPatient ID: AZKPB\nChief complaint: red ey… | Referring / Attending Physician: Dr. Mahmoud Sami Abouzeid… | Reason for Visit: Left red eye … | Examination Summary: Examination date: 2026-05-18\nUnaided VA — OD: 6/9, OS: 6/9\nI… | Diagnosis: [H16.0] Corneal ulcer… | Plan / Recommendations: Necessitates rest for 3 days at least…",
-      "doctorNotes": "Patient should follow up after 3 days & to be compliant on her prescribed drops",
-      "signature": "",
-      "freeformContent": "",
+      "sectionInclusion": {
+        "Patient Demographics": false,
+        "Referring / Attending Physician": false,
+        "Reason for Visit": false,
+        "Examination Summary": false,
+        "Diagnosis": false,
+        "Plan / Recommendations": false,
+        "__freeform__": true,
+        "__doctorNotes__": false,
+        "__signature__": true,
+        "__clinicalAppendix__": true
+      },
+      "summary": "Patient Demographics: Name: kholoud siam\nPatient ID: AZKPB\nChief complaint: red ey… | Referring / Attending Physician: Dr. Mahmoud Sami Abouzeid… | Reason for Visit: red eye ou… | Examination Summary: Examination date: 2026-05-18\nUnaided VA — OD: 6/9, OS: 6/9\nI… | Diagnosis: [H16.0] Corneal ulcer…",
+      "doctorNotes": "",
+      "signature": "Dr. Mahmoud Sami Abouzeid\nMD, FRCS (Glasgow), PhD\nConsultant Ophthalmologist",
+      "freeformContent": "BED REST CERTIFICATE\n\nDate: 2026-05-20\n\nTo Whom It May Concern,\n\nThis is to certify that kholoud siam, has been examined at our ophthalmology clinic on 2026-05-18.\n\nMEDICAL RECOMMENDATION:\nBased on clinical assessment, the patient is advised bed rest for 3 day(s), effective from 2026-05-18.\n\nREASON / DIAGNOSIS:\n[H16.0] Corneal ulcer\n\nACTIVITY RESTRICTIONS:\n• Avoid strenuous physical activity and heavy lifting\n• Limit prolonged reading and screen use as clinically indicated\n• Use prescribed eye drops and medications as directed\n• Attend ophthalmology follow-up on 2026-05-22 or sooner if symptoms worsen\n\nThis certificate is issued at the patient's request for administrative and sick-leave purposes.\n\nDr. Mahmoud Sami Abouzeid\nMD, FRCS (Glasgow), PhD\nConsultant Ophthalmologist",
       "language": "en",
-      "id": "101765f2-7670-4d2d-bd53-777e609bae22",
-      "createdAt": "2026-05-18T16:04:58.713Z",
-      "updatedAt": "2026-05-18T16:47:42.316Z",
+      "id": "4de07276-2485-4b8f-bbbb-ead1f0001bfd",
+      "createdAt": "2026-05-20T06:33:30.527Z",
+      "updatedAt": "2026-05-20T06:33:30.527Z",
       "patientName": "kholoud siam"
     }
   ],
