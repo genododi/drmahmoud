@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-10T16:08:56.808Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "TQXH7",
+    "name": "Marwa Gamal Mourad",
+    "dob": null,
+    "age": 29,
+    "chiefComplaint": "BOV",
+    "history": "pseudophakic ou - high myope ou - hx 5 y lens RLE ou",
+    "contact": "01147517185"
+  },
+  "glasses": [
+    {
+      "patientId": "TQXH7",
+      "date": "2026-06-08",
+      "glassesType": "new",
+      "sph_right": "-1.50",
+      "cyl_right": "-1.75",
+      "axis_right": "155",
+      "va_right": "",
+      "sph_left": "-0.25",
+      "cyl_left": "-2.25",
+      "axis_left": "150",
+      "va_left": "",
+      "add_power": "+2.75",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "id": "5155bb40-86e6-4e1a-b67f-3912e994931b",
+      "createdAt": "2026-06-08T18:05:30.268Z",
+      "updatedAt": "2026-06-08T18:05:51.573Z",
+      "patientName": "Marwa Gamal Mourad"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Advanced",
+      "genericName": "Sodium hyaluronate 0.15% advanced lubricant",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "4 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1780942320933",
+      "patientId": "TQXH7",
+      "date_prescribed": "2026-06-08",
+      "createdAt": "2026-06-08T18:12:02.768Z",
+      "updatedAt": "2026-06-08T18:12:02.768Z",
+      "patientName": "Marwa Gamal Mourad"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "Polyfresh Advanced - 1 drop - TID (3 times daily) - 4 weeks. Apply to both eyes",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "TQXH7",
+      "date": "2026-06-08",
+      "id": "c6aa9f51-5a19-40f6-ac38-b6e6df0fbb18",
+      "createdAt": "2026-06-08T18:12:29.567Z",
+      "updatedAt": "2026-06-08T18:12:29.567Z",
+      "patientName": "Marwa Gamal Mourad"
+    },
+    {
+      "medical_treatment": "Polyfresh Advanced - 1 drop - TID (3 times daily) - 4 weeks. Apply to both eyes",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "TQXH7",
+      "date": "2026-06-08",
+      "id": "143414f6-eb49-496c-80d0-4d06ddd05f2a",
+      "createdAt": "2026-06-08T18:12:02.864Z",
+      "updatedAt": "2026-06-08T18:12:02.864Z",
+      "patientName": "Marwa Gamal Mourad"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
