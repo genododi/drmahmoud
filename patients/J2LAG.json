@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-05-13T19:16:33.452Z",
+  "generatedAt": "2026-06-10T17:49:38.494Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -29,13 +29,13 @@
       "sph_left": "+5.75",
       "cyl_left": "-1.25",
       "axis_left": "175",
-      "va_left": "",
-      "add_power": "+2.25",
+      "va_left": "6/6",
+      "add_power": "+2.50",
       "pd": "",
       "notes": "",
       "id": "ff7c5476-8c4f-498f-9328-05b4d61bf061",
       "createdAt": "2026-05-13T17:36:55.510Z",
-      "updatedAt": "2026-05-13T17:36:55.510Z",
+      "updatedAt": "2026-05-14T12:50:20.978Z",
       "patientName": "Mona Arafa"
     }
   ],
@@ -53,13 +53,28 @@
       "isSteroid": false,
       "id": "1778694093145",
       "patientId": "J2LAG",
-      "date_prescribed": "2026-05-13",
+      "date_prescribed": "2026-05-14",
       "createdAt": "2026-05-13T17:41:46.300Z",
-      "updatedAt": "2026-05-13T17:41:46.300Z",
+      "updatedAt": "2026-05-14T12:55:33.214Z",
+      "patientName": "Mona Arafa",
+      "itemType": "medication"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "J2LAG",
+      "date": "2026-05-14",
+      "id": "f5228c3d-90fc-4110-895b-201ccd8d2ae8",
+      "createdAt": "2026-05-14T12:55:33.253Z",
+      "updatedAt": "2026-05-14T12:55:33.253Z",
       "patientName": "Mona Arafa"
     }
   ],
-  "treatments": [],
   "investigations": [],
   "examinations": [],
   "reports": [],
