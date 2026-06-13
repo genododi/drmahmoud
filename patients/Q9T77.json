@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-13T17:04:50.574Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "Q9T77",
+    "name": "Sedra Mohamed",
+    "dob": null,
+    "age": 5,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "id": "7f1da308-7b45-4610-a5c7-bfc3d8104672",
+      "createdAt": "2026-06-13T16:35:30.963Z",
+      "patientId": "Q9T77",
+      "date": "2026-06-13",
+      "glassesType": "new",
+      "sph_right": "+5.75",
+      "cyl_right": "-1.75",
+      "axis_right": "150",
+      "va_right": "",
+      "sph_left": "+5.50",
+      "cyl_left": "-1.75",
+      "axis_left": "15",
+      "va_left": "",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "updatedAt": "2026-06-13T16:35:30.963Z",
+      "patientName": "Sedra Mohamed"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "Q9T77",
+      "date": "2026-06-13",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "+5.25",
+          "cyl": "-1.75",
+          "axis": "150",
+          "va": ""
+        },
+        "left": {
+          "sph": "+5.25",
+          "cyl": "-1.50",
+          "axis": "20",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "id": "ec82fcb9-71ba-4a8b-a70b-0e806520172e",
+      "createdAt": "2026-06-13T15:56:19.847Z",
+      "updatedAt": "2026-06-13T15:56:19.847Z",
+      "patientName": "Sedra Mohamed"
+    }
+  ],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
