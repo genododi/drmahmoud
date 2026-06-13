@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-13T17:04:49.328Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "K3BM9",
+    "name": "Ahmed Mohamed Khairy",
+    "dob": null,
+    "age": 6,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Tymer",
+      "genericName": "Gatifloxacin 0.5%",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "1 week",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1781366628835",
+      "patientId": "K3BM9",
+      "date_prescribed": "2026-06-13",
+      "createdAt": "2026-06-13T16:03:50.386Z",
+      "updatedAt": "2026-06-13T16:03:50.386Z",
+      "patientName": "Ahmed Mohamed Khairy"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "Tymer - 1 drop - TID (3 times daily) - 1 week. Apply to both eyes",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "K3BM9",
+      "date": "2026-06-13",
+      "id": "c6ef3364-4ec3-41cc-b622-2cdd10056a9c",
+      "createdAt": "2026-06-13T16:03:50.391Z",
+      "updatedAt": "2026-06-13T16:03:50.391Z",
+      "patientName": "Ahmed Mohamed Khairy"
+    }
+  ],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "K3BM9",
+      "date": "2026-06-13",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "+2.50",
+          "cyl": "-2.75",
+          "axis": "5",
+          "va": ""
+        },
+        "left": {
+          "sph": "+1.25",
+          "cyl": "-1.75",
+          "axis": "165",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "id": "bb29687f-51f2-45e2-97f6-4d9c8ec6cd41",
+      "createdAt": "2026-06-13T16:10:23.231Z",
+      "updatedAt": "2026-06-13T16:10:23.231Z",
+      "patientName": "Ahmed Mohamed Khairy"
+    }
+  ],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
