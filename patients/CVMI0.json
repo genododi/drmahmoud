@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-13T17:04:47.607Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "CVMI0",
+    "name": "Ayad Gad Elkarim",
+    "dob": null,
+    "age": 54,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "id": "1c16e040-7c40-400c-9bb2-f2ac490f5c4a",
+      "createdAt": "2026-06-13T16:30:09.329Z",
+      "patientId": "CVMI0",
+      "date": "2026-06-13",
+      "glassesType": "new",
+      "sph_right": "+7.0",
+      "cyl_right": "",
+      "axis_right": "",
+      "va_right": "6/9",
+      "sph_left": "+6.50",
+      "cyl_left": "",
+      "axis_left": "",
+      "va_left": "6/9",
+      "add_power": "+1.75",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "updatedAt": "2026-06-13T16:30:09.330Z",
+      "patientName": "Ayad Gad Elkarim"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
