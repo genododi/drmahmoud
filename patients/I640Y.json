@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-06T16:39:09.634Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "I640Y",
+    "name": "Kamilia Fathy",
+    "dob": null,
+    "age": 47,
+    "chiefComplaint": "tearing",
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "I640Y",
+      "date": "2026-06-20",
+      "glassesType": "new",
+      "sph_right": "+3.75",
+      "cyl_right": "-0.5",
+      "axis_right": "60",
+      "va_right": "",
+      "sph_left": "+2.75",
+      "cyl_left": "",
+      "axis_left": "",
+      "va_left": "",
+      "add_power": "+1.50",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "id": "d6eb3fe6-5c8b-420b-88e0-e4e27b8e4345",
+      "createdAt": "2026-06-20T16:59:53.276Z",
+      "updatedAt": "2026-06-20T16:59:53.276Z",
+      "patientName": "Kamilia Fathy"
+    },
+    {
+      "id": "c0f90084-dcc0-4ffe-a722-25a3ff1b02cd",
+      "createdAt": "2026-06-20T16:37:03.439Z",
+      "patientId": "I640Y",
+      "date": "2026-06-20",
+      "glassesType": "new",
+      "sph_right": "+3.75",
+      "cyl_right": "-0.5",
+      "axis_right": "60",
+      "va_right": "6/6",
+      "sph_left": "+2.75",
+      "cyl_left": "",
+      "axis_left": "",
+      "va_left": "6/6",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "updatedAt": "2026-06-20T16:37:41.749Z",
+      "patientName": "Kamilia Fathy"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Fluca",
+      "genericName": "Fluconazole 0.3% ophthalmic",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "1 week",
+      "regimenEntries": [
+        {
+          "frequency": "BID (2 times daily)",
+          "duration": "1 week"
+        },
+        {
+          "frequency": "Once daily",
+          "duration": "1 week"
+        }
+      ],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": true,
+      "id": "1781974106092",
+      "patientId": "I640Y",
+      "date_prescribed": "2026-06-20",
+      "createdAt": "2026-06-20T16:48:28.507Z",
+      "updatedAt": "2026-06-20T16:48:44.985Z",
+      "itemType": "medication",
+      "patientName": "Kamilia Fathy"
+    },
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Advanced",
+      "genericName": "Sodium hyaluronate 0.15% advanced lubricant",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "1 month",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "Apply to affected eye",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1781972787640",
+      "patientId": "I640Y",
+      "date_prescribed": "2026-06-20",
+      "createdAt": "2026-06-20T16:26:29.877Z",
+      "updatedAt": "2026-06-20T16:27:51.903Z",
+      "itemType": "medication",
+      "patientName": "Kamilia Fathy"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "Fluca - 1 drop - TID (3 times daily) - 1 week. Apply to both eyes\nFluca - 1 drop - TID (3 times daily) - 1 week\nPolyfresh Advanced - 1 drop - TID (3 times daily) - 1 month. Apply to affected eye",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "I640Y",
+      "patientName": "Kamilia Fathy",
+      "date": "2026-06-20",
+      "id": "27d69130-3474-4f52-89ae-a8217c3ba120",
+      "createdAt": "2026-06-20T17:15:29.952Z",
+      "updatedAt": "2026-06-20T17:15:29.952Z"
+    },
+    {
+      "medical_treatment": "Fluca - 1 drop - TID (3 times daily) - 1 week\nPolyfresh Advanced - 1 drop - TID (3 times daily) - 1 month. Apply to affected eye",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "I640Y",
+      "date": "2026-06-20",
+      "id": "def8f60f-9e04-4eb5-9736-4f9a8bdabfb7",
+      "createdAt": "2026-06-20T16:54:57.788Z",
+      "updatedAt": "2026-06-20T16:54:57.788Z",
+      "patientName": "Kamilia Fathy"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
