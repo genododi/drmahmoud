@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-06T16:39:03.666Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "561YL",
+    "name": "Nadia Qotb",
+    "dob": null,
+    "age": 75,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "561YL",
+      "date": "2026-07-04",
+      "glassesType": "new",
+      "sph_right": "+4.50",
+      "cyl_right": "-1.25",
+      "axis_right": "25",
+      "va_right": "6/9",
+      "sph_left": "+4.50",
+      "cyl_left": "-2.25",
+      "axis_left": "165",
+      "va_left": "6/9",
+      "add_power": "+2.50",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "Nadia Qotb",
+      "id": "adfbf80f-e83e-4fb2-ad5e-a84a6d73fb04",
+      "createdAt": "2026-07-06T16:35:24.761Z",
+      "updatedAt": "2026-07-06T16:35:24.761Z"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Advanced",
+      "genericName": "Sodium hyaluronate 0.15% advanced lubricant",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1783355390751",
+      "patientId": "561YL",
+      "patientName": "Nadia Qotb",
+      "date_prescribed": "2026-07-06",
+      "createdAt": "2026-07-06T16:29:52.436Z",
+      "updatedAt": "2026-07-06T16:29:52.436Z"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "Polyfresh Advanced - 1 drop - TID (3 times daily) - 2 weeks",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "561YL",
+      "patientName": "Nadia Qotb",
+      "date": "2026-07-06",
+      "id": "9c50c3b3-79d3-4408-bd2f-e6a64c7f70d4",
+      "createdAt": "2026-07-06T16:29:52.453Z",
+      "updatedAt": "2026-07-06T16:29:52.453Z"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
