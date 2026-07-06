@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-13T17:05:06.556Z",
+  "generatedAt": "2026-07-06T16:39:10.949Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -12,9 +12,9 @@
     "id": "KYJG8",
     "name": "Mayar abdelrahman",
     "dob": null,
-    "age": null,
+    "age": 31,
     "chiefComplaint": "BOV ou",
-    "history": "Papilledema",
+    "history": "Papilledema - 8 cidamex tabs per day - LP 11/4/2026 - G2 OD G3 OS papilledema",
     "contact": "01153436994"
   },
   "glasses": [],
@@ -78,15 +78,32 @@
   "investigations": [
     {
       "patientId": "KYJG8",
+      "date": "2026-06-13",
       "type": "Visual Field",
-      "subtype": "vf_24_2",
-      "details": "f/up papilledema",
-      "status": "Scheduled",
-      "recommendations": "Fundus after 3 weeks",
-      "results": "improved papilledema grading one grade in each eye",
-      "id": "d819686d-4c25-459a-816d-c4caa561c383",
-      "createdAt": "2026-05-23T17:24:02.033Z",
-      "updatedAt": "2026-05-23T17:24:02.033Z",
+      "subtype": "",
+      "eye": "Both",
+      "details": "",
+      "results": "",
+      "recommendations": "",
+      "status": "Ordered",
+      "id": "d03782e6-c515-448c-9af3-996cd1e00ebe",
+      "createdAt": "2026-06-13T17:46:51.505Z",
+      "updatedAt": "2026-06-13T17:46:51.505Z",
+      "patientName": "Mayar abdelrahman"
+    },
+    {
+      "patientId": "KYJG8",
+      "date": "2026-06-13",
+      "type": "OCT",
+      "subtype": "oct_optic_nerve",
+      "eye": "Both",
+      "details": "",
+      "results": "",
+      "recommendations": "",
+      "status": "Ordered",
+      "id": "de9c7bfb-2952-4d9d-a37c-cfacbf907abd",
+      "createdAt": "2026-06-13T17:46:18.040Z",
+      "updatedAt": "2026-06-13T17:46:18.040Z",
       "patientName": "Mayar abdelrahman"
     }
   ],
@@ -182,6 +199,41 @@
     }
   ],
   "reports": [
+    {
+      "patientId": "KYJG8",
+      "date": "2026-06-13",
+      "reportType": "general",
+      "title": "General Ophthalmology Report",
+      "sections": {
+        "Patient Demographics": "Name: Mayar abdelrahman\nPatient ID: KYJG8\nChief complaint: BOV ou\nMedical history: Papilledema - 8 cidamex tabs per day - LP 11/4/2026 - G2 OD G2 OS papilledema",
+        "Referring / Attending Physician": "Dr. Mahmoud Sami Abouzeid",
+        "Reason for Visit": "FUP papilledema ou since 2mo onset - new headache onset",
+        "Examination Summary": "Pupil RRR ou",
+        "Diagnosis": "Papilledema OD G2 , OS G2",
+        "Plan / Recommendations": "Continue Brimonidine ou BID , stop nevaxal (2 months duration)"
+      },
+      "sectionInclusion": {
+        "Patient Demographics": false,
+        "Referring / Attending Physician": false,
+        "Reason for Visit": false,
+        "Examination Summary": true,
+        "Diagnosis": true,
+        "Plan / Recommendations": true,
+        "__freeform__": true,
+        "__doctorNotes__": true,
+        "__signature__": true,
+        "__clinicalAppendix__": true
+      },
+      "summary": "Patient Demographics: Name: Mayar abdelrahman\nPatient ID: KYJG8\nChief complaint: B… | Referring / Attending Physician: Dr. Mahmoud Sami Abouzeid… | Reason for Visit: FUP papilledema ou since 2mo onset - new headache onset… | Examination Summary: Pupil RRR ou… | Diagnosis: Papilledema OD G2 , OS G2… | Plan / Recommendations: Continue Brimonidine ou BID , stop nevaxal (2 months duratio…",
+      "doctorNotes": "Consult neurologist for possible LP since papilledema grading is stationary over 2 months",
+      "signature": "Dr. Mahmoud Sami Abouzeid\nMD, FRCS (Glasgow), PhD\nConsultant Ophthalmologist",
+      "freeformContent": "",
+      "language": "en",
+      "id": "5d002c1b-f032-4b5b-9bd5-6bd94bc35223",
+      "createdAt": "2026-06-13T17:41:46.725Z",
+      "updatedAt": "2026-06-13T17:42:55.465Z",
+      "patientName": "Mayar abdelrahman"
+    },
     {
       "patientId": "KYJG8",
       "date": "2026-05-23",
