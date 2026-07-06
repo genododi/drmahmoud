@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-06T16:39:07.934Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "2PONR",
+    "name": "Omneya Ayman",
+    "dob": null,
+    "age": 25,
+    "chiefComplaint": "BOV ",
+    "history": null,
+    "contact": "01150767561"
+  },
+  "glasses": [
+    {
+      "patientId": "2PONR",
+      "date": "2026-06-20",
+      "glassesType": "new",
+      "sph_right": "-1.50",
+      "cyl_right": "-0.75",
+      "axis_right": "175",
+      "va_right": "6/6",
+      "sph_left": "-1.50",
+      "cyl_left": "-0.75",
+      "axis_left": "180",
+      "va_left": "6/6",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "id": "b7239e1e-e210-4111-9c5f-90bef435ad50",
+      "createdAt": "2026-06-20T15:43:05.095Z",
+      "updatedAt": "2026-06-20T17:16:36.187Z",
+      "patientName": "Omneya Ayman"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
