@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-13T17:04:49.328Z",
+  "generatedAt": "2026-07-06T16:39:15.072Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -15,7 +15,7 @@
     "age": 6,
     "chiefComplaint": null,
     "history": null,
-    "contact": null
+    "contact": "01202625252"
   },
   "glasses": [],
   "medications": [
@@ -55,96 +55,7 @@
     }
   ],
   "investigations": [],
-  "examinations": [
-    {
-      "patientId": "K3BM9",
-      "date": "2026-06-13",
-      "unaided_va": {
-        "right": "",
-        "left": ""
-      },
-      "old_glasses": {
-        "right": {
-          "sph": "",
-          "cyl": "",
-          "axis": "",
-          "va": ""
-        },
-        "left": {
-          "sph": "",
-          "cyl": "",
-          "axis": "",
-          "va": ""
-        }
-      },
-      "autorefraction": {
-        "right": {
-          "sph": "",
-          "cyl": "",
-          "axis": "",
-          "va": ""
-        },
-        "left": {
-          "sph": "",
-          "cyl": "",
-          "axis": "",
-          "va": ""
-        }
-      },
-      "subjective": {
-        "right": {
-          "sph": "+2.50",
-          "cyl": "-2.75",
-          "axis": "5",
-          "va": ""
-        },
-        "left": {
-          "sph": "+1.25",
-          "cyl": "-1.75",
-          "axis": "165",
-          "va": ""
-        }
-      },
-      "iop": {
-        "right": "",
-        "left": ""
-      },
-      "lids": {
-        "right": "",
-        "left": ""
-      },
-      "adnexa": {
-        "right": "",
-        "left": ""
-      },
-      "anterior_segment": {
-        "right": "",
-        "left": ""
-      },
-      "pupils": {
-        "right": "",
-        "left": ""
-      },
-      "ocular_motility": {
-        "right": "",
-        "left": ""
-      },
-      "posterior_segment": {
-        "right": "",
-        "left": ""
-      },
-      "neuro_ophthalmic": {
-        "right": "",
-        "left": ""
-      },
-      "diagnosis": "",
-      "icdCode": null,
-      "id": "bb29687f-51f2-45e2-97f6-4d9c8ec6cd41",
-      "createdAt": "2026-06-13T16:10:23.231Z",
-      "updatedAt": "2026-06-13T16:10:23.231Z",
-      "patientName": "Ahmed Mohamed Khairy"
-    }
-  ],
+  "examinations": [],
   "reports": [],
   "surgeries": [],
   "labs": []
