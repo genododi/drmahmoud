@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-06T16:39:06.715Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "Z1QJP",
+    "name": "Salma ahmed Mahmoud",
+    "dob": null,
+    "age": 10,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": "01095244236"
+  },
+  "glasses": [],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "Z1QJP",
+      "date": "2026-07-02",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "Chalazion",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "patientName": "Salma ahmed Mahmoud",
+      "id": "b5774d74-1382-499f-a808-7f6fa7987505",
+      "createdAt": "2026-07-02T08:07:43.787Z",
+      "updatedAt": "2026-07-02T08:08:23.546Z"
+    }
+  ],
+  "reports": [],
+  "surgeries": [
+    {
+      "patientId": "Z1QJP",
+      "surgeryType": "minor",
+      "procedureName": "Chalazion Incision & Curettage",
+      "procedureCode": "CH-IC",
+      "eye": "OD",
+      "surgeonName": "Dr. Mahmoud Sami Abouzeid",
+      "dateScheduled": "",
+      "datePerformed": "2026-07-02",
+      "anesthesiaType": "Topical",
+      "preOpDiagnosis": "",
+      "postOpDiagnosis": "",
+      "surgicalNotes": "",
+      "complications": "",
+      "status": "Completed",
+      "iolRequired": false,
+      "iolModel": "",
+      "iolType": "",
+      "iolPower": "",
+      "targetRefraction": "",
+      "biometryMethod": "IOLMaster",
+      "axialLength": "",
+      "kReadings": {
+        "k1": "",
+        "k2": "",
+        "axis": ""
+      },
+      "aConstant": "",
+      "patientName": "Salma ahmed Mahmoud",
+      "id": "9cf91ac4-1018-42fb-bebf-2492cc03c682",
+      "createdAt": "2026-07-02T08:09:54.860Z",
+      "updatedAt": "2026-07-02T08:09:54.860Z"
+    }
+  ],
+  "labs": [
+    {
+      "patientId": "Z1QJP",
+      "date": "2026-06-27",
+      "panelType": "basic",
+      "purpose": "Preoperative Assessment",
+      "selectedTests": [
+        "CBC",
+        "PT/PTT/INR"
+      ],
+      "customTests": "",
+      "results": "",
+      "notes": "",
+      "fitnessStatus": "Pending",
+      "fitnessNotes": "",
+      "referredTo": "",
+      "patientName": "Salma ahmed Mahmoud",
+      "id": "b5df1752-cd4e-4afe-81ab-3cb46bdd7d47",
+      "createdAt": "2026-06-27T18:28:21.968Z",
+      "updatedAt": "2026-06-27T18:28:21.968Z"
+    }
+  ]
+}
