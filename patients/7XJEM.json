@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-13T17:04:51.988Z",
+  "generatedAt": "2026-07-06T16:39:19.660Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -113,40 +113,6 @@
     }
   ],
   "reports": [],
-  "surgeries": [
-    {
-      "patientId": "7XJEM",
-      "surgeryType": "major",
-      "procedureName": "CXL",
-      "procedureCode": "",
-      "eye": "OU",
-      "surgeonName": "Dr. Mahmoud Sami Abouzeid",
-      "dateScheduled": "",
-      "datePerformed": "2026-06-10",
-      "anesthesiaType": "Topical",
-      "preOpDiagnosis": "",
-      "postOpDiagnosis": "",
-      "surgicalNotes": "KCN clear cornea",
-      "complications": "",
-      "status": "Scheduled",
-      "iolRequired": false,
-      "iolModel": "",
-      "iolType": "",
-      "iolPower": "",
-      "targetRefraction": "",
-      "biometryMethod": "IOLMaster",
-      "axialLength": "",
-      "kReadings": {
-        "k1": "",
-        "k2": "",
-        "axis": ""
-      },
-      "aConstant": "",
-      "patientName": "Mohamed adelreheem",
-      "id": "97495b6a-532e-4da8-a251-dbc03950e531",
-      "createdAt": "2026-06-10T17:17:53.201Z",
-      "updatedAt": "2026-06-10T17:18:03.660Z"
-    }
-  ],
+  "surgeries": [],
   "labs": []
 }
