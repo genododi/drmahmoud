@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-06T16:39:05.196Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "EOHG6",
+    "name": "yazeed",
+    "dob": null,
+    "age": 7,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "Fluca",
+      "genericName": "Fluconazole 0.3% ophthalmic",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "1 week",
+      "regimenEntries": [
+        {
+          "frequency": "BID (2 times daily)",
+          "duration": "1 week"
+        },
+        {
+          "frequency": "Once daily",
+          "duration": "1 week"
+        }
+      ],
+      "tapering": "",
+      "instructions": "Apply to both eyes",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1783354028343",
+      "patientId": "EOHG6",
+      "patientName": "yazeed",
+      "date_prescribed": "2026-07-06",
+      "createdAt": "2026-07-06T16:07:11.945Z",
+      "updatedAt": "2026-07-06T16:07:11.945Z"
+    },
+    {
+      "type": "Eye Drops",
+      "name": "Polyfresh Advanced",
+      "genericName": "Sodium hyaluronate 0.15% advanced lubricant",
+      "dosage": "1 drop",
+      "frequency": "TID (3 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1783353195356",
+      "patientId": "EOHG6",
+      "patientName": "yazeed",
+      "date_prescribed": "2026-07-06",
+      "createdAt": "2026-07-06T15:53:17.159Z",
+      "updatedAt": "2026-07-06T15:53:17.159Z"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "Polyfresh Advanced - 1 drop - TID (3 times daily) - 2 weeks",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "EOHG6",
+      "patientName": "yazeed",
+      "date": "2026-07-06",
+      "id": "584bd3d6-7c23-4973-ae8b-4e557a88ea88",
+      "createdAt": "2026-07-06T16:07:11.954Z",
+      "updatedAt": "2026-07-06T16:07:11.954Z"
+    },
+    {
+      "medical_treatment": "Fluca - 1 drop - TID (3 times daily) - 1 week",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "EOHG6",
+      "patientName": "yazeed",
+      "date": "2026-07-06",
+      "id": "00c2d704-45d8-41ce-ba7c-0731a6ec98cd",
+      "createdAt": "2026-07-06T15:53:17.162Z",
+      "updatedAt": "2026-07-06T15:53:17.162Z"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
