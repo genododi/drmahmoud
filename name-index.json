@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-08T18:05:16.100Z",
+  "generatedAt": "2026-07-08T18:05:19.721Z",
   "byName": {
     "ayla mahmoud": "TJJZZ",
     "nadia qotb": "561YL",
@@ -25,7 +25,8 @@
     "heba ahmed": "2QP92",
     "kholoud siam": "AZKPB",
     "amal samy hassan": "X47BB",
-    "ramadan ahmed ibrahim": "WE1IL"
+    "ramadan ahmed ibrahim": "WE1IL",
+    "wedad abo saleh": "1M44D"
   },
   "byId": {
     "TJJZZ": "Ayla mahmoud",
@@ -51,6 +52,7 @@
     "2QP92": "Heba Ahmed",
     "AZKPB": "kholoud siam",
     "X47BB": "Amal Samy Hassan",
-    "WE1IL": "Ramadan Ahmed Ibrahim"
+    "WE1IL": "Ramadan Ahmed Ibrahim",
+    "1M44D": "Wedad Abo saleh"
   }
 }
