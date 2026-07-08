@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-08T18:05:13.897Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "WE1IL",
+    "name": "Ramadan Ahmed Ibrahim",
+    "dob": null,
+    "age": 69,
+    "chiefComplaint": null,
+    "history": "Rt cataract 4 y - 1.5 glasses - DM controlled - ",
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "WE1IL",
+      "date": "2026-07-06",
+      "glassesType": "new",
+      "sph_right": "-1.75",
+      "cyl_right": "-1.0",
+      "axis_right": "110",
+      "va_right": "",
+      "sph_left": "-0.50",
+      "cyl_left": "-0.25",
+      "axis_left": "65",
+      "va_left": "",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "Ramadan Ahmed Ibrahim",
+      "id": "3b98f304-0484-4fca-a969-99529c7d1203",
+      "createdAt": "2026-07-08T16:44:16.605Z",
+      "updatedAt": "2026-07-08T16:44:16.605Z"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "WE1IL",
+      "date": "2026-07-08",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "patientName": "Ramadan Ahmed Ibrahim",
+      "id": "3bdbf2c0-f2ba-411c-ab00-6778668bee6e",
+      "createdAt": "2026-07-08T17:37:47.740Z",
+      "updatedAt": "2026-07-08T17:37:47.740Z"
+    },
+    {
+      "patientId": "WE1IL",
+      "date": "2026-07-08",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": "cataract nuclear 2"
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "Lt nuclear cataract",
+      "icdCode": null,
+      "patientName": "Ramadan Ahmed Ibrahim",
+      "id": "a8e2445b-4bda-4dee-8171-9d8461a1899f",
+      "createdAt": "2026-07-08T16:48:21.987Z",
+      "updatedAt": "2026-07-08T17:25:26.737Z"
+    }
+  ],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
