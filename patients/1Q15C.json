@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-13T16:27:20.701Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "1Q15C",
+    "name": "Hemdan Abdo",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": "Catheter- ",
+    "history": "Ou cataract 6y",
+    "contact": null
+  },
+  "glasses": [],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [
+    {
+      "patientId": "1Q15C",
+      "date": "2026-07-11",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "+0.75",
+          "cyl": "-2.5",
+          "axis": "180",
+          "va": ""
+        },
+        "left": {
+          "sph": "plano",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "OS PCO + +",
+      "icdCode": null,
+      "patientName": "Hemdan Abdo",
+      "id": "676742ef-084b-4c42-af1e-fc5466bd166e",
+      "createdAt": "2026-07-11T17:16:41.743Z",
+      "updatedAt": "2026-07-11T18:11:35.124Z",
+      "notes": "for OS YAG PC"
+    }
+  ],
+  "reports": [],
+  "surgeries": [
+    {
+      "patientId": "1Q15C",
+      "surgeryType": "minor",
+      "procedureName": "YAG Laser Capsulotomy",
+      "procedureCode": "YAG-CAP",
+      "eye": "OS",
+      "surgeonName": "Dr. Mahmoud Sami Abouzeid",
+      "dateScheduled": "",
+      "datePerformed": "2026-07-11",
+      "anesthesiaType": "Topical",
+      "preOpDiagnosis": "",
+      "postOpDiagnosis": "",
+      "surgicalNotes": "",
+      "complications": "",
+      "status": "Scheduled",
+      "iolRequired": false,
+      "iolModel": "",
+      "iolType": "",
+      "iolPower": "",
+      "targetRefraction": "",
+      "biometryMethod": "IOLMaster",
+      "axialLength": "",
+      "kReadings": {
+        "k1": "",
+        "k2": "",
+        "axis": ""
+      },
+      "aConstant": "",
+      "patientName": "Hemdan Abdo",
+      "id": "291cd9b3-e3b3-4306-ba83-3ec6894f59b4",
+      "createdAt": "2026-07-11T18:12:29.423Z",
+      "updatedAt": "2026-07-11T18:12:29.423Z"
+    }
+  ],
+  "labs": []
+}
