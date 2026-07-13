@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-13T16:27:17.784Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "GTYO2",
+    "name": "Salma essam",
+    "dob": null,
+    "age": 12,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [],
+  "medications": [],
+  "treatments": [],
+  "investigations": [
+    {
+      "patientId": "GTYO2",
+      "date": "2026-07-12",
+      "type": "Electrophysiology",
+      "subtype": "ep_eog",
+      "subtypeName": "EOG",
+      "eye": "Both",
+      "details": "",
+      "results": "",
+      "recommendations": "",
+      "status": "Ordered",
+      "patientName": "Salma essam",
+      "id": "df67e4da-83f2-4bae-a83a-7ea2ad05e9e9",
+      "createdAt": "2026-07-12T18:26:43.671Z",
+      "updatedAt": "2026-07-12T18:26:43.671Z"
+    },
+    {
+      "patientId": "GTYO2",
+      "date": "2026-07-12",
+      "type": "Electrophysiology",
+      "subtype": "ep_mferg",
+      "subtypeName": "mfERG",
+      "eye": "Both",
+      "details": "",
+      "results": "",
+      "recommendations": "",
+      "status": "Ordered",
+      "patientName": "Salma essam",
+      "id": "c99d85e2-2f73-4a2f-bd70-a446a1b5e669",
+      "createdAt": "2026-07-12T18:26:43.669Z",
+      "updatedAt": "2026-07-12T18:26:43.669Z"
+    },
+    {
+      "patientId": "GTYO2",
+      "date": "2026-07-12",
+      "type": "Electrophysiology",
+      "subtype": "ep_vep",
+      "subtypeName": "VEP (Pattern / Flash)",
+      "eye": "Both",
+      "details": "",
+      "results": "",
+      "recommendations": "",
+      "status": "Ordered",
+      "patientName": "Salma essam",
+      "id": "5b6bfeb6-27ba-4a54-9bb2-1844a4bae7c6",
+      "createdAt": "2026-07-12T18:26:43.660Z",
+      "updatedAt": "2026-07-12T18:26:43.660Z"
+    }
+  ],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
