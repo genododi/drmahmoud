@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-08T18:05:10.128Z",
+  "generatedAt": "2026-07-13T16:27:28.027Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -74,24 +74,96 @@
       "updatedAt": "2026-07-08T18:00:06.570Z"
     }
   ],
-  "investigations": [
+  "investigations": [],
+  "examinations": [
     {
       "patientId": "X47BB",
       "date": "2026-07-08",
-      "type": "Laboratory / Systemic",
-      "subtype": "lab_coag",
-      "eye": "Both",
-      "details": "",
-      "results": "",
-      "recommendations": "",
-      "status": "Ordered",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
       "patientName": "Amal Samy Hassan",
-      "id": "35006a52-732f-4091-b03e-71d3d63d255a",
-      "createdAt": "2026-07-08T18:02:35.897Z",
-      "updatedAt": "2026-07-08T18:02:35.897Z"
-    }
-  ],
-  "examinations": [
+      "id": "9fb1bf3f-65fc-41df-965d-095796067e19",
+      "createdAt": "2026-07-08T18:36:40.967Z",
+      "updatedAt": "2026-07-08T18:36:40.967Z"
+    },
     {
       "patientId": "X47BB",
       "date": "2026-07-08",
@@ -173,12 +245,12 @@
         "right": "",
         "left": ""
       },
-      "diagnosis": "",
+      "diagnosis": "Lt subconj hge",
       "icdCode": null,
       "patientName": "Amal Samy Hassan",
       "id": "640697e1-8d38-4670-9da4-edfd1877ce76",
       "createdAt": "2026-07-08T18:04:08.143Z",
-      "updatedAt": "2026-07-08T18:04:19.024Z"
+      "updatedAt": "2026-07-08T18:25:13.705Z"
     }
   ],
   "reports": [],
