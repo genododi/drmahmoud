@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-13T16:27:44.606Z",
+  "generatedAt": "2026-07-17T12:22:08.416Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -110,6 +110,358 @@
   "examinations": [
     {
       "patientId": "KYJG8",
+      "date": "2026-07-13",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "OD: Residual Papilledema G1\nOS: Resolved Papilledema",
+      "icdCode": null,
+      "patientName": "Mayar abdelrahman",
+      "id": "3e7189ab-73ac-4a77-b8c2-3f757d47b23d",
+      "createdAt": "2026-07-13T17:52:37.035Z",
+      "updatedAt": "2026-07-13T17:53:08.549Z"
+    },
+    {
+      "patientId": "KYJG8",
+      "date": "2026-07-13",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "patientName": "Mayar abdelrahman",
+      "id": "4e0fa4c6-2cbf-4c35-85e6-7b75859cc4ea",
+      "createdAt": "2026-07-13T17:52:23.315Z",
+      "updatedAt": "2026-07-13T17:52:23.315Z"
+    },
+    {
+      "patientId": "KYJG8",
+      "date": "2026-07-13",
+      "unaided_va": {
+        "right": "",
+        "left": ""
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "",
+        "left": ""
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "patientName": "Mayar abdelrahman",
+      "id": "bc122d79-c30c-406a-b83a-939fee63749c",
+      "createdAt": "2026-07-13T17:52:17.647Z",
+      "updatedAt": "2026-07-13T17:52:17.647Z"
+    },
+    {
+      "patientId": "KYJG8",
+      "date": "2026-07-13",
+      "unaided_va": {
+        "right": "6/9",
+        "left": "6/6"
+      },
+      "old_glasses": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "autorefraction": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "subjective": {
+        "right": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        },
+        "left": {
+          "sph": "",
+          "cyl": "",
+          "axis": "",
+          "va": ""
+        }
+      },
+      "iop": {
+        "right": "",
+        "left": ""
+      },
+      "lids": {
+        "right": "",
+        "left": ""
+      },
+      "adnexa": {
+        "right": "",
+        "left": ""
+      },
+      "anterior_segment": {
+        "right": "",
+        "left": ""
+      },
+      "pupils": {
+        "right": "PERRLA",
+        "left": "PERRLA"
+      },
+      "ocular_motility": {
+        "right": "",
+        "left": ""
+      },
+      "posterior_segment": {
+        "right": "Residual Papilledema G1",
+        "left": "Resolved Papilledema"
+      },
+      "neuro_ophthalmic": {
+        "right": "",
+        "left": ""
+      },
+      "diagnosis": "",
+      "icdCode": null,
+      "patientName": "Mayar abdelrahman",
+      "id": "6958dc6e-5830-486f-ab84-d84f0ddee9e1",
+      "createdAt": "2026-07-13T17:49:59.706Z",
+      "updatedAt": "2026-07-13T17:52:15.710Z"
+    },
+    {
+      "patientId": "KYJG8",
       "date": "2026-05-23",
       "unaided_va": {
         "right": "0.7",
@@ -199,6 +551,44 @@
     }
   ],
   "reports": [
+    {
+      "patientId": "KYJG8",
+      "date": "2026-07-13",
+      "reportType": "referral",
+      "title": "Referral Letter",
+      "sections": {
+        "Patient Demographics": "Name: Mayar abdelrahman\nPatient ID: KYJG8\nAge: 31\nChief complaint: BOV ou\nMedical history: Papilledema - 8 cidamex tabs per day - LP 11/4/2026 - G2 OD G3 OS papilledema",
+        "Referring Physician": "",
+        "Reason for Referral": "Papilledema Grading follow up",
+        "Examination Summary": "Examination date: 2026-07-13\n\nUnaided VA — OD: 6/9, OS: 6/6\n",
+        "Diagnosis": "OD: Residual Papilledema G1\nOS: Resolved Papilledema",
+        "Plan / Recommendations": "VF required after 1 month interval",
+        "Referring / Attending Physician": "Dr. Mahmoud Sami Abouzeid",
+        "Reason for Visit": "BOV ou"
+      },
+      "sectionInclusion": {
+        "Patient Demographics": false,
+        "Referring Physician": false,
+        "Reason for Referral": true,
+        "Examination Summary": true,
+        "Diagnosis": true,
+        "Plan / Recommendations": true,
+        "__freeform__": true,
+        "__doctorNotes__": true,
+        "__signature__": true,
+        "__clinicalAppendix__": false,
+        "__clinicalImaging__": true
+      },
+      "summary": "Patient Demographics: Name: Mayar abdelrahman\nPatient ID: KYJG8\nAge: 31\nChief comp… | Reason for Referral: Papilledema Grading follow up… | Examination Summary: Examination date: 2026-07-13\n\nUnaided VA — OD: 6/9, OS: 6/6\n… | Diagnosis: OD: Residual Papilledema G1\nOS: Resolved Papilledema… | Plan / Recommendations: VF required after 1 month interval… | Referring / Attending Physician: Dr. Mahmoud Sami Abouzeid… | Reason for Visit: BOV ou…",
+      "doctorNotes": "",
+      "signature": "Dr. Mahmoud Sami Abouzeid\nMD, FRCS (Glasgow), PhD\nConsultant Ophthalmologist",
+      "freeformContent": "",
+      "language": "en",
+      "patientName": "Mayar abdelrahman",
+      "id": "62ae8113-50ac-4ab5-baaa-c6f0e3924bf5",
+      "createdAt": "2026-07-13T18:01:27.295Z",
+      "updatedAt": "2026-07-13T18:26:50.028Z"
+    },
     {
       "patientId": "KYJG8",
       "date": "2026-06-13",
