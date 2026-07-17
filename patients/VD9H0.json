@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-17T12:21:54.031Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "VD9H0",
+    "name": "Adham Mostafa Elshafy",
+    "dob": null,
+    "age": 14,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "VD9H0",
+      "date": "2026-07-15",
+      "glassesType": "new",
+      "sph_right": "+1.75",
+      "cyl_right": "-2.75",
+      "axis_right": "15",
+      "va_right": "6/6",
+      "sph_left": "+1.25",
+      "cyl_left": "-1.75",
+      "axis_left": "160",
+      "va_left": "6/6",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "Adham Mostafa Elshafy",
+      "id": "a6d6c828-bb5e-440e-9836-af8cf3ca5737",
+      "createdAt": "2026-07-15T17:14:25.949Z",
+      "updatedAt": "2026-07-15T17:14:25.949Z"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
