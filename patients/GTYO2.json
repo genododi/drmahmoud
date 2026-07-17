@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-13T16:27:17.784Z",
+  "generatedAt": "2026-07-17T12:22:03.141Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -15,11 +15,74 @@
     "age": 12,
     "chiefComplaint": null,
     "history": null,
-    "contact": null
+    "contact": "01153417652"
   },
-  "glasses": [],
-  "medications": [],
-  "treatments": [],
+  "glasses": [
+    {
+      "patientId": "GTYO2",
+      "date": "2026-07-15",
+      "glassesType": "new",
+      "sph_right": "-2.0",
+      "cyl_right": "-1.50",
+      "axis_right": "5",
+      "va_right": "",
+      "sph_left": "-2.0",
+      "cyl_left": "-1.50",
+      "axis_left": "5",
+      "va_left": "",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "Salma essam",
+      "id": "230d940f-69ae-49bd-acf3-138569c036f8",
+      "createdAt": "2026-07-15T16:54:30.238Z",
+      "updatedAt": "2026-07-15T16:54:30.238Z"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Tablet",
+      "name": "CENTRUM SILVER WITH LUTEIN 100 TABS.",
+      "genericName": "MULTIVITAMINS+MINERALS",
+      "dosage": "",
+      "frequency": "Once daily",
+      "duration": "",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1784133142002",
+      "patientId": "GTYO2",
+      "patientName": "Salma essam",
+      "date_prescribed": "2026-07-15",
+      "createdAt": "2026-07-15T16:32:27.273Z",
+      "updatedAt": "2026-07-15T16:32:27.273Z"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "CENTRUM SILVER WITH LUTEIN 100 TABS. - Once daily",
+      "surgical_treatment": "",
+      "investigations": "Electrophysiology - ep_eog - Both - Ordered\nElectrophysiology - ep_mferg - Both - Ordered\nElectrophysiology - ep_vep - Both - Ordered",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "GTYO2",
+      "patientName": "Salma essam",
+      "date": "2026-07-15",
+      "id": "717553e3-f153-401a-be59-3fdee533081e",
+      "createdAt": "2026-07-15T16:32:27.287Z",
+      "updatedAt": "2026-07-15T16:32:27.287Z"
+    }
+  ],
   "investigations": [
     {
       "patientId": "GTYO2",
