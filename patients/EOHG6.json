@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-13T16:27:39.087Z",
+  "generatedAt": "2026-07-17T12:21:55.408Z",
   "clinic": {
     "name": "Dr. Mahmoud Sami Abouzeid",
     "nameAr": "د. محمود سامي أبوزيد",
@@ -10,12 +10,12 @@
   },
   "patient": {
     "id": "EOHG6",
-    "name": "yazeed",
+    "name": "Yazeed Omar Mohamed",
     "dob": null,
     "age": 7,
     "chiefComplaint": null,
     "history": null,
-    "contact": null
+    "contact": "01119805585"
   },
   "glasses": [],
   "medications": [
@@ -42,7 +42,7 @@
       "isSteroid": false,
       "id": "1783354028343",
       "patientId": "EOHG6",
-      "patientName": "yazeed",
+      "patientName": "Yazeed Omar Mohamed",
       "date_prescribed": "2026-07-06",
       "createdAt": "2026-07-06T16:07:11.945Z",
       "updatedAt": "2026-07-06T16:07:11.945Z"
@@ -61,7 +61,7 @@
       "isSteroid": false,
       "id": "1783353195356",
       "patientId": "EOHG6",
-      "patientName": "yazeed",
+      "patientName": "Yazeed Omar Mohamed",
       "date_prescribed": "2026-07-06",
       "createdAt": "2026-07-06T15:53:17.159Z",
       "updatedAt": "2026-07-06T15:53:17.159Z"
@@ -75,7 +75,7 @@
       "followup_date": "",
       "notes": "",
       "patientId": "EOHG6",
-      "patientName": "yazeed",
+      "patientName": "Yazeed Omar Mohamed",
       "date": "2026-07-06",
       "id": "584bd3d6-7c23-4973-ae8b-4e557a88ea88",
       "createdAt": "2026-07-06T16:07:11.954Z",
@@ -88,7 +88,7 @@
       "followup_date": "",
       "notes": "",
       "patientId": "EOHG6",
-      "patientName": "yazeed",
+      "patientName": "Yazeed Omar Mohamed",
       "date": "2026-07-06",
       "id": "00c2d704-45d8-41ce-ba7c-0731a6ec98cd",
       "createdAt": "2026-07-06T15:53:17.162Z",
