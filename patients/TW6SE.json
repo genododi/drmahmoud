@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-01T17:29:01.976Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "TW6SE",
+    "name": "Mahmoud Sami",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "TW6SE",
+      "date": "2026-08-01",
+      "glassesType": "new",
+      "sph_right": "-4.50",
+      "cyl_right": "-2.25",
+      "axis_right": "35",
+      "va_right": "20/20",
+      "sph_left": "-5.25",
+      "cyl_left": "-2.0",
+      "axis_left": "140",
+      "va_left": "20/20",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": true,
+      "contactLensType": "toric",
+      "cl_sph_right": "-4.25",
+      "cl_cyl_right": "-2.00",
+      "cl_axis_right": "35",
+      "cl_sph_left": "-5.00",
+      "cl_cyl_left": "-1.75",
+      "cl_axis_left": "140",
+      "warnings": [],
+      "patientName": "Mahmoud Sami",
+      "id": "f4e6aab9-172d-445f-8ae8-79e59fac7823",
+      "createdAt": "2026-08-01T17:27:33.110Z",
+      "updatedAt": "2026-08-01T17:27:33.110Z"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
