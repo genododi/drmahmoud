@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-01T16:29:33.433Z",
+  "generatedAt": "2026-08-01T16:47:16.486Z",
   "byName": {
     "adham mostafa elshafy": "VD9H0",
     "yazeed omar mohamed": "EOHG6",
@@ -32,7 +32,8 @@
     "heba ahmed": "2QP92",
     "kholoud siam": "AZKPB",
     "samy mahmoud abouzeid": "HRQL6",
-    "amany siam ramadan": "PE3EV"
+    "amany siam ramadan": "PE3EV",
+    "malik wanas": "BZC4Z"
   },
   "byId": {
     "VD9H0": "Adham Mostafa Elshafy",
@@ -65,6 +66,7 @@
     "2QP92": "Heba Ahmed",
     "AZKPB": "kholoud siam",
     "HRQL6": "Samy Mahmoud Abouzeid",
-    "PE3EV": "amany siam ramadan"
+    "PE3EV": "amany siam ramadan",
+    "BZC4Z": "Malik Wanas"
   }
 }
