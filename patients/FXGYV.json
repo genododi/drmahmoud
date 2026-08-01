@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-01T16:28:41.743Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "FXGYV",
+    "name": "Omar Fathy",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "FXGYV",
+      "date": "2026-07-25",
+      "glassesType": "new",
+      "sph_right": "-4.25",
+      "cyl_right": "-2.25",
+      "axis_right": "20",
+      "va_right": "6/6",
+      "sph_left": "-2.50",
+      "cyl_left": "-2.75",
+      "axis_left": "150",
+      "va_left": "6/6",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "Omar Fathy",
+      "id": "53f7ff5b-e376-4b0e-91ba-58ba21d08656",
+      "createdAt": "2026-07-31T18:33:18.573Z",
+      "updatedAt": "2026-07-31T18:33:18.573Z"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
