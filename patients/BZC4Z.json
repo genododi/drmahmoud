@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-01T16:47:13.906Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "BZC4Z",
+    "name": "Malik Wanas",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "BZC4Z",
+      "date": "2026-08-01",
+      "glassesType": "new",
+      "sph_right": "-1.0",
+      "cyl_right": "-0.75",
+      "axis_right": "160",
+      "va_right": "20/20",
+      "sph_left": "-1.25",
+      "cyl_left": "-0.50",
+      "axis_left": "5",
+      "va_left": "20/20",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": true,
+      "contactLensType": "standard",
+      "cl_sph_right": "-1.25",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "-1.50",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "warnings": [
+        "cylinder_may_need_toric"
+      ],
+      "patientName": "Malik Wanas",
+      "id": "041d032c-b44f-4032-a0ba-21e91d1d16f6",
+      "createdAt": "2026-08-01T16:46:08.024Z",
+      "updatedAt": "2026-08-01T16:46:08.024Z"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
