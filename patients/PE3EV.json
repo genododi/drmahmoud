@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-01T16:28:35.554Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "PE3EV",
+    "name": "amany siam ramadan",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": null,
+    "history": null,
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "PE3EV",
+      "date": "2026-07-25",
+      "glassesType": "new",
+      "sph_right": "-0.75",
+      "cyl_right": "-1.0",
+      "axis_right": "10",
+      "va_right": "6/6",
+      "sph_left": "-1.0",
+      "cyl_left": "-1.25",
+      "axis_left": "170",
+      "va_left": "6/6",
+      "add_power": "",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "amany siam ramadan",
+      "id": "0e8ebd8b-d764-43c6-b348-4d561093c879",
+      "createdAt": "2026-07-31T19:35:27.317Z",
+      "updatedAt": "2026-07-31T19:35:27.317Z"
+    }
+  ],
+  "medications": [],
+  "treatments": [],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
