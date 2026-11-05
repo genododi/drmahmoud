@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-05T05:22:30.781Z",
+  "clinic": {
+    "name": "Dr. Mahmoud Sami Abouzeid",
+    "nameAr": "د. محمود سامي أبوزيد",
+    "phone": "01005602267",
+    "address": "1 Zaki Nabawi - Alkawthar tower - Tersa, Haram",
+    "website": "https://genododi.github.io/drmahmoud/"
+  },
+  "patient": {
+    "id": "9SD1V",
+    "name": "Yacoub",
+    "dob": null,
+    "age": null,
+    "chiefComplaint": null,
+    "history": "DM 1 - oral- controlled",
+    "contact": null
+  },
+  "glasses": [
+    {
+      "patientId": "9SD1V",
+      "date": "2026-11-04",
+      "glassesType": "new",
+      "sph_right": "+0.75",
+      "cyl_right": "-0.75",
+      "axis_right": "85",
+      "va_right": "6/6",
+      "sph_left": "+1.0",
+      "cyl_left": "-1.0",
+      "axis_left": "70",
+      "va_left": "6/6",
+      "add_power": "+1.75",
+      "pd": "To fit",
+      "notes": "",
+      "contactLensEnabled": false,
+      "contactLensType": "standard",
+      "cl_sph_right": "",
+      "cl_cyl_right": "",
+      "cl_axis_right": "",
+      "cl_sph_left": "",
+      "cl_cyl_left": "",
+      "cl_axis_left": "",
+      "patientName": "Yacoub",
+      "id": "c8ca5d6b-a9f2-4f6c-9253-b78d23d95dbd",
+      "createdAt": "2026-11-04T17:41:34.796Z",
+      "updatedAt": "2026-11-05T04:15:57.691Z"
+    }
+  ],
+  "medications": [
+    {
+      "type": "Eye Drops",
+      "name": "NAVILIPO EYE DROPS 10 ML",
+      "genericName": "SODIUM HYALURONATE+VITAMIN E+ALOE VERA+CHAMOMILE",
+      "dosage": "",
+      "frequency": "BID (2 times daily)",
+      "duration": "2 weeks",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1793814311435",
+      "patientId": "9SD1V",
+      "patientName": "Yacoub",
+      "date_prescribed": "2026-11-04",
+      "createdAt": "2026-11-04T17:45:13.538Z",
+      "updatedAt": "2026-11-05T04:15:57.723Z"
+    },
+    {
+      "type": "Eye Drops",
+      "name": "TWIT-TEAR EYE DROPS 10 ML",
+      "genericName": "HYALURONIC ACID SODIUM SALT+HYPROMELLOSE+HIP ROSE+ALOE+CHAMOMILE+BLUEBERRY",
+      "dosage": "",
+      "frequency": "TID (3 times daily)",
+      "duration": "1 month",
+      "regimenEntries": [],
+      "tapering": "",
+      "instructions": "",
+      "notes": "",
+      "isSteroid": false,
+      "id": "1793814202613",
+      "patientId": "9SD1V",
+      "patientName": "Yacoub",
+      "date_prescribed": "2026-11-04",
+      "createdAt": "2026-11-04T17:45:13.531Z",
+      "updatedAt": "2026-11-05T04:15:57.707Z"
+    }
+  ],
+  "treatments": [
+    {
+      "medical_treatment": "TWIT-TEAR EYE DROPS 10 ML - TID (3 times daily) - 1 month",
+      "surgical_treatment": "",
+      "investigations": "",
+      "followup_date": "",
+      "notes": "",
+      "patientId": "9SD1V",
+      "patientName": "Yacoub",
+      "date": "2026-11-04",
+      "id": "549a1daa-3c90-41c0-b823-a0d18887b2ff",
+      "createdAt": "2026-11-04T17:45:13.541Z",
+      "updatedAt": "2026-11-05T04:15:57.739Z"
+    }
+  ],
+  "investigations": [],
+  "examinations": [],
+  "reports": [],
+  "surgeries": [],
+  "labs": []
+}
