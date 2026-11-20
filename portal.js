@@ -581,7 +581,7 @@
 
   downloadAllPdfsBtn.addEventListener('click', downloadAllAsZip);
 
-  printBtn.addEventListener('click', () => window.print());
+  printBtn.addEventListener('click', () => { if (currentBundle) window.PortalPatientPdf.preview('chart',currentBundle,currentBundle.patient); });
 
   // Per-record "Download PDF" buttons are delegated.
   panelsEl.addEventListener('click', (e) => {

@@ -15,13 +15,13 @@ function fields(obj,parent){
     parent.append(row);
   }
 }
-function chartSections(data){
+function chartSections(data,link){
   const target=document.createDocumentFragment();
   for(const [key,title] of Object.entries(sections)){
     const rows=key==='patient'?[data.patient]:data[key];
     if(!rows?.length)continue;
     const section=element('section');section.className='card';section.append(element('h3',title));
-    for(const row of rows){const article=element('article');article.className='record';fields(row,article);section.append(article);}
+    for(const row of rows){const article=element('article');article.className='record';fields(row,article);const button=element('button','Open PDF · عرض للطباعة');button.onclick=()=>window.PortalPatientPdf.preview(key,row,data.patient,link);article.append(button);section.append(article);}
     target.append(section);
   }
   return target;
@@ -41,7 +41,10 @@ function chartSections(data){
     const file=bytes(await response.text());
     const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:file.slice(0,12)},key,file.slice(12));
     const chart=JSON.parse(new TextDecoder().decode(plain));
-    $('records').replaceChildren(chartSections(chart));
+    const link=location.origin+location.pathname+'#'+credential;
+    $('records').replaceChildren(chartSections(chart,link));
+    $('chart-pdf').hidden=false;
+    $('chart-pdf').onclick=()=>window.PortalPatientPdf.preview('chart',chart,chart.patient,link);
     $('name').textContent=chart.patient.name+' · '+chart.patient.id;
     $('status').hidden=true;
     $('close').hidden=false;
