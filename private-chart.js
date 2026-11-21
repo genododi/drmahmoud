@@ -5,7 +5,7 @@ const labels={name:'الاسم',id:'رقم الملف',dob:'تاريخ المي�
 function element(tag,value){const el=document.createElement(tag);el.dir='auto';if(value!=null)el.textContent=value;return el;}
 function fields(obj,parent){
   for(const [key,value] of Object.entries(obj)){
-    if(value==null || value==='' || ['patientName','patientId'].includes(key))continue;
+    if(value==null || value==='' || ['patientName','patientId','diseases','autoTests'].includes(key))continue;
     const row=element('div');row.className='portal-field';
     if(!Array.isArray(obj))row.append(element('strong',(labels[key]||key.replace(/_/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2'))+' '));
     if(typeof value==='object')fields(value,row);
